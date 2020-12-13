@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
 
-const Index = () => (
+const Login = () => (
   <Layout>
     <br />
     <Link href="/">
-      <a> Welcome to PIBOX! Start Exploring Now</a>
+      <a> Take me home</a>
     </Link>
-    <p>I am home</p>
+    <p>I am login</p>
   </Layout>
 );
 
-export default Index;
+export default Login;

@@ -1,25 +1,22 @@
-.container {
-    max-width: 36rem;
-    padding: 0 1rem;
-    margin: 3rem auto 6rem;
-  }
-  
-  .header {
+.Layout {
+    flex: 1;
     display: flex;
     flex-direction: column;
+  
+    height: 100%;
+    width: 100%;
+}
+  
+ .Layout .Content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
     align-items: center;
-  }
+
+    width: 100%;
+ }
+
+.Layout a {
+    color: inherit;
+}
   
-  .headerImage {
-    width: 6rem;
-    height: 6rem;
-  }
-  
-  .headerHomeImage {
-    width: 8rem;
-    height: 8rem;
-  }
-  
-  .backToHome {
-    margin: 3rem 0 0;
-  }
