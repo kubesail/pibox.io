@@ -1,25 +1,19 @@
 import Head from "next/head";
-
-import Header from "./Header";
 import NavBar from "./NavBar";
-
-import "./Layout.module.css";
-import "./index.module.css";
-
 import navButtons from "../config/buttons";
 
+import styles from "./Layout.module.css";
+
 const Layout = props => {
-  const appTitle = `PIBOX`;
 
   return (
-    <div className="Layout">
+    <div className={styles.Layout}>
       <Head>
-        <title>PIBOX</title>
+        <title>PiBox</title>
       </Head>
 
-      <Header appTitle={appTitle} />
-      <div className="Content">{props.children}</div>
       <NavBar navButtons={navButtons} />
+      <div className={styles.Content}>{props.children}</div>
     </div>
   );
 };

@@ -8,8 +8,18 @@ body {
   font-size: 18px;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 * {
   box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 a {

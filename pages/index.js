@@ -5,7 +5,7 @@ const Index = () => (
   <Layout>
     <br />
     <Link href="/">
-      <a> Welcome to PIBOX! Start Exploring Now</a>
+      <a> Welcome to PiBox! Start Exploring Now</a>
     </Link>
     <p>I am home</p>
   </Layout>

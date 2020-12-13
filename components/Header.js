@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import "./Header.module.css";
+import styles from "./Header.module.css";
 
 const Header = props => (
   <Link href="/">
-    <div className="Header">{props.appTitle}</div>
+    <div className={styles.Header}>{props.appTitle}</div>
   </Link>
 );
 
