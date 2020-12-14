@@ -1,8 +1,11 @@
+.FirstDrawer {
+    margin: 120px 120px;
+}
+
 .ProdContent {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 120px;
     /* height: 600px;
     width: 100%; */
 }
@@ -13,15 +16,8 @@
     justify-content: flex-start;
     align-items: center;
     position: absolute;
-    left: 0px;
+    left: 120px;
 }
-
-/* .Img img {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-} */
 
 .ProdContentContainer{
     flex: 1;
@@ -31,15 +27,79 @@
     width: 40%;
 }
 
-.ProdContent h2 {
+.Img {
+    display: flex;
+}
+
+.Product h2 {
     font-size: 40px;
     text-align: center;
 }
 
-.ProdContent p {
+.Product p {
     font-size: 30px;
 }
 
 .highlight {
     color: #EC3963;
+}
+
+.secondDrawer {
+    background: #FBFBFD;
+}
+
+.secondDrawerContent {
+    display: flex;
+    margin: 120px 120px;
+    padding: 120px 0;
+}
+
+.secondDrawerCopy {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+/* .Icons div {
+    margin: 0 0px;
+} */
+
+.secondDrawerContent img {
+    display: flex;
+    align-items: center;
+}
+
+.DesktopImg {
+    display: flex;
+    margin-left: 0;
+    position: absolute;
+    right: 120px;
+}
+
+.thirdDrawer {
+    background: #FBFBFD;
+}
+
+.thirdDrawerContent {
+    display: flex;
+    margin: 120px 120px;
+    padding: 120px 0;
+}
+
+.MediaImg {
+    display: flex;
+    position: absolute;
+    left: 120px;
+}
+
+.thirdDrawerContent {
+    display: flex;
+    width: 40%;
+    margin-left: auto;
+}
+
+.CTA {
+    text-align: center;
+    margin: 60px 120px;
+    padding: 20px 0;
 }
