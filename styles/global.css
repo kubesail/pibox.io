@@ -22,10 +22,10 @@ code {
     monospace;
 }
 
-img {
+/* img {
   max-width: 100%;
   display: block;
-}
+} */
 
 a {
   color: black;
@@ -34,5 +34,15 @@ a {
 
 a.active {
   border-bottom: 6px solid #EC3963;
+}
+
+button {
+  background-color: #EC3963;
+  color: white;
+  font-size: 30px;
+  border-radius: 3px;
+  line-height: 35px;
+  border: none;
+  padding: 10px 20px;
 }
 
