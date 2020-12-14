@@ -1,13 +1,10 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
+import ProdBar from '../components/ProdBar'
 
 const Index = () => (
   <Layout>
-    <br />
-    <Link href="/">
-      <a> Welcome to PiBox! Start Exploring Now</a>
-    </Link>
-    <p>I am home</p>
+    <ProdBar />
   </Layout>
 );
 

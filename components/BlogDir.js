@@ -3,8 +3,8 @@ import styles from './Blog.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'Pibox Blog'
-export const siteTitle = 'Pibox Blog'
+const name = 'PiBox Blog'
+export const siteTitle = 'PiBox Blog'
 
 export default function Blog({ children, blog }) {
   return (
@@ -13,7 +13,7 @@ export default function Blog({ children, blog }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Pibox blog directory"
+          content="PiBox blog directory"
         />
         <meta
           property="og:image"

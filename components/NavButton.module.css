@@ -1,19 +1,14 @@
 .NavButton {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     margin-left: auto;
     align-items: center; 
     height: 100%;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 .Label {
     font-size: 20px;
 }
   
-.NavButton.active {
-    color: red;
-}
- 

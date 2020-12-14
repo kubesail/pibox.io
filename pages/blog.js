@@ -26,7 +26,7 @@ export default function Blog({ allPostsData }) {
           <title>{siteTitle}</title>
         </Head>
         <section className={utilStyles.headingMd}>
-          <p>A blog about Pibox boxes</p>
+          <p>A blog about PiBox boxes</p>
         </section>
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
           <h2 className={utilStyles.headingLg}>Blog</h2>

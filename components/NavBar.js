@@ -4,7 +4,7 @@ import NavButton from './NavButton'
 
 const NavBar = props => {
 
-  const appTitle = `PiBox`;
+  const appTitle = `PiBox`
 
   return (
 
@@ -12,13 +12,15 @@ const NavBar = props => {
       
       <Header appTitle={appTitle} />
 
-      {props.navButtons.map(button => (
-        <NavButton
-          key={button.path}
-          path={button.path}
-          label={button.label}
-        />
-      ))}
+      <div className={styles.NavButtonContainer}>
+        {props.navButtons.map(button => (
+          <NavButton
+            key={button.path}
+            path={button.path}
+            label={button.label}
+          />
+        ))}
+      </div>
     </div>
   )
 }
