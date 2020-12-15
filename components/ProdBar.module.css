@@ -1,11 +1,21 @@
 .ProdBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 120px;
+  font-size: 40px;
+  font-weight: bold;
+}
 
-    margin: 20px 120px;
-    font-size: 40px;
+.ProdBar a {
+  margin: 30px;
+}
 
+.colorPink {
+  color: #ec3963;
+}
+.colorBlue {
+  color: #5bb3e7;
 }
 
 /* .ProdBar > a {
