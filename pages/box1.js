@@ -16,12 +16,12 @@ const Box1 = () => (
               className={styles.Img}
               src='/images/box1.png'
               alt="Image of PiBox 1"
-              width={500}
-              height={500}
+              width={875}
+              height={699}
             />
           </div>
           <div className={styles.ProdContentContainer}>
-            <h2>A Standard Operating System</h2>
+            <h2>Extra storage in a snap</h2>
             <p>Snap in any <span className={styles.highlight}>Raspberry Pi CM4</span> and <i>two</i> full size 3.5 inch hard drives. Install any operating system and go.</p>
             <button>Order Now</button>
           </div>
@@ -31,8 +31,8 @@ const Box1 = () => (
       <div className={styles.secondDrawer}>
         <div className={styles.secondDrawerContent}>
           <div className={styles.secondDrawerCopy}>
-            <h2>Extra storage in a snap</h2>
-            <div className={styles.Icons}>
+            <h2>A Standard Operating System</h2>
+            <div className={styles.IconContainer}>
               <Image 
                 className={styles.Icons}
                 src='/images/ubuntu.png'
