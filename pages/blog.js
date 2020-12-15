@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from "../components/Layout";
+import Layout from '../components/Layout'
 import BlogDir, { siteTitle } from '../components/BlogDir'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
@@ -10,8 +10,8 @@ export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
   return {
     props: {
-      allPostsData
-    }
+      allPostsData,
+    },
   }
 }
 

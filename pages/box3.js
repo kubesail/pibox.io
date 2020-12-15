@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Layout from "../components/Layout";
+import Link from 'next/link'
+import Layout from '../components/Layout'
 import ProdBar from '../components/ProdBar'
 import styles from '../components/Box.module.css'
 
@@ -14,6 +14,6 @@ const Box3 = () => (
       <p>I am Box 3</p>
     </div>
   </Layout>
-);
+)
 
-export default Box3;
+export default Box3

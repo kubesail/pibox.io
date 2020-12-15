@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Layout from "../components/Layout";
+import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const Login = () => (
   <Layout>
@@ -9,6 +9,6 @@ const Login = () => (
     </Link>
     <p>I am login</p>
   </Layout>
-);
+)
 
-export default Login;
+export default Login
