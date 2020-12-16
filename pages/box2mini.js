@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import ProdBar from '../components/ProdBar'
 import styles from '../components/Box.module.css'
 
-const Box4 = () => (
+const Box2 = () => (
   <Layout>
     <ProdBar />
     <br />
@@ -11,9 +11,9 @@ const Box4 = () => (
       <Link href="/">
         <a> Take me home</a>
       </Link>
-      <p>I am Box 4</p>
+      <p>I am Box 2 mini</p>
     </div>
   </Layout>
 )
 
-export default Box4
+export default Box2

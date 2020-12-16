@@ -8,25 +8,25 @@ const ProdBar = props => {
   return (
     <div className={styles.ProdBar}>
       <div>
-        <Link href="/box1">
-          <a className={router.pathname === '/box1' ? 'active' : 'inactive'}>
+        <Link href="/box2">
+          <a className={router.pathname === '/box2' ? 'active' : 'inactive'}>
             Box <span className={styles.colorPink}>2</span>
           </a>
         </Link>
-        <Link href="/box2">
-          <a className={router.pathname === '/box2' ? 'active' : 'inactive'}>
+        <Link href="/box2mini">
+          <a className={router.pathname === '/box2mini' ? 'active' : 'inactive'}>
             Box <span className={styles.colorPink}>2 mini</span>
           </a>
         </Link>
       </div>
       <div>
-        <Link href="/box3">
-          <a className={`${router.pathname == '/box3' ? `active` : 'inactive'}`}>
+        <Link href="/box5">
+          <a className={`${router.pathname == '/box5' ? `active` : 'inactive'}`}>
             Box <span className={styles.colorBlue}>5</span>
           </a>
         </Link>
-        <Link href="/box4">
-          <a className={router.pathname == '/box4' ? 'active' : 'inactive'}>
+        <Link href="/box5mini">
+          <a className={router.pathname == '/box5mini' ? 'active' : 'inactive'}>
             Box <span className={styles.colorBlue}>5 mini</span>
           </a>
         </Link>
