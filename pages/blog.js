@@ -18,9 +18,6 @@ export async function getStaticProps() {
 export default function Blog({ allPostsData }) {
   return (
     <Layout>
-      <Link href="/">
-        <a> Take me home</a>
-      </Link>
       <BlogDir blog>
         <Head>
           <title>{siteTitle}</title>

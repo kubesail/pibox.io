@@ -10,7 +10,7 @@ function Layout({ user, loading = false, children }) {
         <title>PiBox</title>
       </Head>
 
-      <NavBar nuser={user} loading={loading} />
+      <NavBar user={user} loading={loading} />
 
       <div className={styles.Content}>{children}</div>
     </div>
