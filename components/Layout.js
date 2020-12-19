@@ -1,18 +1,18 @@
 import Head from 'next/head'
 import NavBar from './NavBar'
-import navButtons from '../config/buttons'
 
 import styles from './Layout.module.css'
 
-const Layout = props => {
+function Layout({ user, loading = false, children }) {
   return (
     <div className={styles.Layout}>
       <Head>
         <title>PiBox</title>
       </Head>
 
-      <NavBar navButtons={navButtons} />
-      <div className={styles.Content}>{props.children}</div>
+      <NavBar nuser={user} loading={loading} />
+
+      <div className={styles.Content}>{children}</div>
     </div>
   )
 }
