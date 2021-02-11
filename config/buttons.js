@@ -1,16 +1,20 @@
 const navButtons = [
   {
-    label: "Blog",
-    path: "/blog"
+    label: 'Docs',
+    path: '/docs',
   },
   {
-    label: "Docs",
-    path: "/docs"
+    label: 'Blog',
+    path: '/blog',
   },
   {
-    label: "Login",
-    path: "/login"
-  }
-];
+    label: 'Contact',
+    path: 'https://kubesail.com/support',
+  },
+  {
+    label: 'Login',
+    path: '/login',
+  },
+]
 
-export default navButtons;
+export default navButtons
