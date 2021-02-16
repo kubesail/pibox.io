@@ -1,0 +1,125 @@
+.Product {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 8vh 5vw;
+}
+
+.ProductContent {
+  display: flex;
+  align-items: center;
+}
+
+.ProductImage {
+  width: 110%;
+  margin-left: -5%;
+}
+
+.ProductHero {
+  width: 60%;
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  .ProductContent {
+    flex-direction: column;
+    margin: 5%;
+  }
+
+  .ProductHero {
+    width: 100%;
+  }
+}
+
+.ProductContentContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 10px;
+  width: 40%;
+  margin-left: 10%;
+}
+
+.ProductFeatureText {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 35px;
+}
+
+.heroHeader {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.ul {
+  margin: 20px 0;
+}
+
+.italics {
+  font-style: 'italics';
+}
+
+.Product h2 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.Product p {
+  font-size: 30px;
+}
+
+.highlight {
+  color: #ec3963;
+}
+
+.secondDrawer {
+  background: #fbfbfd;
+}
+
+.secondDrawerContent {
+  display: flex;
+  margin: 120px 120px;
+  padding: 120px 0;
+}
+
+.secondDrawerCopy {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.IconContainer {
+  justify-content: space-around;
+  display: flex;
+}
+
+.secondDrawerContent img {
+  display: flex;
+  align-items: center;
+}
+
+.DesktopImg {
+  display: flex;
+  margin-left: 0;
+  right: 120px;
+}
+
+.thirdDrawer {
+  background: #fbfbfd;
+}
+
+.thirdDrawerContent {
+  display: flex;
+  margin: 120px 120px;
+  padding: 120px 0;
+}
+
+.thirdDrawerContent {
+  display: flex;
+  width: 40%;
+  margin-left: auto;
+}
+
+.CTA {
+  text-align: center;
+  margin: 60px 120px;
+  padding: 20px 0;
+}

@@ -1,13 +1,13 @@
-import styles from './ProdBar.module.css'
+import styles from './ProductBar.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const ProdBar = props => {
+const ProductBar = props => {
   const router = useRouter()
 
   return (
     <div className={styles.ProdBar}>
-      <div>
+      <div className={styles.productGroup}>
         <Link href="/box2">
           <a className={router.pathname === '/box2' ? 'active' : 'inactive'}>
             Box <span className={styles.colorPink}>2</span>
@@ -15,11 +15,14 @@ const ProdBar = props => {
         </Link>
         <Link href="/box2mini">
           <a className={router.pathname === '/box2mini' ? 'active' : 'inactive'}>
-            Box <span className={styles.colorPink}>2 mini</span>
+            Box{' '}
+            <span className={styles.colorPink}>
+              2 <span className={styles.mini}>mini</span>
+            </span>
           </a>
         </Link>
       </div>
-      <div>
+      <div className={[styles.productGroup, styles.five].join(' ')}>
         <Link href="/box5">
           <a className={`${router.pathname == '/box5' ? `active` : 'inactive'}`}>
             Box <span className={styles.colorBlue}>5</span>
@@ -27,7 +30,10 @@ const ProdBar = props => {
         </Link>
         <Link href="/box5mini">
           <a className={router.pathname == '/box5mini' ? 'active' : 'inactive'}>
-            Box <span className={styles.colorBlue}>5 mini</span>
+            Box{' '}
+            <span className={styles.colorBlue}>
+              5 <span className={styles.mini}>mini</span>
+            </span>
           </a>
         </Link>
       </div>
@@ -35,4 +41,4 @@ const ProdBar = props => {
   )
 }
 
-export default ProdBar
+export default ProductBar
