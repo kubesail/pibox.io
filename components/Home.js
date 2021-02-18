@@ -136,9 +136,9 @@ const Home = () => {
                 style={{ width: '100%' }}
               />
               <p className={styles.SectionText}>
-                The PiBox is ready to run a variety of free sofware.{' '}
+                The PiBox is ready to run a variety of free software.{' '}
                 <a target="_blank" rel="noopener noreferrer" href="https://kubesail.com/templates/">
-                  KubeSail templates
+                  Templates
                 </a>{' '}
                 let you spin up self-hosted apps with one click.
               </p>
