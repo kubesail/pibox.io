@@ -119,7 +119,7 @@ const Home = () => {
               />
               <p className={styles.SectionText}>
                 The PiBox makes a great media center, taking advantage of the Raspberry Pi’s native
-                4K video decoder
+                4K video decoder.
               </p>
             </div>
           </div>
