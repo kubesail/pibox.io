@@ -24,7 +24,7 @@ const Order = () => {
       method: 'POST',
       body: JSON.stringify({ email, model, emmc }),
     })
-  }, [model, emmc])
+  }, [model, ram, emmc, wifi, ssds, saved])
 
   if (saved) {
     return (
