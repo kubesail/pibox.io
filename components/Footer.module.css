@@ -1,0 +1,16 @@
+.FooterWrap {
+  background-color: #333333;
+  padding: 60px 0;
+}
+
+.Footer {
+  color: white;
+  max-width: 1500px;
+  margin: 0 auto;
+  font-size: 14px;
+  text-align: center;
+}
+
+.Footer p {
+  margin: 6px;
+}

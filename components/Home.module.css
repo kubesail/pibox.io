@@ -1,9 +1,3 @@
-.Product {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 8vh 5vw;
-}
-
 .ProductContent {
   display: flex;
   align-items: center;
@@ -17,6 +11,25 @@
 .ProductHero {
   width: 60%;
   position: relative;
+}
+
+.EmailInput {
+  font-size: 16px;
+  padding: 20px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #acacac;
+  margin-bottom: 43px;
+  width: 100%;
+}
+
+.Product form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
 }
 
 @media (max-width: 720px) {
@@ -44,9 +57,29 @@
   margin-bottom: 35px;
 }
 
-.heroHeader {
-  max-width: 380px;
+.HeroHeader {
+  max-width: 348px;
+  font-size: 40px;
+  font-weight: 900;
+  text-align: center;
   margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.tagline {
+  margin: 0 auto;
+  font-size: 16px;
+  color: #495057;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.divider {
+  text-align: center;
+  border-bottom: 1px solid #acacac;
+  margin: 40px auto;
+  width: 212px;
 }
 
 .ul {
@@ -54,11 +87,12 @@
 }
 
 .italics {
-  font-style: 'italics';
+  font-style: italic;
 }
 
 .Product h2 {
   font-size: 40px;
+  margin-bottom: 50px;
   text-align: center;
 }
 
@@ -70,8 +104,28 @@
   color: #ec3963;
 }
 
-.secondDrawer {
+.Section {
   background: #fbfbfd;
+  margin: 60px 0;
+}
+
+.SectionInner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 8vh 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.SectionCopy {
+  width: 42%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.SectionImg {
+  width: 43%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
 }
 
 .secondDrawerContent {
@@ -80,46 +134,25 @@
   padding: 120px 0;
 }
 
-.secondDrawerCopy {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-}
-
 .IconContainer {
-  justify-content: space-around;
+  justify-content: flex-start;
   display: flex;
 }
 
-.secondDrawerContent img {
-  display: flex;
-  align-items: center;
+.Icons {
+  margin-right: 30px;
 }
 
-.DesktopImg {
-  display: flex;
-  margin-left: 0;
-  right: 120px;
-}
-
-.thirdDrawer {
-  background: #fbfbfd;
-}
-
-.thirdDrawerContent {
-  display: flex;
-  margin: 120px 120px;
-  padding: 120px 0;
-}
-
-.thirdDrawerContent {
-  display: flex;
-  width: 40%;
-  margin-left: auto;
+.SectionText {
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .CTA {
+  display: flex;
+  flex-direction: column;
+  max-width: 398px;
+  margin: 60px auto;
   text-align: center;
-  margin: 60px 120px;
   padding: 20px 0;
 }

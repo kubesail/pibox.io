@@ -6,7 +6,7 @@ const ProductBar = props => {
   const router = useRouter()
 
   return (
-    <div className={styles.ProdBar}>
+    <div className={styles.ProductBar}>
       <div className={styles.productGroup}>
         <Link href="/box2">
           <a className={router.pathname === '/box2' ? 'active' : 'inactive'}>

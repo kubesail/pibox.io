@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 html,
 body {
@@ -29,20 +29,26 @@ code {
 } */
 
 a {
-  color: black;
-  text-decoration: none;
+  color: #ec3963;
 }
 
 a.active {
   border-bottom: 6px solid #ec3963;
 }
 
+input[type='submit'],
 button {
+  outline: none;
   background-color: #ec3963;
+  cursor: pointer;
   color: white;
   font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+  max-width: 348px;
   border-radius: 3px;
   line-height: 35px;
   border: none;
-  padding: 10px 20px;
+  margin: 0 auto;
+  padding: 20px 20px;
 }

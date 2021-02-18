@@ -11,10 +11,10 @@ const navButtons = [
     label: 'Contact',
     path: 'https://kubesail.com/support',
   },
-  {
-    label: 'Login',
-    path: '/login',
-  },
+  // {
+  //   label: 'Login',
+  //   path: '/login',
+  // },
 ]
 
 export default navButtons
