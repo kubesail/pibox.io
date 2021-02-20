@@ -51,7 +51,5 @@ button {
   border: none;
   margin: 0 auto;
   padding: 20px 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
 }
