@@ -211,7 +211,9 @@ const Order = () => {
                   <h4>16GB eMMC</h4>
                   <h4 className={styles.Price}>+$10</h4>
                 </div>
-                <p>A happy medium.</p>
+                <p>
+                  A happy medium. <b>We recommend this for most customers.</b>
+                </p>
               </div>
               <div
                 className={[styles.Option, emmc === '32GB' ? styles.Selected : ''].join(' ')}
