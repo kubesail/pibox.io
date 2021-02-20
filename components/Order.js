@@ -22,7 +22,7 @@ const Order = () => {
     window.fetch('https://api.kubesail.com/pibox/signup', {
       headers: { 'content-type': 'application/json' },
       method: 'POST',
-      body: JSON.stringify({ email, model, ram, emmc, wifi, ssds, saved }),
+      body: JSON.stringify({ email, model, ram, emmc, wifi, ssds, saved, channel: 'pibox.io' }),
     })
   }, [model, ram, emmc, wifi, ssds, saved])
 

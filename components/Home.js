@@ -7,7 +7,7 @@ const signup = async email => {
   await window.fetch('https://api.kubesail.com/pibox/signup', {
     headers: { 'content-type': 'application/json' },
     method: 'POST',
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, channel: 'pibox.io' }),
   })
   window.location = '/prefs'
 }
