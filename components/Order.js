@@ -31,7 +31,7 @@ const Order = () => {
       <div style={{ margin: '100px auto 400px auto', textAlign: 'center' }}>
         <h2>🎉 You're good to go! 🎉</h2>
         <p>Keep an eye on your inbox for updates. We expect to start shipping this summer!</p>
-        <button style={{ margin: '100px' }} onClick={() => (window.location = '/')}>
+        <button style={{ margin: '100px 0' }} onClick={() => (window.location = '/')}>
           Go Home
         </button>
       </div>
