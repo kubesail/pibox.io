@@ -1,7 +1,6 @@
 // import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import ProductBar from '../components/ProductBar'
-import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../components/Home.module.css'
 
 const signup = email => {
@@ -13,11 +12,20 @@ const signup = email => {
   window.location = '/prefs'
 }
 
+const models = {
+  default: '/images/pibox-2-mini-render.png',
+  box2mini: '/images/pibox-2-mini-render.png',
+  box2: '/images/pibox-2-mini-render.png',
+  box5mini: '/images/pibox-2-mini-render.png',
+  box5: '/images/pibox-2-mini-render.png',
+}
+
 const Home = () => {
   const [email, setEmail] = useState('')
+  const [model, setModel] = useState('default')
 
   useEffect(() => {
-    window.localStorage.setItem('email', email)
+    email && window.localStorage.setItem('email', email)
   }, [email])
 
   return (
@@ -26,14 +34,61 @@ const Home = () => {
         <div className={[styles.SectionInner]}>
           <div className={styles.ProductContent}>
             <div className={styles.ProductHero}>
-              <img
-                className={styles.ProductImage}
-                src="/images/pibox-2-mini-render.png"
-                alt="Image of PiBox 1"
-              />
+              <img className={styles.ProductImage} src={models[model]} alt="PiBox Render" />
               <div className={styles.tagline}>An ultra modular two or five bay NAS</div>
               <div className={styles.divider}></div>
-              <ProductBar />
+              <div className={styles.ProductBar}>
+                <div className={styles.productGroup}>
+                  <div
+                    className={[
+                      styles.ProductTab,
+                      styles.pinkTab,
+                      model === 'box2' && styles.ProductTabSelected,
+                    ].join(' ')}
+                    onClick={() => setModel('box2')}
+                  >
+                    Box <span className={styles.colorPink}>2</span>
+                  </div>
+                  <div
+                    className={[
+                      styles.ProductTab,
+                      styles.pinkTab,
+                      model === 'box2mini' && styles.ProductTabSelected,
+                    ].join(' ')}
+                    onClick={() => setModel('box2mini')}
+                  >
+                    Box{' '}
+                    <span className={styles.colorPink}>
+                      2 <span className={styles.mini}>mini</span>
+                    </span>
+                  </div>
+                </div>
+                <div className={[styles.productGroup, styles.five].join(' ')}>
+                  <div
+                    className={[
+                      styles.ProductTab,
+                      styles.blueTab,
+                      model === 'box5' && styles.ProductTabSelected,
+                    ].join(' ')}
+                    onClick={() => setModel('box5')}
+                  >
+                    Box <span className={styles.colorBlue}>5</span>
+                  </div>
+                  <div
+                    className={[
+                      styles.ProductTab,
+                      styles.blueTab,
+                      model === 'box5mini' && styles.ProductTabSelected,
+                    ].join(' ')}
+                    onClick={() => setModel('box5mini')}
+                  >
+                    Box{' '}
+                    <span className={styles.colorBlue}>
+                      5 <span className={styles.mini}>mini</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className={styles.ProductContentContainer}>
               <h2 className={styles.HeroHeader}>Extra storage in a snap</h2>
@@ -77,24 +132,17 @@ const Home = () => {
           </div>
         </div>
         <div className={styles.Section}>
-          <div className={[styles.SectionInner]}>
+          <div className={[styles.SectionInner, styles.SectionReverse].join(' ')}>
             <div className={styles.SectionCopy}>
-              <h2>Operating Systems You Know and Love</h2>
-              <div className={styles.IconContainer}>
+              <h3>Operating Systems You Know and Love</h3>
+              <div className={[styles.IconContainer, styles.IconsOS].join(' ')}>
                 <img
                   className={styles.Icons}
                   src="/images/ubuntu.png"
-                  alt="Icon of Ubuntu"
-                  width={84}
-                  height={84}
+                  alt="Ubuntu"
+                  style={{ marginRight: 30 }}
                 />
-                <img
-                  className={styles.Icons}
-                  src="/images/raspberry.png"
-                  alt="Icon of Raspberry Pi"
-                  width={66}
-                  height={84}
-                />
+                <img className={styles.Icons} src="/images/raspberry.png" alt="Raspberry Pi" />
               </div>
               <p className={styles.SectionText}>
                 Finally, a NAS that lets you use a standard operating system that you’re used to,
@@ -109,14 +157,10 @@ const Home = () => {
           <div className={styles.SectionInner}>
             <img className={styles.SectionImg} src="/images/lion.png" alt="Image of media" />
             <div className={styles.SectionCopy}>
-              <h2>HDMI for Media</h2>
-              <Image
-                className={styles.Icons}
-                src="/images/hdmi.png"
-                alt="Icon of HDMI"
-                width={173}
-                height={64}
-              />
+              <h3>HDMI for Media</h3>
+              <div className={[styles.IconContainer, styles.IconsHDMI].join(' ')}>
+                <img className={styles.Icons} src="/images/hdmi.png" alt="HDMI Icon" />
+              </div>
               <p className={styles.SectionText}>
                 The PiBox makes a great media center, taking advantage of the Raspberry Pi’s native
                 4K video decoder.
@@ -126,15 +170,13 @@ const Home = () => {
         </div>
 
         <div className={styles.Section}>
-          <div className={styles.SectionInner}>
+          <div className={[styles.SectionInner, styles.SectionReverse].join(' ')}>
             <div className={styles.SectionCopy}>
-              <h2>It’s time to ditch Dropbox, Google Photos, and Netflix</h2>
-              <img
-                className={styles.Icons}
-                src="/images/ditch-icons.png"
-                alt="Icon of HDMI"
-                style={{ width: '100%' }}
-              />
+              <h3>It’s time to ditch Dropbox, Google Photos, and Netflix</h3>
+
+              <div className={[styles.IconContainer, styles.IconsDitch].join(' ')}>
+                <img className={styles.Icons} src="/images/ditch-icons.png" alt="Icon of HDMI" />
+              </div>
               <p className={styles.SectionText}>
                 The PiBox is ready to run a variety of free software.{' '}
                 <a target="_blank" rel="noopener noreferrer" href="https://kubesail.com/templates/">
@@ -155,14 +197,14 @@ const Home = () => {
             }}
           >
             <input
-              className={styles.EmailInput}
+              className={[styles.EmailInput, styles.EmailInputBottom].join(' ')}
               type="email"
               required
               placeholder="Enter your email"
               onChange={e => setEmail(e.target.value)}
               value={email}
             />
-            <input type="submit" value="Notify Me"></input>
+            <input style={{ maxWidth: 800 }} type="submit" value="Sign Up &amp; Customize" />
           </form>
         </div>
       </div>

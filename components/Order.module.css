@@ -82,3 +82,19 @@
   margin: 50px auto;
   display: block;
 }
+.pink {
+  color: #ec3963;
+}
+.blue {
+  color: #5bb3e7;
+}
+
+@media (max-width: 900px) {
+  .Order {
+    flex-direction: column;
+  }
+  .ProductImage,
+  .OrderForm {
+    width: 100%;
+  }
+}

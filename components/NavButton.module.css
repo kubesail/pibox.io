@@ -1,14 +1,22 @@
 .NavButton {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    align-items: center; 
-    height: 100%;
-    cursor: pointer;
-    padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  padding: 0 20px;
 }
 
 .Label {
-    font-size: 20px;
+  font-size: 20px;
 }
-  
+
+@media (max-width: 800px) {
+  .Label {
+    font-size: 16px;
+  }
+  .NavButton {
+    padding: 0 10px;
+  }
+}

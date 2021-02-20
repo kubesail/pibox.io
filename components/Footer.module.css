@@ -1,6 +1,6 @@
 .FooterWrap {
   background-color: #333333;
-  padding: 60px 0;
+  padding: 60px 40px;
 }
 
 .Footer {
@@ -13,4 +13,17 @@
 
 .Footer p {
   margin: 6px;
+}
+
+@media (max-width: 800px) {
+  .FooterWrap {
+    background-color: #333333;
+    padding: 30px 40px;
+  }
+  .Footer {
+    text-align: left;
+  }
+  .Footer p {
+    margin: 15px 6px;
+  }
 }

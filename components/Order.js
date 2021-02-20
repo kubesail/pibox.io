@@ -57,7 +57,9 @@ const Order = () => {
             onClick={() => setModel('Box 2 mini')}
           >
             <div className={styles.OptionHeader}>
-              <h4>Box 2 mini</h4>
+              <h4>
+                Box <span className={styles.pink}>2 mini</span>
+              </h4>
               <h4 className={styles.Price}>$100</h4>
             </div>
             <p>- Support for 2 SSD drives.</p>
@@ -69,7 +71,9 @@ const Order = () => {
             onClick={() => setModel('Box 5 mini')}
           >
             <div className={styles.OptionHeader}>
-              <h4>Box 5 mini</h4>
+              <h4>
+                Box <span className={styles.blue}>5 mini</span>
+              </h4>
               <h4 className={styles.Price}>$200</h4>
             </div>
             <p>- Support for 5 SSD drives.</p>
@@ -81,7 +85,9 @@ const Order = () => {
             onClick={() => setModel('Box 2')}
           >
             <div className={styles.OptionHeader}>
-              <h4>Box 2</h4>
+              <h4>
+                Box <span className={styles.pink}>2</span>
+              </h4>
               <h4 className={styles.Price}>$150</h4>
             </div>
             <p>- Supports 2 full size desktop hard drives.</p>
@@ -92,7 +98,9 @@ const Order = () => {
             onClick={() => setModel('Box 5')}
           >
             <div className={styles.OptionHeader}>
-              <h4>Box 5</h4>
+              <h4>
+                Box <span className={styles.blue}>5</span>
+              </h4>
               <h4 className={styles.Price}>$250</h4>
             </div>
             <p>- Supports 5 full size desktop hard drives.</p>
