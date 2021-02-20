@@ -141,8 +141,8 @@ const Order = () => {
               <h4 className={styles.Price}>+$45</h4>
             </div>
             <p>
-              A good sweet spot. Can happily run Ubuntu, Kubernetes, Plex, and a few other apps. We
-              recommend this for most customers.
+              A good sweet spot. Can happily run Ubuntu, Kubernetes, Plex, and a few other apps.{' '}
+              <b>We recommend this for most customers.</b>
             </p>
           </div>
           <div
@@ -201,7 +201,7 @@ const Order = () => {
                   <h4>8GB eMMC</h4>
                   <h4 className={styles.Price}>+$5</h4>
                 </div>
-                <p>Capable of running a few apps. For example, Ubuntu w/ Plex Media Server.</p>
+                <p>Enough storage for an Operating System, and not much else.</p>
               </div>
               <div
                 className={[styles.Option, emmc === '16GB' ? styles.Selected : ''].join(' ')}
@@ -211,10 +211,7 @@ const Order = () => {
                   <h4>16GB eMMC</h4>
                   <h4 className={styles.Price}>+$10</h4>
                 </div>
-                <p>
-                  A good sweet spot. Can happily run Ubuntu, Kubernetes, Plex, and a few other apps.
-                  We recommend this for most customers.
-                </p>
+                <p>A happy medium.</p>
               </div>
               <div
                 className={[styles.Option, emmc === '32GB' ? styles.Selected : ''].join(' ')}
@@ -224,10 +221,7 @@ const Order = () => {
                   <h4>32GB eMMC</h4>
                   <h4 className={styles.Price}>+$15</h4>
                 </div>
-                <p>
-                  To the max! This compute module is the top of the line from Raspberry Pi. You can
-                  still find high end laptops offered with this much RAM!.
-                </p>
+                <p>Plenty of space for the OS, and some apps that won't run off the SATA drives.</p>
               </div>
             </div>
 
@@ -256,7 +250,10 @@ const Order = () => {
                   <h4>No</h4>
                   <h4 className={styles.Price}>Free</h4>
                 </div>
-                <p>You know what you're doing. This little box will sit right by your router.</p>
+                <p>
+                  Wired only. You know what you're getting into. This little box will sit right by
+                  your router.
+                </p>
               </div>
             </div>
           </>
