@@ -121,6 +121,7 @@ const Home = () => {
                 <input
                   className={styles.EmailInput}
                   type="email"
+                  name="email"
                   required
                   placeholder="Enter your email"
                   onChange={e => setEmail(e.target.value)}
@@ -199,6 +200,7 @@ const Home = () => {
             <input
               className={[styles.EmailInput, styles.EmailInputBottom].join(' ')}
               type="email"
+              name="email"
               required
               placeholder="Enter your email"
               onChange={e => setEmail(e.target.value)}
