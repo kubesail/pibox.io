@@ -30,17 +30,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 500px;
-}
-
-@media (max-width: 720px) {
-  .ProductContent {
-    flex-direction: column;
-    margin: 5%;
-  }
-
-  .ProductHero {
-    width: 100%;
-  }
+  margin: 0 auto;
 }
 
 .ProductContentContainer {
@@ -155,4 +145,20 @@
   margin: 60px auto;
   text-align: center;
   padding: 20px 0;
+}
+
+@media (max-width: 800px) {
+  .ProductContent {
+    flex-direction: column;
+    margin: 5%;
+  }
+
+  .ProductHero {
+    width: 100%;
+  }
+
+  .ProductContentContainer {
+    width: 100%;
+    margin: 40px 0;
+  }
 }
