@@ -1,7 +1,7 @@
-// import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import styles from '../components/Home.module.css'
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel'
+import 'pure-react-carousel/dist/react-carousel.es.css'
 
 const signup = async email => {
   await window.fetch('https://api.kubesail.com/pibox/signup', {
@@ -189,6 +189,31 @@ const Home = () => {
             <img className={styles.SectionImg} src="/images/nextcloud.png" alt="Image of media" />
           </div>
         </div>
+
+        <CarouselProvider
+          naturalSlideWidth={445}
+          naturalSlideHeight={525}
+          totalSlides={3}
+          interval={7000}
+          isPlaying={true}
+          dragEnabled={false}
+          touchEnabled={false}
+        >
+          <Slider>
+            <Slide index={1}>
+              <h4>NextCloud</h4>
+              <img src={'/images/nextcloud.png'} />
+            </Slide>
+            <Slide index={2}>
+              <h4>Otter</h4>
+              <img src={'/images/otter.jpg'} />
+            </Slide>
+            <Slide index={3}>
+              <h4>NextCloud</h4>
+              <img src={'/images/nextcloud.png'} />
+            </Slide>
+          </Slider>
+        </CarouselProvider>
 
         <div className={styles.CTA}>
           <form
