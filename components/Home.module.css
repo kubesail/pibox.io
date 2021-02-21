@@ -209,6 +209,19 @@
   color: black;
   text-decoration: none;
 }
+.SlideShowAnimation {
+  transition: opacity 500ms;
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* easeInOutCubic */
+  will-change: opacity;
+}
+
+.SlideShowImg {
+  width: 85%;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: block;
+}
 
 @media (min-width: 980px) and (max-width: 1160px) {
   .productGroup {

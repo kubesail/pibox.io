@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from '../components/Home.module.css'
-import { CarouselProvider, Slider, Slide } from 'pure-react-carousel'
-import 'pure-react-carousel/dist/react-carousel.es.css'
+import { Fade } from 'react-slideshow-image'
+import 'react-slideshow-image/dist/styles.css'
 
 const signup = async email => {
   await window.fetch('https://api.kubesail.com/pibox/signup', {
@@ -12,21 +12,54 @@ const signup = async email => {
   window.location = '/prefs'
 }
 
+const slides = [
+  '/images/box-2-mini-assembly-1.png',
+  '/images/box-2-mini-assembly-2.png',
+  '/images/box-2-mini-assembly-3.png',
+  '/images/box-2-mini-assembly-4.png',
+  '/images/box-2-mini-assembly-5.png',
+  '/images/box-2-mini-dims.png',
+  '/images/box-2-mini.png',
+]
+
 const models = {
-  default: '/images/pibox-2-mini-render.png',
-  box2mini: '/images/pibox-2-mini-render.png',
-  box2: '/images/pibox-2-mini-render.png',
-  box5mini: '/images/pibox-2-mini-render.png',
-  box5: '/images/pibox-2-mini-render.png',
+  default: {
+    img: '/images/box-2-mini.png',
+    line: 'An ultra-modular two or five bay NAS',
+  },
+  box2mini: {
+    img: '/images/box-2-mini-dims.png',
+    line: 'A compact two bay NAS for SSDs',
+  },
+  box2: {
+    img: '/images/box-2.png',
+    line: 'A two bay NAS for 3.5” Drives',
+  },
+  box5mini: {
+    img: '/images/box-5-mini.png',
+    line: 'A compact five bay NAS for SSDs',
+  },
+  box5: {
+    img: '/images/box-5.png',
+    line: 'A five bay NAS for 3.5” Drives',
+  },
 }
 
 const Home = () => {
   const [email, setEmail] = useState('')
   const [model, setModel] = useState('default')
+  const [slide, setSlide] = useState(0)
 
   useEffect(() => {
     email && window.localStorage.setItem('email', email)
   }, [email])
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setSlide(slide >= slides.length - 1 ? 0 : slide + 1)
+    }, 1500)
+    return () => clearInterval(interval)
+  })
 
   return (
     <div>
@@ -34,8 +67,8 @@ const Home = () => {
         <div className={[styles.SectionInner]}>
           <div className={styles.ProductContent}>
             <div className={styles.ProductHero}>
-              <img className={styles.ProductImage} src={models[model]} alt="PiBox Render" />
-              <div className={styles.tagline}>An ultra modular two or five bay NAS</div>
+              <img className={styles.ProductImage} src={models[model].img} alt="PiBox Render" />
+              <div className={styles.tagline}>{models[model].line}</div>
               <div className={styles.divider}></div>
               <div className={styles.ProductBar}>
                 <div className={styles.productGroup}>
@@ -96,7 +129,7 @@ const Home = () => {
                 <span> Just add:</span>
                 <ul className={styles.ul}>
                   <li>
-                    Any{' '}
+                    A{' '}
                     <a
                       href="https://www.raspberrypi.org/products/compute-module-4/"
                       target="_blank"
@@ -190,30 +223,39 @@ const Home = () => {
           </div>
         </div>
 
+        <div className={styles.SlideShowImg}>
+          <Fade duration={1500} transitionDuration={500} pauseOnHover={false} easing={'ease'}>
+            {slides.map(slide => (
+              <div className={styles.Slide}>
+                <img src={slide} className={styles.SlideShowImg} />
+              </div>
+            ))}
+          </Fade>
+        </div>
+
+        {/* 
         <CarouselProvider
-          naturalSlideWidth={445}
-          naturalSlideHeight={525}
-          totalSlides={3}
-          interval={7000}
+          naturalSlideWidth={1200}
+          naturalSlideHeight={675}
+          totalSlides={slides.length}
+          interval={2000}
           isPlaying={true}
           dragEnabled={false}
-          touchEnabled={false}
         >
-          <Slider>
-            <Slide index={1}>
-              <h4>NextCloud</h4>
-              <img src={'/images/nextcloud.png'} />
-            </Slide>
-            <Slide index={2}>
-              <h4>Otter</h4>
-              <img src={'/images/otter.jpg'} />
-            </Slide>
-            <Slide index={3}>
-              <h4>NextCloud</h4>
-              <img src={'/images/nextcloud.png'} />
-            </Slide>
+          <Slider classNameAnimation={styles.SlideShowAnimation}>
+            {slides.map((slide, index) => (
+              <Slide
+                key={slide}
+                index={index}
+                className={styles.Slide}
+                classNameHidden={styles.SlideHidden}
+                classNameVisible={styles.SlideVisible}
+              >
+                <img src={slide} className={styles.SlideShowImg} />
+              </Slide>
+            ))}
           </Slider>
-        </CarouselProvider>
+        </CarouselProvider> */}
 
         <div className={styles.CTA}>
           <form
