@@ -40,11 +40,7 @@ const Order = () => {
 
   return (
     <div className={styles.Order}>
-      <img
-        className={styles.ProductImage}
-        src="/images/pibox-2-mini-render.png"
-        alt="Image of PiBox 1"
-      />
+      <img className={styles.ProductImage} src="/images/box-2-mini.png" alt="PiBox 2 mini" />
       <div className={styles.OrderForm}>
         <h2>You’re on the list!</h2>
         <p>Now let us know which model and options you're interested in.</p>
