@@ -156,7 +156,7 @@ const Home = () => {
                   type="email"
                   name="email"
                   required
-                  placeholder="Enter your email"
+                  placeholder="Enter your email to get updates & customize"
                   onChange={e => setEmail(e.target.value)}
                   value={email}
                 />
@@ -269,7 +269,7 @@ const Home = () => {
               type="email"
               name="email"
               required
-              placeholder="Enter your email to get updates & customize"
+              placeholder="Enter your email"
               onChange={e => setEmail(e.target.value)}
               value={email}
             />
