@@ -142,7 +142,8 @@ const Home = () => {
                   <li>Any pi supported OS</li>
                 </ul>{' '}
                 <span>
-                  and get the most versatile NAS <span className={styles.italics}>ever</span>.
+                  and get the most versatile storage server{' '}
+                  <span className={styles.italics}>ever</span>.
                 </span>
               </div>
               <form
