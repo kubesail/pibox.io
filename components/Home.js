@@ -262,6 +262,14 @@ const Home = () => {
           </form>
         </div>
       </div>
+
+      <div className={styles.SlideShowImg}>
+        <img src={'/images/pibox-carrier-leaning.png'} className={styles.SlideShowImg} />
+      </div>
+
+      <div className={styles.SlideShowImg}>
+        <img src={'/images/pibox-ssd-removal.png'} className={styles.SlideShowImg} />
+      </div>
     </div>
   )
 }
