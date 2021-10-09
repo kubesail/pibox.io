@@ -12,16 +12,6 @@ const signup = async email => {
   window.location = '/prefs'
 }
 
-const slides = [
-  '/images/box-2-mini-assembly-1.png',
-  '/images/box-2-mini-assembly-2.png',
-  '/images/box-2-mini-assembly-3.png',
-  '/images/box-2-mini-assembly-4.png',
-  '/images/box-2-mini-assembly-5.png',
-  '/images/box-2-mini-dims.png',
-  '/images/box-2-mini.png',
-]
-
 const models = {
   default: {
     img: '/images/box-2-mini.png',
@@ -225,13 +215,7 @@ const Home = () => {
         </div>
 
         <div className={styles.SlideShowImg}>
-          <Fade duration={1500} transitionDuration={500} pauseOnHover={false} easing={'ease'}>
-            {slides.map(slide => (
-              <div className={styles.Slide}>
-                <img src={slide} className={styles.SlideShowImg} />
-              </div>
-            ))}
-          </Fade>
+          <img src={'/images/pibox-360-full.gif'} className={styles.SlideShowImg} />
         </div>
 
         {/* 
