@@ -44,13 +44,6 @@ const Home = () => {
     email && window.localStorage.setItem('email', email)
   }, [email])
 
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setSlide(slide >= slides.length - 1 ? 0 : slide + 1)
-    }, 1500)
-    return () => clearInterval(interval)
-  })
-
   return (
     <div>
       <div className={styles.Product}>
@@ -177,7 +170,6 @@ const Home = () => {
             <img className={styles.SectionImg} src="/images/gorilla.png" alt="Image of Desktop" />
           </div>
         </div>
-
         <div className={styles.Section}>
           <div className={styles.SectionInner}>
             <img className={styles.SectionImg} src="/images/lion.png" alt="Image of media" />
@@ -187,13 +179,12 @@ const Home = () => {
                 <img className={styles.Icons} src="/images/hdmi.png" alt="HDMI Icon" />
               </div>
               <p className={styles.SectionText}>
-                The PiBox makes a great media center, taking advantage of the Raspberry Pi’s native
-                4K video decoder.
+                PiBox makes a great media center, taking advantage of the Raspberry Pi’s native 4K
+                video decoder.
               </p>
             </div>
           </div>
         </div>
-
         <div className={styles.Section}>
           <div className={[styles.SectionInner, styles.SectionReverse].join(' ')}>
             <div className={styles.SectionCopy}>
@@ -203,7 +194,7 @@ const Home = () => {
                 <img className={styles.Icons} src="/images/ditch-icons.png" alt="Icon of HDMI" />
               </div>
               <p className={styles.SectionText}>
-                The PiBox is ready to run a variety of free software.{' '}
+                PiBox is ready to run a variety of free software.{' '}
                 <a target="_blank" rel="noopener noreferrer" href="https://kubesail.com/templates/">
                   Templates
                 </a>{' '}
@@ -215,32 +206,8 @@ const Home = () => {
         </div>
 
         <div className={styles.SlideShowImg}>
-          <img src={'/images/pibox-360-full.gif'} className={styles.SlideShowImg} />
+          <img src={'/images/pibox-ssd-removal.png'} className={styles.SlideShowImg} />
         </div>
-
-        {/* 
-        <CarouselProvider
-          naturalSlideWidth={1200}
-          naturalSlideHeight={675}
-          totalSlides={slides.length}
-          interval={2000}
-          isPlaying={true}
-          dragEnabled={false}
-        >
-          <Slider classNameAnimation={styles.SlideShowAnimation}>
-            {slides.map((slide, index) => (
-              <Slide
-                key={slide}
-                index={index}
-                className={styles.Slide}
-                classNameHidden={styles.SlideHidden}
-                classNameVisible={styles.SlideVisible}
-              >
-                <img src={slide} className={styles.SlideShowImg} />
-              </Slide>
-            ))}
-          </Slider>
-        </CarouselProvider> */}
 
         <div className={styles.CTA}>
           <form
@@ -264,11 +231,11 @@ const Home = () => {
       </div>
 
       <div className={styles.SlideShowImg}>
-        <img src={'/images/pibox-carrier-leaning.png'} className={styles.SlideShowImg} />
+        <img src={'/images/pibox-360-full.gif'} className={styles.SlideShowImg} />
       </div>
 
       <div className={styles.SlideShowImg}>
-        <img src={'/images/pibox-ssd-removal.png'} className={styles.SlideShowImg} />
+        <img src={'/images/pibox-carrier-leaning.png'} className={styles.SlideShowImg} />
       </div>
     </div>
   )
