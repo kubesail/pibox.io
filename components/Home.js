@@ -18,7 +18,7 @@ const models = {
     line: 'An ultra-modular two or five bay NAS',
   },
   box2mini: {
-    img: '/images/box-2-mini-dims.png',
+    img: '/images/box-2-mini.png',
     line: 'A compact two bay NAS for SSDs',
   },
   box2: {
@@ -51,7 +51,6 @@ const Home = () => {
           <div className={styles.ProductContent}>
             <div className={styles.ProductHero}>
               <img className={styles.ProductImage} src={models[model].img} alt="PiBox Render" />
-              <div className={styles.tagline}>{models[model].line}</div>
               <div className={styles.divider}></div>
               <div className={styles.ProductBar}>
                 <div className={styles.productGroup}>
