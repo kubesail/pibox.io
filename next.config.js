@@ -8,7 +8,7 @@ module.exports = {
       },
       {
         source: '/case',
-        destination: 'https://docs.kubesail.com/guides/pibox/case',
+        destination: 'https://docs.kubesail.com/guides/pibox/hardware',
         permanent: true,
       },
     ]
