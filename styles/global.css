@@ -37,7 +37,12 @@ a.active {
 }
 
 input[type='submit'],
-button {
+button,
+.button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
   outline: none;
   background-color: #ec3963;
   cursor: pointer;
