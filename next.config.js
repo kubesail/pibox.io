@@ -6,6 +6,11 @@ module.exports = {
         destination: 'https://docs.kubesail.com/guides/pibox/rpiboot',
         permanent: true,
       },
+      {
+        source: '/case',
+        destination: 'https://docs.kubesail.com/guides/pibox/hardware',
+        permanent: true,
+      },
     ]
   },
 }
