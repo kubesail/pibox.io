@@ -5,7 +5,7 @@ const Footer = props => {
     <div className={styles.FooterWrap}>
       <div className={styles.Footer}>
         <p>
-          PiBox is a product in active &amp; open devleopment by{' '}
+          PiBox is a product in active &amp; open development by{' '}
           <a href="https://kubesail.com">KubeSail, Inc</a>.
         </p>
         <p>
