@@ -4,12 +4,17 @@ module.exports = {
       {
         source: '/rpiboot',
         destination: 'https://docs.kubesail.com/guides/pibox/rpiboot',
-        permanent: true,
+        permanent: false,
       },
       {
         source: '/case',
         destination: 'https://docs.kubesail.com/guides/pibox/hardware',
-        permanent: true,
+        permanent: false,
+      },
+      {
+        source: '/hackersetup',
+        destination: 'https://docs.kubesail.com/guides/pibox/hackersetup',
+        permanent: false,
       },
     ]
   },
