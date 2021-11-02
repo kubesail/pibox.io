@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         source: '/hackersetup',
-        destination: 'https://docs.kubesail.com/guides/pibox/hackersetup',
+        destination: 'https://docs.kubesail.com/guides/pibox/hardware',
         permanent: false,
       },
     ]
