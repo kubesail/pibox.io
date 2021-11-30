@@ -7,6 +7,11 @@ module.exports = {
         permanent: false,
       },
       {
+        source: '/hackersetup',
+        destination: 'https://docs.kubesail.com/guides/pibox/rpiboot/',
+        permanent: false,
+      },
+      {
         source: '/case',
         destination: 'https://docs.kubesail.com/guides/pibox/hardware',
         permanent: false,

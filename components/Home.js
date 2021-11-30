@@ -134,12 +134,16 @@ const Home = () => {
                   signup(email)
                 }}
               >
-                <a
-                  class="button"
-                  href="https://www.kickstarter.com/projects/pastudan/pibox-a-modular-raspberry-pi-storage-server"
-                >
-                  Preorder Now
-                </a>
+                <input
+                  className={styles.EmailInput}
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email to get updates & customize"
+                  onChange={e => setEmail(e.target.value)}
+                  value={email}
+                />
+                <input type="submit" value="Pre-order now!"></input>
               </form>
             </div>
           </div>
