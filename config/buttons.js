@@ -1,11 +1,11 @@
 const navButtons = [
   {
-    label: 'Docs',
-    path: 'https://docs.kubesail.com/pibox',
+    label: 'Guides',
+    path: '/guide/hackersetup',
   },
   {
-    label: 'Blog',
-    path: 'http://kubesail.com/blog/pibox-raspberry-pi-powered-nas',
+    label: 'Docs',
+    path: 'https://docs.kubesail.com/pibox',
   },
   {
     label: 'Contact',

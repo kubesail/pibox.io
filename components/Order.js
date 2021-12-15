@@ -28,7 +28,10 @@ const Order = () => {
 
   if (saved) {
     return (
-      <div style={{ margin: '100px auto 400px auto', textAlign: 'center' }}>
+      <div
+        className={styles.Order}
+        style={{ margin: '100px auto 400px auto', textAlign: 'center', flexDirection: 'column' }}
+      >
         <h2>🎉 You're good to go! 🎉</h2>
         <p>Keep an eye on your inbox for updates. We expect to start shipping this summer!</p>
         <button style={{ margin: '100px 0' }} onClick={() => (window.location = '/')}>
