@@ -17,7 +17,7 @@ const Guide = () => {
           support@kubesail.com
         </a>{' '}
         or chat with us on <a href="https://kubesail.com/support">Discord</a>. Include your serial
-        number when you message us, we will be able to help you faster. Thanks!
+        number when you message us, and we will be able to help you faster. Thanks!
       </p>
     </div>
   )
