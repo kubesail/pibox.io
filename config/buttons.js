@@ -1,8 +1,8 @@
 const navButtons = [
-  {
-    label: 'Guides',
-    path: '/guide/hackersetup',
-  },
+  // {
+  //   label: 'Guides',
+  //   path: '/guide/hacker-bundle-setup',
+  // },
   {
     label: 'Docs',
     path: 'https://docs.kubesail.com/pibox',
