@@ -6,30 +6,13 @@ const Preorder = ({ profile }) => {
   let email
 
   const [model, setModel] = useState(null)
-  const [saved, setSaved] = useState(false)
 
   function checkout() {
     window.fetch('https://api.kubesail.com/pibox/checkout', {
       headers: { 'content-type': 'application/json' },
       method: 'POST',
-      body: JSON.stringify({ email, model, ram, emmc, wifi, ssds, saved, channel: 'pibox.io' }),
     })
     //redirect to stripe
-  }
-
-  if (saved) {
-    return (
-      <div
-        className={styles.Order}
-        style={{ margin: '100px auto 400px auto', textAlign: 'center', flexDirection: 'column' }}
-      >
-        <h2>🎉 You're good to go! 🎉</h2>
-        <p>Keep an eye on your inbox for updates. We expect to start shipping this summer!</p>
-        <button style={{ margin: '100px 0' }} onClick={() => (window.location = '/')}>
-          Go Home
-        </button>
-      </div>
-    )
   }
 
   return (
@@ -55,7 +38,7 @@ const Preorder = ({ profile }) => {
             </div>
             <p>- Raspberry Pi CM4 w/ 8GB RAM, 8GB eMMC, WiFi</p>
             <p>- Add up to 2 SATA SSD drives</p>
-            <p>- Silent Noctua Fan, 1.3" LCD, WiFi Antenna</p>
+            <p>- Noctua Fan, 1.3" LCD, WiFi Antenna, 3.5A PSU</p>
             <p>- Black Powder Coated structural steel case</p>
           </div>
           <div
@@ -97,24 +80,28 @@ const Preorder = ({ profile }) => {
               <h4 className={styles.Price}>Coming Soon!</h4>
             </div>
             <p>- 5 Full-Size Hard Drive Bays</p>
-            <p>- Full announcement late 2022</p>
+            <p>- Product announcement late 2022</p>
           </div>
         </div>
 
         {model && !profile && (
-          <div className={styles.whyLogin}>
+          <div>
             {model === 'PiBox, 5 Bay' ? (
-              <p>Log in to reserve your spot in line for the PiBox, 5 Bay Full Sized NAS!</p>
-            ) : (
               <p>
-                Logging in lets you start setting up apps on your PiBox now so it's ready to use the
-                moment it arrives!
+                Log in to reserve your spot in line for the{' '}
+                <strong>PiBox, 5 Bay Full Sized NAS</strong>. Full product specifications will be
+                announced later this year.
+              </p>
+            ) : (
+              <p className={styles.whyLogin}>
+                Logging in lets you start setting up apps on your PiBox now so it's{' '}
+                <strong>ready to use</strong> the moment it arrives!
               </p>
             )}
             <button
               class={styles.checkout}
               onClick={() => {
-                setSaved(true)
+                //TODO save selection to localstorage and redirect to stripe checkout when redirected here
               }}
             >
               Login
@@ -124,12 +111,7 @@ const Preorder = ({ profile }) => {
         {model && model !== 'PiBox, 5 Bay' && (
           <button
             class={[styles.checkout, !profile && styles.loggedOut].join(' ')}
-            onClick={() => {
-              if (!model) {
-                return window.alert('Please select a model first')
-              }
-              checkout()
-            }}
+            onClick={() => checkout()}
           >
             {profile ? `Checkout` : 'Checkout as Guest'}
           </button>
