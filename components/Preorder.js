@@ -1,18 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from '../components/Preorder.module.css'
 import { connect } from 'react-redux'
+import { loadStripe } from '@stripe/stripe-js'
 
+let stripe
 const Preorder = ({ profile }) => {
   let email
 
   const [model, setModel] = useState(null)
 
-  function checkout() {
-    window.fetch('https://api.kubesail.com/pibox/checkout', {
+  useEffect(() => setupStripeKey(), [])
+  async function setupStripeKey() {
+    stripe = await loadStripe('pk_live_B2ylJU30kGz2y0k20LHiZhA7')
+  }
+
+  async function checkout() {
+    const sessionRes = await window.fetch('https://api.kubesail.com/pibox/checkout', {
       headers: { 'content-type': 'application/json' },
       method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify({ model }),
     })
     //redirect to stripe
+
+    const session = await sessionRes.json()
+    stripe.redirectToCheckout({ sessionId: session.id })
   }
 
   return (
@@ -99,7 +111,7 @@ const Preorder = ({ profile }) => {
               </p>
             )}
             <button
-              class={styles.checkout}
+              className={styles.checkout}
               onClick={() => {
                 //TODO save selection to localstorage and redirect to stripe checkout when redirected here
               }}
@@ -110,7 +122,7 @@ const Preorder = ({ profile }) => {
         )}
         {model && model !== 'PiBox, 5 Bay' && (
           <button
-            class={[styles.checkout, !profile && styles.loggedOut].join(' ')}
+            className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
             onClick={() => checkout()}
           >
             {profile ? `Checkout` : 'Checkout as Guest'}
