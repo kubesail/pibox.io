@@ -1,16 +1,7 @@
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import styles from '../components/Home.module.css'
-import { Fade } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
-
-const signup = async email => {
-  await window.fetch('https://api.kubesail.com/pibox/signup', {
-    headers: { 'content-type': 'application/json' },
-    method: 'POST',
-    body: JSON.stringify({ email, channel: 'pibox.io' }),
-  })
-  window.location = '/prefs'
-}
 
 const models = {
   default: {
@@ -20,14 +11,6 @@ const models = {
   box2mini: {
     img: '/images/box-2-mini.png',
     line: 'A compact two bay NAS for SSDs',
-  },
-  box2: {
-    img: '/images/box-2.png',
-    line: 'A two bay NAS for 3.5” Drives',
-  },
-  box5mini: {
-    img: '/images/box-5-mini.png',
-    line: 'A compact five bay NAS for SSDs',
   },
   box5: {
     img: '/images/box-5.png',
@@ -53,17 +36,7 @@ const Home = () => {
               <img className={styles.ProductImage} src={models[model].img} alt="PiBox Render" />
               <div className={styles.divider}></div>
               <div className={styles.ProductBar}>
-                <div className={styles.productGroup}>
-                  <div
-                    className={[
-                      styles.ProductTab,
-                      styles.pinkTab,
-                      model === 'box2' && styles.ProductTabSelected,
-                    ].join(' ')}
-                    onClick={() => setModel('box2')}
-                  >
-                    Box <span className={styles.colorPink}>2</span>
-                  </div>
+                <div>
                   <div
                     className={[
                       styles.ProductTab,
@@ -72,13 +45,10 @@ const Home = () => {
                     ].join(' ')}
                     onClick={() => setModel('box2mini')}
                   >
-                    Box{' '}
-                    <span className={styles.colorPink}>
-                      2 <span className={styles.mini}>mini</span>
-                    </span>
+                    PiBox Mini <span className={styles.colorPink}>2 Bay</span>
                   </div>
                 </div>
-                <div className={[styles.productGroup, styles.five].join(' ')}>
+                <div className={[styles.five].join(' ')}>
                   <div
                     className={[
                       styles.ProductTab,
@@ -87,20 +57,7 @@ const Home = () => {
                     ].join(' ')}
                     onClick={() => setModel('box5')}
                   >
-                    Box <span className={styles.colorBlue}>5</span>
-                  </div>
-                  <div
-                    className={[
-                      styles.ProductTab,
-                      styles.blueTab,
-                      model === 'box5mini' && styles.ProductTabSelected,
-                    ].join(' ')}
-                    onClick={() => setModel('box5mini')}
-                  >
-                    Box{' '}
-                    <span className={styles.colorBlue}>
-                      5 <span className={styles.mini}>mini</span>
-                    </span>
+                    PiBox <span className={styles.colorBlue}>5 Bay</span>
                   </div>
                 </div>
               </div>
@@ -128,23 +85,9 @@ const Home = () => {
                   <span className={styles.italics}>ever</span>.
                 </span>
               </div>
-              <form
-                onSubmit={e => {
-                  e.preventDefault()
-                  signup(email)
-                }}
-              >
-                <input
-                  className={styles.EmailInput}
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Enter your email to get updates & customize"
-                  onChange={e => setEmail(e.target.value)}
-                  value={email}
-                />
-                <input type="submit" value="Pre-order now!"></input>
-              </form>
+              <Link href="/order">
+                <a className={styles.largeButton}>Order Now!</a>
+              </Link>
             </div>
           </div>
         </div>
@@ -209,23 +152,11 @@ const Home = () => {
         </div>
 
         <div className={styles.CTA}>
-          <form
-            onSubmit={e => {
-              e.preventDefault()
-              signup(email)
-            }}
-          >
-            <input
-              className={[styles.EmailInput, styles.EmailInputBottom].join(' ')}
-              type="email"
-              name="email"
-              required
-              placeholder="Enter your email"
-              onChange={e => setEmail(e.target.value)}
-              value={email}
-            />
-            <input style={{ maxWidth: 800 }} type="submit" value="Sign Up &amp; Customize" />
-          </form>
+          <Link type="submit" href="/order">
+            <a className={styles.largeButton} style={{ maxWidth: 800 }}>
+              Order Now
+            </a>
+          </Link>
         </div>
       </div>
 
