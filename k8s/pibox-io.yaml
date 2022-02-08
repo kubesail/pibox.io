@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pibox-io
+  labels:
+    app: pibox-io
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pibox-io
+  template:
+    metadata:
+      labels:
+        app: pibox-io
+    spec:
+      imagePullSecrets:
+        - name: dockerhub
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: pibox-io
+          image: kubesail/pibox-io
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: FallbackToLogsOnError
+          env:
+            - name: NODE_ENV
+              value: development
+          ports:
+            - name: https-ports
+              containerPort: 3000
+      volumes: []
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pibox-io
+  labels:
+    app: pibox-io
+spec:
+  ports:
+    - name: https-ports
+      protocol: TCP
+      port: 3000
+      targetPort: https-ports
+  selector:
+    app: pibox-io
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pibox-io
+  labels:
+    app: pibox-io
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    nginx.org/websocket-services: pibox-io
+    kubernetes.io/tls-acme: 'true'
+    # nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+spec:
+  tls:
+    - hosts:
+        - pibox.io
+      secretName: pibox-io-ingress
+  rules:
+    - host: pibox.io
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pibox-io
+                port:
+                  number: 3000
