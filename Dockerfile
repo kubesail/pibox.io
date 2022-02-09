@@ -33,14 +33,14 @@ CMD ["bash", "-c", "yarn build && yarn start"]
 FROM runner AS dev
 CMD ["bash", "-c", "yarn dev"]
 
-FROM runner AS deployer
-WORKDIR /app
-ENV NEXT_TELEMETRY_DISABLED="1" \
-  NODE_ENV="production"
-ARG AWS_BUCKET=pibox.io
-ARG AWS_ACCESS_KEY_ID
-ARG AWS_SECRET_ACCESS_KEY
-RUN yarn build 
+# FROM runner AS deployer
+# WORKDIR /app
+# ENV NEXT_TELEMETRY_DISABLED="1" \
+#   NODE_ENV="production"
+# ARG AWS_BUCKET=pibox.io
+# ARG AWS_ACCESS_KEY_ID
+# ARG AWS_SECRET_ACCESS_KEY
+# RUN yarn build 
 
 # && aws s3 sync \
 #   --size-only \
