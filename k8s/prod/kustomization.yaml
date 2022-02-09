@@ -1,0 +1,5 @@
+---
+bases:
+  - ../base
+patchesStrategicMerge:
+  - ./pibox.io.yaml

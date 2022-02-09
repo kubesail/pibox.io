@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pibox-io
+spec:
+  minReadySeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  replicas: 2
+    spec:
+      containers:
+        - name: pibox-io
+          readinessProbe:
+            httpGet:
+              path: /
+              port: https-ports
+              scheme: HTTP
+              httpHeaders:
+                - name: Host
+                  value: pibox.io

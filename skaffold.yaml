@@ -22,6 +22,11 @@ profiles:
                 dest: .
           docker:
             target: dev
+  - name: prod
+    deploy:
+    kustomize:
+      paths:
+        - k8s/prod
 deploy:
   kustomize:
     paths:

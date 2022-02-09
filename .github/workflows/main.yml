@@ -20,8 +20,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Docker Login
-        run: echo "${{ secrets.DOCKER_HUB_PULL_SECRET }}" | docker login --username "kubesailreadonly" --password-stdin
+      - name: Configure
+        run: |
+          echo "${{ secrets.DOCKER_HUB_PULL_SECRET }}" | docker login --username "kubesailreadonly" --password-stdin
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/config
 
-      - name: Skaffold Build
-        run: skaffold run
+      - name: Deploy
+        run: skaffold run -p prod
