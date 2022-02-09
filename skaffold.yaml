@@ -24,13 +24,13 @@ profiles:
             target: dev
   - name: prod
     deploy:
-    kustomize:
-      paths:
-        - k8s/prod
+      kustomize:
+        paths:
+          - k8s/prod
 deploy:
   kustomize:
     paths:
-      - k8s
+      - k8s/base
   statusCheckDeadlineSeconds: 180
 portForward:
   - resourceType: Service
