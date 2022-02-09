@@ -4,21 +4,23 @@ kind: Deployment
 metadata:
   name: pibox-io
 spec:
-  minReadySeconds: 30
+  minReadySeconds: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 2
       maxUnavailable: 1
   replicas: 2
-    spec:
-      containers:
-        - name: pibox-io
-          readinessProbe:
-            httpGet:
-              path: /
-              port: https-ports
-              scheme: HTTP
-              httpHeaders:
-                - name: Host
-                  value: pibox.io
+  spec:
+    containers:
+      - name: pibox-io
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          httpGet:
+            path: /
+            port: https-ports
+            scheme: HTTP
+            httpHeaders:
+              - name: Host
+                value: pibox.io
