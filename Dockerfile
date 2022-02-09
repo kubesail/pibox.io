@@ -28,12 +28,10 @@ COPY --chown=node:node *.js *.json *.md ./
 
 EXPOSE 3000
 # VOLUME ["/app/secrets"]
-FROM runner AS dev
-CMD ["bash", "-c", "yarn dev"]
-
-FROM runner AS prod
 CMD ["bash", "-c", "yarn build && yarn start"]
 
+FROM runner AS dev
+CMD ["bash", "-c", "yarn dev"]
 
 FROM runner AS deployer
 WORKDIR /app
