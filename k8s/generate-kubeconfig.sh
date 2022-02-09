@@ -20,7 +20,7 @@ contexts:
     cluster: eks
     namespace: kubesail
     user: pibox-io-updater
-current-context: default-context
+current-context: eks
 users:
 - name: pibox-io-updater
   user:
