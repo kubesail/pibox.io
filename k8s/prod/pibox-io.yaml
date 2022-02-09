@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
         - name: pibox-io
-          readinessProbe:
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            httpGet:
-              path: /
-              port: https-ports
-              scheme: HTTP
-              httpHeaders:
-                - name: Host
-                  value: pibox.io
+          # readinessProbe:
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 5
+          #   httpGet:
+          #     path: /
+          #     port: https-ports
+          #     scheme: HTTP
+          #     httpHeaders:
+          #       - name: Host
+          #         value: pibox.io

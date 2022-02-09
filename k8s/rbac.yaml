@@ -7,6 +7,9 @@ metadata:
   name: pibox-io-updater
 rules:
   - apiGroups: ['apps', '', 'networking.k8s.io']
+    resources: ['deployments', 'services', 'ingresses', 'statefulsets', 'replicasets', 'pods']
+    verbs: ['get', 'list']
+  - apiGroups: ['apps', '', 'networking.k8s.io']
     resources: ['deployments', 'services', 'ingresses']
     resourceNames: ['pibox-io']
     verbs: ['get', 'list', 'update', 'patch']
