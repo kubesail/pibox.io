@@ -6,8 +6,8 @@ metadata:
   namespace: kubesail
   name: pibox-io-updater
 rules:
-  - apiGroups: ['apps']
-    resources: ['deployments']
+  - apiGroups: ['apps', '', 'networking.k8s.io']
+    resources: ['deployments', 'services', 'ingresses']
     resourceNames: ['pibox-io']
     verbs: ['get', 'list', 'update', 'patch']
 ---
