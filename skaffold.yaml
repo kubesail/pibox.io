@@ -23,6 +23,11 @@ profiles:
           docker:
             target: dev
   - name: prod
+    build:
+      artifacts:
+        - image: kubesail/pibox-io
+          docker:
+            target: runner
     deploy:
       kustomize:
         paths:
