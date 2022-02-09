@@ -13,10 +13,10 @@ export default Index
 
 export async function getServerSideProps(context) {
   const country = context.req.headers['cf-ipcountry']
-  res.setHeader('x-your-country', country)
-  res.setHeader('x-eea-member', eeaMember(country))
-  res.setHeader('x-eu-member', euMember(country))
-  res.setHeader('x-your-vat-rate', countryVat(country))
+  context.res.setHeader('x-your-country', country)
+  context.res.setHeader('x-eea-member', eeaMember(country))
+  context.res.setHeader('x-eu-member', euMember(country))
+  context.res.setHeader('x-your-vat-rate', countryVat(country))
 
   return {
     props: { country }, // will be passed to the page component as props
