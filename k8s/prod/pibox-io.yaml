@@ -11,16 +11,17 @@ spec:
       maxSurge: 2
       maxUnavailable: 1
   replicas: 2
-  spec:
-    containers:
-      - name: pibox-io
-        readinessProbe:
-          initialDelaySeconds: 10
-          periodSeconds: 5
-          httpGet:
-            path: /
-            port: https-ports
-            scheme: HTTP
-            httpHeaders:
-              - name: Host
-                value: pibox.io
+  template:
+    spec:
+      containers:
+        - name: pibox-io
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            httpGet:
+              path: /
+              port: https-ports
+              scheme: HTTP
+              httpHeaders:
+                - name: Host
+                  value: pibox.io
