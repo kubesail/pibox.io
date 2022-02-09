@@ -8,11 +8,11 @@ metadata:
 rules:
   - apiGroups: ['apps', '', 'networking.k8s.io']
     resources: ['deployments', 'services', 'ingresses', 'statefulsets', 'replicasets', 'pods']
-    verbs: ['get', 'list']
+    verbs: ['get', 'list', 'watch']
   - apiGroups: ['apps', '', 'networking.k8s.io']
     resources: ['deployments', 'services', 'ingresses']
     resourceNames: ['pibox-io']
-    verbs: ['get', 'list', 'update', 'patch']
+    verbs: ['get', 'list', 'update', 'patch', 'watch']
 ---
 apiVersion: v1
 kind: ServiceAccount
