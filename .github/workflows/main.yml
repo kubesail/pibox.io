@@ -1,0 +1,30 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Build and Push to GitHub Container Registry
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure
+        run: |
+          echo "${{ secrets.DOCKER_HUB_PULL_SECRET }}" | docker login --username "kubesailreadonly" --password-stdin
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/config
+
+      - name: Deploy
+        run: skaffold run -p prod

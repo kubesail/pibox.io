@@ -14,7 +14,7 @@ const inEU = () => {
   return true
 }
 
-const Preorder = ({ profile, page }) => {
+const PreOrder = ({ profile, page }) => {
   const [model, setModel] = useState(null)
   console.log({ model })
 
@@ -35,8 +35,7 @@ const Preorder = ({ profile, page }) => {
       credentials: 'include',
       body: JSON.stringify({ model: checkoutModel }),
     })
-    //redirect to stripe
-
+    // redirect to stripe
     const session = await sessionRes.json()
     stripe.redirectToCheckout({ sessionId: session.id })
   }
@@ -170,4 +169,4 @@ const Preorder = ({ profile, page }) => {
 
 export default connect(({ profile, fetchingProfile } = {}) => {
   return { profile, fetchingProfile }
-})(Preorder)
+})(PreOrder)

@@ -18,7 +18,7 @@ const models = {
   },
 }
 
-const Home = () => {
+const Home = ({ country = 'Unknown' }) => {
   const [email, setEmail] = useState('')
   const [model, setModel] = useState('default')
   const [slide, setSlide] = useState(0)
@@ -63,7 +63,7 @@ const Home = () => {
               </div>
             </div>
             <div className={styles.ProductContentContainer}>
-              <h2 className={styles.HeroHeader}>Extra storage in a snap</h2>
+              <h2 className={styles.HeroHeader}>Extra storage in a snap!</h2>
               <div className={styles.ProductFeatureText}>
                 <span> Just add:</span>
                 <ul className={styles.ul}>
@@ -167,6 +167,8 @@ const Home = () => {
       <div className={styles.SlideShowImg}>
         <img src={'/images/pibox-carrier-leaning.png'} className={styles.SlideShowImg} />
       </div>
+
+      {/* <p>You are in {country}</p> */}
     </div>
   )
 }
