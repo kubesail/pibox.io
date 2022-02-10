@@ -616,10 +616,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kubesail-shipping@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kubesail-shipping/-/kubesail-shipping-1.0.1.tgz#378419e7ed6e8ef93658bfb77d63b2e281aa006d"
-  integrity sha512-Q1EpdS/DWZTSrusYq+znK1HRjbz2qO6ZEUk87+VGVYVKUkhqz9tydUjdJgkcUwbGcWQSEwvE+7ySp8jDTs1Fgg==
+kubesail-shipping@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/kubesail-shipping/-/kubesail-shipping-1.0.3.tgz#cef752bbcdb67e7e42a541ff08cb8fbf597b2495"
+  integrity sha512-7h5/g2gLkumfLz0ZVxlRmdpwprjjhqG6x++jHIOatrgyMaYZ6unid50xDqWGnMr+gMi5Z5n9Efv0LY5dn4kuyQ==
   dependencies:
     country-vat "^1.0.0"
     is-european "^1.0.3"

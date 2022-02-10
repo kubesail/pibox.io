@@ -16,7 +16,7 @@
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "is-european": "^1.0.3",
-    "kubesail-shipping": "1.0.1",
+    "kubesail-shipping": "^1.0.3",
     "markerjs2": "^2.17.2",
     "next": "^12.0.4",
     "react": "17.0.2",

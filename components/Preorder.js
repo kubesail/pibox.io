@@ -219,9 +219,14 @@ const PreOrder = ({ profile, country, page }) => {
         >
           {allowedCountry ? (
             <div>
-              <div>
-                Shipping to {isoCountry?.name}: {vatAmountPercentHuman} VAT
-              </div>
+              {costData.shippingCost === 0 ? (
+                <div>+ Free Shipping to {isoCountry?.name}</div>
+              ) : (
+                <div>
+                  Shipping to {isoCountry?.name}: {currencySymbol}
+                  {costData.shippingCost}
+                </div>
+              )}
               <div>
                 {isoCountry?.name} VAT ({vatAmountPercentHuman}): {currencySymbol}
                 {calculatedVAT}
