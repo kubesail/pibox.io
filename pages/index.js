@@ -10,6 +10,6 @@ const Index = ({ country }) => (
 export default Index
 
 export async function getServerSideProps(context) {
-  const country = context.req.headers['cf-ipcountry']
+  const country = context.req.headers['cf-ipcountry'] || null
   return { props: { country } }
 }

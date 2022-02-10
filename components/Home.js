@@ -18,7 +18,7 @@ const models = {
   },
 }
 
-const Home = ({ country = 'Unknown' }) => {
+const Home = () => {
   const [email, setEmail] = useState('')
   const [model, setModel] = useState('default')
   const [slide, setSlide] = useState(0)

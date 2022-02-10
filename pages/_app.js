@@ -1,11 +1,17 @@
 import '../styles/global.css'
-import { useEffect } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
 import store from '../lib/store'
 const KUBESAIL_API_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_API_TARGET
 
 export default function App({ Component, pageProps }) {
-  useEffect(() => fetchProfile(), [])
+  const [fetchedProfile, setFetchedProfile] = React.useState(false)
+  React.useEffect(() => {
+    if (!fetchedProfile) {
+      fetchProfile()
+      setFetchedProfile(true)
+    }
+  }, [])
 
   async function fetchProfile() {
     const profileRes = await window.fetch(`${KUBESAIL_API_TARGET}/profile`, {
