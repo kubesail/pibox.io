@@ -31,7 +31,10 @@ COPY --chown=node:node *.js *.json *.md ./
 
 EXPOSE 3000
 # VOLUME ["/app/secrets"]
-CMD ["bash", "-c", "yarn build && yarn start"]
+
+RUN yarn build
+
+CMD ["bash", "-c", "node .next/standalone/server.js"]
 
 FROM runner AS dev
 CMD ["bash", "-c", "yarn dev"]
