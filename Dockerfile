@@ -2,6 +2,8 @@
 # Install dependencies only when needed
 FROM node:16-bullseye-slim AS deps
 WORKDIR /app
+RUN apt-get update && \
+  apt-get install -yqq git bash curl
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
@@ -40,7 +42,7 @@ CMD ["bash", "-c", "yarn dev"]
 # ARG AWS_BUCKET=pibox.io
 # ARG AWS_ACCESS_KEY_ID
 # ARG AWS_SECRET_ACCESS_KEY
-# RUN yarn build 
+# RUN yarn build
 
 # && aws s3 sync \
 #   --size-only \
