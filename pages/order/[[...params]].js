@@ -14,7 +14,8 @@ const PreOrderPage = ({ router, country }) => {
 
 export default withRouter(PreOrderPage)
 
-export async function getServerSideProps(context) {
-  const country = context.req.headers['cf-ipcountry'] || 'US'
+export async function getServerSideProps({ req, res }) {
+  res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=59')
+  const country = req.headers['cf-ipcountry'] || 'US'
   return { props: { country } }
 }

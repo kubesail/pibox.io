@@ -15,6 +15,11 @@ spec:
     spec:
       containers:
         - name: pibox-io
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: NEXT_TELEMETRY_DISABLED
+              value: "1"
           # readinessProbe:
           #   initialDelaySeconds: 10
           #   periodSeconds: 5

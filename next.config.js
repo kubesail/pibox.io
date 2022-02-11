@@ -1,4 +1,11 @@
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer({
+  assetPrefix: process.env.BUILD_ASSET_PREFIX || '',
+  swcMinify: true,
+  productionBrowserSourceMaps: true,
   async redirects() {
     return [
       {
@@ -28,4 +35,4 @@ module.exports = {
   //   })
   //   return config
   // },
-}
+})

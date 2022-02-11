@@ -2,7 +2,8 @@ import '../styles/global.css'
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from '../lib/store'
-const KUBESAIL_API_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_API_TARGET
+const KUBESAIL_API_TARGET =
+  process.env.NEXT_PUBLIC_KUBESAIL_API_TARGET || 'https://api.kubesail.com'
 
 export default function App({ Component, pageProps }) {
   const [fetchedProfile, setFetchedProfile] = React.useState(false)

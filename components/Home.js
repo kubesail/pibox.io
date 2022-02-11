@@ -152,7 +152,7 @@ const Home = () => {
         </div>
 
         <div className={styles.CTA}>
-          <Link type="submit" href="/order">
+          <Link href="/order">
             <a className={styles.largeButton} style={{ maxWidth: 800 }}>
               Order Now
             </a>
