@@ -1551,11 +1551,6 @@ make-dir@^3.0.0:
   dependencies:
     semver "^6.0.0"
 
-markerjs2@^2.17.2:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/markerjs2/-/markerjs2-2.19.0.tgz#5948fdbe526ece6edfef827b3d185ce2683be76b"
-  integrity sha512-rFIHllZMkSeHeEknASufTRFxbk4d78/+pNq28y7sICcsP6zNydPGUk7oPe+ljBF1MQcFWMv90Zh5u/zXxu5sqg==
-
 mdast-util-definitions@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/mdast-util-definitions/-/mdast-util-definitions-4.0.0.tgz#c5c1a84db799173b4dcf7643cda999e440c24db2"

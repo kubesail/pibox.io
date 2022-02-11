@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { withRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js'
@@ -10,7 +11,7 @@ import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
 
 import styles from '../components/Preorder.module.css'
-import Animation from '../components/Animation'
+const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 
 const KUBESAIL_WWW_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_WWW_TARGET || 'https://kubesail.com'
 const KUBESAIL_API_TARGET =
