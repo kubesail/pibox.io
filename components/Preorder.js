@@ -148,7 +148,7 @@ const PreOrder = ({ router, profile, country, page }) => {
             <div className={styles.countryDetails}>
               {allowedCountry ? (
                 <div>
-                  {costData.shippingCost === 0 ? (
+                  {costData.shippingCost[0] === 0 ? (
                     <strong>Free Shipping</strong>
                   ) : (
                     <div>
