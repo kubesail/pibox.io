@@ -16,7 +16,7 @@
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "is-european": "^1.0.3",
-    "kubesail-shipping": "^1.0.9",
+    "kubesail-shipping": "^1.1.0",
     "lottie-web": "^5.8.1",
     "markerjs2": "^2.17.2",
     "next": "^12.0.4",
