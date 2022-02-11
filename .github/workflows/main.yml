@@ -7,7 +7,7 @@ name: Build and Push to GitHub Container Registry
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   build-and-push:
@@ -24,7 +24,12 @@ jobs:
         run: |
           echo "${{ secrets.DOCKER_HUB_PULL_SECRET }}" | docker login --username "kubesailreadonly" --password-stdin
           mkdir -p ~/.kube
-          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/config
+          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/eks
 
       - name: Deploy
-        run: skaffold run -p prod
+        run: KUBECONFIG=~/.kube/eks skaffold run -p prod
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -rfv ~/.kube/eks
