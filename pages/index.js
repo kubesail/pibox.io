@@ -10,9 +10,6 @@ const Index = ({ country }) => (
 export default Index
 
 export async function getServerSideProps(context) {
-  const country = context.req.headers['cf-ipcountry']
-
-  return {
-    props: { country }, // will be passed to the page component as props
-  }
+  const country = context.req.headers['cf-ipcountry'] || null
+  return { props: { country } }
 }

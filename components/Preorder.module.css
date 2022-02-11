@@ -1,0 +1,178 @@
+.Order {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 8vh 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.Success {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Success h1 {
+  margin: 4rem 0 0 0;
+}
+
+.Success a {
+  text-decoration: none;
+}
+
+.Success button {
+  font-size: 22px;
+  padding: 15px;
+  margin: 10px;
+}
+
+.Order h2 {
+  font-weight: 900;
+  font-size: 40px;
+}
+.Order h3 {
+  margin: 60px 0 20px 0;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.Order button {
+  background-color: #ec3963;
+  color: white;
+  padding: 20px 20px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.OrderForm {
+  width: 50%;
+  /* margin-left: 50%; */
+}
+
+.ProductImage {
+  width: 40%;
+  /* max-width: 500px; */
+  /* position: fixed; */
+}
+
+.Group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.Option {
+  width: 48%;
+  border: 1px solid #d6d6d6;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding: 7px 10px 12px 10px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.OptionWide {
+  width: 60%;
+}
+
+.Selected {
+  box-shadow: 0 0 3px 2px #0070c9;
+}
+
+.Option h4 {
+  margin: 0;
+}
+
+.Option p {
+  margin: 0;
+  font-size: 12px;
+  color: #8c8c8c;
+  line-height: 0.9rem;
+}
+
+.OptionHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.Price {
+  color: #666666;
+}
+
+.disabled {
+  background: gray;
+}
+
+.country {
+  width: 100%;
+  text-align: center;
+  color: #acacac;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countryDetails {
+  width: 48%;
+  text-align: right;
+}
+.countrySelect {
+  width: 48%;
+  text-align: left;
+}
+
+.whyLogin {
+  margin: 60px 0 80px 0;
+}
+a.checkout,
+a.checkout:hover,
+button.checkout {
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ec3963;
+  color: white;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 348px;
+  text-align: center;
+  height: 57px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 3px;
+}
+button.loggedOut {
+  background-color: white;
+  color: black;
+  border: black 1px solid;
+}
+.pink {
+  color: #ec3963;
+}
+.blue {
+  color: #5bb3e7;
+}
+
+@media (max-width: 900px) {
+  .Order {
+    flex-direction: column;
+  }
+  .ProductImage,
+  .OrderForm {
+    width: 100%;
+  }
+}

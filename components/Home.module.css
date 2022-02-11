@@ -108,15 +108,22 @@
   justify-content: space-between;
   align-items: center;
 }
+.largeButton,
 .SectionInner button,
 .CTA input[type='submit'],
 .SectionInner input[type='submit'] {
+  text-align: center;
+  text-decoration: none;
   background-color: #ec3963;
   color: white;
   padding: 20px 20px;
   font-size: 30px;
   font-weight: bold;
   width: 100%;
+}
+.largeButton,
+.largeButton:hover {
+  color: white !important;
 }
 .SectionCopy {
   width: 42%;
@@ -172,7 +179,7 @@
 .ProductBar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 10px 0;
   font-size: 30px;
   font-weight: bold;
