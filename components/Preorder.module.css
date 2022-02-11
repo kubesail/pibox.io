@@ -88,6 +88,24 @@
   background: gray;
 }
 
+.country {
+  width: 100%;
+  text-align: center;
+  color: #acacac;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countryDetails {
+  width: 48%;
+  text-align: right;
+}
+.countrySelect {
+  width: 48%;
+  text-align: left;
+}
+
 .whyLogin {
   margin: 60px 0 80px 0;
 }

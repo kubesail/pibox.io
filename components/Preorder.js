@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { withRouter } from 'next/router'
 import styles from '../components/Preorder.module.css'
 import { connect } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js'
@@ -7,6 +8,7 @@ import { euMember } from 'is-european'
 import iso3166 from 'iso-3166'
 import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
 import Select from 'react-select'
+import piboxModels from 'kubesail-shipping/piboxModels'
 
 const KUBESAIL_WWW_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_WWW_TARGET || 'https://kubesail.com'
 const KUBESAIL_API_TARGET =
@@ -17,16 +19,11 @@ const STRIPE_PUBLIC_KEY =
 
 let stripe
 
-const PreOrder = ({ profile, country, page }) => {
-  const [model, setModel] = useState(null)
+const PreOrder = ({ router, profile, country, page }) => {
+  const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
 
   useEffect(() => setupStripeKey(), [])
-  useEffect(() => {
-    try {
-      setModel(localStorage.getItem('model'))
-    } catch {}
-  }, [])
   async function setupStripeKey() {
     stripe = await loadStripe(STRIPE_PUBLIC_KEY)
   }
@@ -35,12 +32,12 @@ const PreOrder = ({ profile, country, page }) => {
     setShippingCountry(country)
   }, [country])
 
-  async function checkout(checkoutModel = model) {
+  async function checkout(sku, country) {
     const sessionRes = await window.fetch(`${KUBESAIL_API_TARGET}/pibox/checkout`, {
       headers: { 'content-type': 'application/json' },
       method: 'POST',
       credentials: 'include',
-      body: JSON.stringify({ model: checkoutModel, country: shippingCountry }),
+      body: JSON.stringify({ sku, country }),
     })
     // redirect to stripe
     const session = await sessionRes.json()
@@ -51,98 +48,44 @@ const PreOrder = ({ profile, country, page }) => {
 
   // Store which model user wants in local-storage and retrieve it after they login
   useEffect(() => {
-    if (model) {
-      try {
-        localStorage.setItem('model', model)
-      } catch {}
-    }
-  }, [model])
-  if (model && page === 'redirected' && profile) {
-    const checkoutModel = localStorage.getItem('model')
-    if (checkoutModel && checkoutModel !== 'null') {
-      checkout(checkoutModel)
-    }
-  }
+    if (!sku) return
+    if (!shippingCountry) return
+    try {
+      localStorage.setItem('order-sku', sku)
+      localStorage.setItem('order-country', shippingCountry)
+    } catch {}
+  }, [sku, shippingCountry])
 
-  const models = [
-    {
-      name: 'Plug and Play, 2 Bay',
-      styleName: (
-        <>
-          <span className={styles.pink}>2 Bay</span> Plug + Play PiBox
-        </>
-      ),
-      priceDollar: 499,
-      priceEuro: 499,
-      description: [
-        'Standard PiBox, plus:',
-        'One 2TB Samsung QVO SSD Drive',
-        'Formatted, ready to install apps',
-        'Additional SATA slot for adding more storage',
-      ],
-    },
-    {
-      name: 'Standard, 2 Bay',
-      styleName: (
-        <>
-          <span className={styles.pink}>2 Bay</span> Standard PiBox
-        </>
-      ),
-      priceDollar: 299,
-      priceEuro: 299,
-      description: [
-        'Raspberry Pi CM4 w/ 8GB RAM, 8GB eMMC, WiFi',
-        'Add up to 2 SATA SSD drives',
-        'Noctua Fan, 1.3" LCD, WiFi Antenna, 3.5A PSU',
-        'Black Powder Coated structural steel case',
-      ],
-    },
-    {
-      name: 'Hacker, 2 Bay',
-      styleName: (
-        <>
-          <span className={styles.pink}>2 Bay</span> Hacker PiBox
-        </>
-      ),
-      priceDollar: 159,
-      priceEuro: 159,
-      description: [
-        'The Standard PiBox, but you provide your own:',
-        'Raspberry Pi CM4, Fan, and WiFi antenna',
-      ],
-    },
-    {
-      name: '5 Bay',
-      styleName: (
-        <>
-          <span className={styles.blue}>5 Bay</span> PiBox
-        </>
-      ),
-      description: ['5 Full-Size Hard Drive Bays', 'Product announcement late 2022'],
-    },
-  ]
+  if (page === 'redirected' && profile) {
+    try {
+      const sku = localStorage.getItem('order-sku')
+      const country = localStorage.getItem('order-country')
+      router.replace('/order')
+      checkout(sku, country)
+    } catch {}
+  }
 
   const isoCountry = iso3166.find(c => c.alpha2 === shippingCountry)
   const isEU = isoCountry ? euMember(isoCountry.alpha2) : false
 
-  const currentModel = models.find(m => m.name === model)
-  const currentPrice = currentModel ? (isEU ? currentModel.priceEuro : currentModel.priceDollar) : 0
-
+  const currentModel = piboxModels.find(m => m.sku === sku)
   const costData = shippingCost(shippingCountry)
   const allowedCountry = isAllowedCountry(shippingCountry)
 
+  const currentPrice = currentModel?.price ? currentModel.price[costData?.currency] : 0
+
   let currencySymbol = '$'
   switch (costData?.currency) {
-    case 'EURO':
+    case 'EUR':
       currencySymbol = '€'
       break
-    case 'POUND':
+    case 'GBP':
       currencySymbol = '£'
       break
   }
 
   const vatAmountPercentHuman = Math.round((costData?.vat || 0) * 100) + '%'
-  const calculatedVAT = Math.round(currentPrice * (costData?.vat || 0))
+  const calculatedVAT = Math.round(currentPrice * (costData?.vat || 0)) / 100
 
   return (
     <div className={styles.Order}>
@@ -158,20 +101,23 @@ const PreOrder = ({ profile, country, page }) => {
         )}
         <h3>Choose your model</h3>
         <div className={styles.Group}>
-          {models.map(m => {
+          {piboxModels.map(m => {
             return (
               <div
-                key={m.name}
-                className={[styles.Option, model === m.name ? styles.Selected : ''].join(' ')}
-                onClick={() => setModel(m.name)}
+                key={m.sku}
+                className={[styles.Option, sku === m.sku ? styles.Selected : ''].join(' ')}
+                onClick={() => setSku(m.sku)}
               >
                 <div className={styles.OptionHeader}>
-                  <h4>{m.styleName}</h4>
+                  <h4>
+                    <span className={m.bays === 2 ? styles.pink : styles.blue}>{m.bays} Bay</span>{' '}
+                    {m.shortName}
+                  </h4>
                   <h4 className={styles.Price}>
-                    {m.priceDollar ? (
+                    {m.price ? (
                       <>
                         {currencySymbol}
-                        {isEU ? m.priceEuro : m.priceDollar}
+                        {m.price[costData.currency] / 100}
                       </>
                     ) : (
                       'Coming soon!'
@@ -186,9 +132,50 @@ const PreOrder = ({ profile, country, page }) => {
           })}
         </div>
 
-        {model && !profile && (
+        {sku && sku !== '5-bay' && (
+          <div className={styles.country}>
+            <div className={styles.countrySelect}>
+              <div>Shipping Country:</div>
+              <Select
+                id="country"
+                onChange={v => setShippingCountry(v.value)}
+                options={iso3166.map(country => {
+                  return { value: country.alpha2, label: country.name }
+                })}
+                defaultValue={{ value: shippingCountry, label: isoCountry?.name }}
+              />
+            </div>
+            <div className={styles.countryDetails}>
+              {allowedCountry ? (
+                <div>
+                  {costData.shippingCost === 0 ? (
+                    <strong>Free Shipping</strong>
+                  ) : (
+                    <div>
+                      Shipping to {isoCountry?.name}: {currencySymbol}
+                      {Math.round(costData.shippingCost / 100)}
+                    </div>
+                  )}
+                  {costData.vat > 0 && (
+                    <div>
+                      {isoCountry?.name} VAT ({vatAmountPercentHuman}): {currencySymbol}
+                      {calculatedVAT}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  Please contact <a href="mailto:support@pibox.io">support@pibox.io</a> for shipping
+                  options to your country
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {sku && !profile && (
           <div>
-            {model === '5 Bay' ? (
+            {sku === '5-bay' ? (
               <p>
                 Log in to reserve your spot in line for the{' '}
                 <strong>Full Sized PiBox 5 Bay NAS</strong>. Full product specifications will be
@@ -210,46 +197,10 @@ const PreOrder = ({ profile, country, page }) => {
           </div>
         )}
 
-        <div
-          style={{
-            width: '100%',
-            textAlign: 'center',
-            color: '#acacac',
-          }}
-        >
-          {allowedCountry ? (
-            <div>
-              {costData.shippingCost === 0 ? (
-                <div>+ Free Shipping to {isoCountry?.name}</div>
-              ) : (
-                <div>
-                  Shipping to {isoCountry?.name}: {currencySymbol}
-                  {costData.shippingCost}
-                </div>
-              )}
-              <div>
-                {isoCountry?.name} VAT ({vatAmountPercentHuman}): {currencySymbol}
-                {calculatedVAT}
-              </div>
-            </div>
-          ) : (
-            <div>We don't currently ship to this country, please contact support</div>
-          )}
-          <div>
-            <Select
-              onChange={v => setShippingCountry(v.value)}
-              options={iso3166.map(country => {
-                return { value: country.alpha2, label: country.name }
-              })}
-              defaultValue={{ value: shippingCountry, label: isoCountry?.name }}
-            />
-          </div>
-        </div>
-
-        {allowedCountry && model && model !== '5 Bay' && (
+        {allowedCountry && sku && sku !== '5-bay' && (
           <button
             className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
-            onClick={() => checkout()}
+            onClick={() => checkout(sku, shippingCountry)}
           >
             {profile ? `Checkout` : 'Checkout as Guest'}
           </button>
@@ -261,4 +212,4 @@ const PreOrder = ({ profile, country, page }) => {
 
 export default connect(({ profile, fetchingProfile } = {}) => {
   return { profile, fetchingProfile }
-})(PreOrder)
+})(withRouter(PreOrder))

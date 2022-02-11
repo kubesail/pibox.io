@@ -311,7 +311,7 @@ const Order = () => {
           </div>
         </div>
         <button
-          class={[styles.save, done ? '' : styles.disabled].join(' ')}
+          className={[styles.save, done ? '' : styles.disabled].join(' ')}
           onClick={() => {
             if (!done) {
               return window.alert('Please finish selecting options')
