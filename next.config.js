@@ -3,9 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  experimental: {
-    outputStandalone: true,
-  },
   assetPrefix: process.env.BUILD_ASSET_PREFIX || '',
   swcMinify: true,
   productionBrowserSourceMaps: true,

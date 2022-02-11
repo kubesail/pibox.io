@@ -34,7 +34,7 @@ EXPOSE 3000
 
 RUN yarn build
 
-CMD ["bash", "-c", "node .next/standalone/server.js"]
+CMD ["bash", "-c", "yarn start"]
 
 FROM runner AS dev
 CMD ["bash", "-c", "yarn dev"]
