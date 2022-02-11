@@ -18,4 +18,14 @@ module.exports = {
       },
     ]
   },
+  // webpack: config => {
+  //   config.module.rules.push({
+  //     test: /\.(eot|ttf|woff|woff2|mp4|pdf|webm|txt|json|obj|mtl)$/,
+  //     type: 'asset/resource',
+  //     generator: {
+  //       filename: 'static/chunks/[path][name].[hash][ext]',
+  //     },
+  //   })
+  //   return config
+  // },
 }

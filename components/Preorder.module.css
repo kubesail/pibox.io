@@ -8,6 +8,32 @@
   position: relative;
 }
 
+.Success {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Success h1 {
+  margin: 4rem 0 0 0;
+}
+
+.Success a {
+  text-decoration: none;
+}
+
+.Success button {
+  font-size: 22px;
+  padding: 15px;
+  margin: 10px;
+}
+
 .Order h2 {
   font-weight: 900;
   font-size: 40px;

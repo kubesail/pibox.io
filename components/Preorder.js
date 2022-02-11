@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
-import styles from '../components/Preorder.module.css'
 import { connect } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js'
 import { euMember } from 'is-european'
@@ -9,6 +8,9 @@ import iso3166 from 'iso-3166'
 import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
 import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
+
+import styles from '../components/Preorder.module.css'
+import Animation from '../components/Animation'
 
 const KUBESAIL_WWW_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_WWW_TARGET || 'https://kubesail.com'
 const KUBESAIL_API_TARGET =
@@ -86,6 +88,52 @@ const PreOrder = ({ router, profile, country, page }) => {
 
   const vatAmountPercentHuman = Math.round((costData?.vat || 0) * 100) + '%'
   const calculatedVAT = Math.round(currentPrice * (costData?.vat || 0)) / 100
+
+  if (page === 'success') {
+    return (
+      <div className={styles.Success}>
+        <h1>Order placed!</h1>
+        <div
+          style={{
+            position: 'relative',
+            top: -100,
+          }}
+        >
+          <Animation height={700} width={700} animation="warehouse-delivery" />
+        </div>
+        <div
+          style={{
+            position: 'relative',
+            top: -220,
+          }}
+        >
+          We will send a followup email when we start production of your PiBox, and also when we
+          ship your order.
+          <br />
+          Thank you for your order!
+          <div style={{ display: 'flex', margin: '2rem' }}>
+            <a href={'https://pibox.io'}>
+              <button>Back to PiBox.io</button>
+            </a>
+            <a
+              href="https://kubesail.com"
+              rel="nofollow"
+              target="_blank"
+              title="Visit KubeSail.com"
+            >
+              <button>Visit KubeSail.com</button>
+            </a>
+            <a href="https://discord.gg/N3zNdp7jHc" rel="noreferrer nofollow" target="_blank">
+              <button>Join us in Discord</button>
+            </a>
+            <a href="https://twitter.com/KubeSail" rel="noreferrer nofollow" target="_blank">
+              <button>Follow us on Twitter</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={styles.Order}>
