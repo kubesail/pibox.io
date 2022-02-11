@@ -128,7 +128,12 @@ const PreOrder = ({ router, profile, country, page }) => {
 
   return (
     <div className={styles.Order}>
-      <img className={styles.ProductImage} src="/images/box-2-mini.png" alt="PiBox 2 mini" />
+      <img
+        className={styles.ProductImage}
+        src="/images/box-2-mini.png"
+        alt="PiBox 2 mini"
+        loading="lazy"
+      />
       <div className={styles.OrderForm}>
         <h2>Pre-Order your PiBox</h2>
         <p>Orders placed now are expected to ship by July 2022. Let's customize your PiBox!</p>

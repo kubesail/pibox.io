@@ -28,6 +28,7 @@ export default function Blog({ children, blog }) {
               src="/images/otter.jpg"
               className={`${styles.headerBlogImage} ${utilStyles.borderCircle}`}
               alt={name}
+              loading="lazy"
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -39,6 +40,7 @@ export default function Blog({ children, blog }) {
                   src="/images/otter.jpg"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
+                  loading="lazy"
                 />
               </a>
             </Link>

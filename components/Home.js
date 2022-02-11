@@ -101,24 +101,45 @@ const Home = () => {
                   src="/images/ubuntu.png"
                   alt="Ubuntu"
                   style={{ marginRight: 30 }}
+                  loading="lazy"
                 />
-                <img className={styles.Icons} src="/images/raspberry.png" alt="Raspberry Pi" />
+                <img
+                  className={styles.Icons}
+                  src="/images/raspberry.png"
+                  alt="Raspberry Pi"
+                  loading="lazy"
+                />
               </div>
               <p className={styles.SectionText}>
                 Finally, a NAS that lets you use a standard operating system that you’re used to,
                 like Ubuntu or Raspberry Pi OS.
               </p>
             </div>
-            <img className={styles.SectionImg} src="/images/gorilla.png" alt="Image of Desktop" />
+            <img
+              className={styles.SectionImg}
+              src="/images/gorilla.png"
+              alt="Image of Desktop"
+              loading="lazy"
+            />
           </div>
         </div>
         <div className={styles.Section}>
           <div className={styles.SectionInner}>
-            <img className={styles.SectionImg} src="/images/lion.png" alt="Image of media" />
+            <img
+              className={styles.SectionImg}
+              src="/images/lion.png"
+              alt="Image of media"
+              loading="lazy"
+            />
             <div className={styles.SectionCopy}>
               <h3>HDMI for Media</h3>
               <div className={[styles.IconContainer, styles.IconsHDMI].join(' ')}>
-                <img className={styles.Icons} src="/images/hdmi.png" alt="HDMI Icon" />
+                <img
+                  className={styles.Icons}
+                  src="/images/hdmi.png"
+                  alt="HDMI Icon"
+                  loading="lazy"
+                />
               </div>
               <p className={styles.SectionText}>
                 PiBox makes a great media center, taking advantage of the Raspberry Pi’s native 4K
@@ -133,7 +154,12 @@ const Home = () => {
               <h3>It’s time to ditch Dropbox, Google Photos, and Netflix</h3>
 
               <div className={[styles.IconContainer, styles.IconsDitch].join(' ')}>
-                <img className={styles.Icons} src="/images/ditch-icons.png" alt="Icon of HDMI" />
+                <img
+                  className={styles.Icons}
+                  src="/images/ditch-icons.png"
+                  alt="Icon of HDMI"
+                  loading="lazy"
+                />
               </div>
               <p className={styles.SectionText}>
                 PiBox is ready to run a variety of free software.{' '}
@@ -143,12 +169,21 @@ const Home = () => {
                 let you spin up self-hosted apps with one click.
               </p>
             </div>
-            <img className={styles.SectionImg} src="/images/nextcloud.png" alt="Image of media" />
+            <img
+              className={styles.SectionImg}
+              src="/images/nextcloud.png"
+              alt="Image of media"
+              loading="lazy"
+            />
           </div>
         </div>
 
         <div className={styles.SlideShowImg}>
-          <img src={'/images/pibox-ssd-removal.png'} className={styles.SlideShowImg} />
+          <img
+            src={'/images/pibox-ssd-removal.png'}
+            className={styles.SlideShowImg}
+            loading="lazy"
+          />
         </div>
 
         <div className={styles.CTA}>
@@ -161,11 +196,15 @@ const Home = () => {
       </div>
 
       <div className={styles.SlideShowImg}>
-        <img src={'/images/pibox-360-full.gif'} className={styles.SlideShowImg} />
+        <img src={'/images/pibox-360-full.gif'} className={styles.SlideShowImg} loading="lazy" />
       </div>
 
       <div className={styles.SlideShowImg}>
-        <img src={'/images/pibox-carrier-leaning.png'} className={styles.SlideShowImg} />
+        <img
+          src={'/images/pibox-carrier-leaning.png'}
+          className={styles.SlideShowImg}
+          loading="lazy"
+        />
       </div>
 
       {/* <p>You are in {country}</p> */}
