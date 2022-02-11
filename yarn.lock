@@ -564,15 +564,6 @@ concat-map@0.0.1:
   resolved "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-country-vat@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/country-vat/-/country-vat-1.0.0.tgz"
-  integrity sha512-gMlJ4CobBs7OX6CUF6hcYTyNLqw/DL/501fsX7WcilkI9uTDPaMywHzubyMtAglHWn6UXhDLEDXQtI4YC/zG1g==
-  dependencies:
-    got "~11.8.2"
-    iso-3166 "~3.1.0"
-    write-json-file "~4.3.0"
-
 "country-vat@https://github.com/kubesail/country-vat":
   version "1.0.1"
   resolved "https://github.com/kubesail/country-vat#6641823cd6ef8c0309c695e088c5dd35e647c919"

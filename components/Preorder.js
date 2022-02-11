@@ -93,20 +93,10 @@ const PreOrder = ({ router, profile, country, page }) => {
     return (
       <div className={styles.Success}>
         <h1>Order placed!</h1>
-        <div
-          style={{
-            position: 'relative',
-            top: -100,
-          }}
-        >
+        <div style={{ position: 'relative', top: -100 }}>
           <Animation height={700} width={700} animation="warehouse-delivery" />
         </div>
-        <div
-          style={{
-            position: 'relative',
-            top: -220,
-          }}
-        >
+        <div style={{ position: 'relative', top: -220 }}>
           We will send a followup email when we start production of your PiBox, and also when we
           ship your order.
           <br />
