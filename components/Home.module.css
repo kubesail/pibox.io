@@ -5,13 +5,11 @@
 }
 
 .ProductImage {
-  width: 110%;
   margin-left: -5%;
 }
 
 .ProductHero {
   width: 60%;
-  position: relative;
 }
 
 .EmailInput {

@@ -20,6 +20,8 @@ spec:
               value: production
             - name: NEXT_TELEMETRY_DISABLED
               value: "1"
+            - name: NEXT_PUBLIC_STRIPE_PUBLIC_KEY
+              value: "pk_live_B2ylJU30kGz2y0k20LHiZhA7"
           # readinessProbe:
           #   initialDelaySeconds: 10
           #   periodSeconds: 5

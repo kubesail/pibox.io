@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from '../components/Home.module.css'
 import 'react-slideshow-image/dist/styles.css'
 
-const models = {
-  default: {
-    img: '/images/box-2-mini.png',
-    line: 'An ultra-modular two or five bay NAS',
-  },
-  box2mini: {
-    img: '/images/box-2-mini.png',
-    line: 'A compact two bay NAS for SSDs',
-  },
-  box5: {
-    img: '/images/box-5.png',
-    line: 'A five bay NAS for 3.5” Drives',
-  },
-}
+import pibox2Mini from '../public/images/box-2-mini.png'
+import pibox5 from '../public/images/box-5.png'
+import piboxSpinning from '../public/images/pibox-360-full.gif'
+import piboxLeaning from '../public/images/pibox-carrier-leaning.png'
+import piboxSSDRemoval from '../public/images/pibox-ssd-removal.png'
+import piboxNextCloud from '../public/images/nextcloud.png'
+import ditchIcons from '../public/images/ditch-icons.png'
+import plexDemo from '../public/images/lion.png'
 
 const Home = () => {
   const [email, setEmail] = useState('')
-  const [model, setModel] = useState('default')
+  const [model, setModel] = useState('box2mini')
   const [slide, setSlide] = useState(0)
 
   useEffect(() => {
@@ -33,7 +28,11 @@ const Home = () => {
         <div className={[styles.SectionInner]}>
           <div className={styles.ProductContent}>
             <div className={styles.ProductHero}>
-              <img className={styles.ProductImage} src={models[model].img} alt="PiBox Render" />
+              <Image
+                layout={'responsive'}
+                alt="PiBox Render"
+                src={model === 'box2mini' ? pibox2Mini : pibox5}
+              />
               <div className={styles.divider}></div>
               <div className={styles.ProductBar}>
                 <div>
@@ -125,11 +124,12 @@ const Home = () => {
         </div>
         <div className={styles.Section}>
           <div className={styles.SectionInner}>
-            <img
+            <Image
+              width={600}
+              height={415}
+              alt="PiBox can run Home-Media software like Plex and JellyFin without a sweat!"
+              src={plexDemo}
               className={styles.SectionImg}
-              src="/images/lion.png"
-              alt="Image of media"
-              loading="lazy"
             />
             <div className={styles.SectionCopy}>
               <h3>HDMI for Media</h3>
@@ -154,11 +154,12 @@ const Home = () => {
               <h3>It’s time to ditch Dropbox, Google Photos, and Netflix</h3>
 
               <div className={[styles.IconContainer, styles.IconsDitch].join(' ')}>
-                <img
-                  className={styles.Icons}
-                  src="/images/ditch-icons.png"
+                <Image
                   alt="Icon of HDMI"
-                  loading="lazy"
+                  src={ditchIcons}
+                  className={styles.Icons}
+                  width={1035}
+                  height={252}
                 />
               </div>
               <p className={styles.SectionText}>
@@ -169,20 +170,22 @@ const Home = () => {
                 let you spin up self-hosted apps with one click.
               </p>
             </div>
-            <img
+            <Image
+              width={620}
+              height={450}
+              alt="PiBox can run loads of software, like NextCloud!"
+              src={piboxNextCloud}
               className={styles.SectionImg}
-              src="/images/nextcloud.png"
-              alt="Image of media"
-              loading="lazy"
             />
           </div>
         </div>
 
         <div className={styles.SlideShowImg}>
-          <img
-            src={'/images/pibox-ssd-removal.png'}
+          <Image
+            layout={'responsive'}
+            alt="PiBox is flexable - add your own SSDs"
+            src={piboxSSDRemoval}
             className={styles.SlideShowImg}
-            loading="lazy"
           />
         </div>
 
@@ -196,14 +199,20 @@ const Home = () => {
       </div>
 
       <div className={styles.SlideShowImg}>
-        <img src={'/images/pibox-360-full.gif'} className={styles.SlideShowImg} loading="lazy" />
+        <Image
+          layout={'responsive'}
+          alt="PiBox Spinning"
+          src={piboxSpinning}
+          className={styles.SlideShowImg}
+        />
       </div>
 
       <div className={styles.SlideShowImg}>
-        <img
-          src={'/images/pibox-carrier-leaning.png'}
+        <Image
+          layout={'responsive'}
+          alt="PiBox Leaning"
+          src={piboxLeaning}
           className={styles.SlideShowImg}
-          loading="lazy"
         />
       </div>
 

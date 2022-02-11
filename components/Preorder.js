@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import { withRouter } from 'next/router'
 import { connect } from 'react-redux'
 import { loadStripe } from '@stripe/stripe-js'
@@ -10,6 +11,7 @@ import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
 import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
 
+import pibox2Mini from '../public/images/box-2-mini.png'
 import styles from '../components/Preorder.module.css'
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 
@@ -128,12 +130,7 @@ const PreOrder = ({ router, profile, country, page }) => {
 
   return (
     <div className={styles.Order}>
-      <img
-        className={styles.ProductImage}
-        src="/images/box-2-mini.png"
-        alt="PiBox 2 mini"
-        loading="lazy"
-      />
+      <Image layout={'responsive'} alt="PiBox 2 mini" src={pibox2Mini} />
       <div className={styles.OrderForm}>
         <h2>Pre-Order your PiBox</h2>
         <p>Orders placed now are expected to ship by July 2022. Let's customize your PiBox!</p>
