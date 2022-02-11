@@ -23,6 +23,7 @@ COPY --chown=node:node --from=deps /app/node_modules ./node_modules
 COPY --chown=node:node public ./public
 COPY --chown=node:node config ./config
 COPY --chown=node:node styles ./styles
+COPY --chown=node:node lib ./lib
 COPY --chown=node:node components ./components
 COPY --chown=node:node pages ./pages
 COPY --chown=node:node *.js *.json *.md ./
