@@ -10,7 +10,8 @@ RUN yarn install --frozen-lockfile
 FROM node:16-bullseye-slim AS runner
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED="1" \
-  NODE_ENV="production"
+  NODE_ENV="production" \
+  NEXT_PUBLIC_STRIPE_PUBLIC_KEY="pk_live_B2ylJU30kGz2y0k20LHiZhA7"
 #  \
 # SSL_KEY_FILE="/app/secrets/tls.key" \
 # SSL_CRT_FILE="/app/secrets/tls.crt"
