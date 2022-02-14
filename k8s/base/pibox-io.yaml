@@ -59,7 +59,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 500m
     nginx.org/websocket-services: pibox-io
-    kubernetes.io/tls-acme: 'true'
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/backend-protocol: HTTPS
 spec:
   tls:
