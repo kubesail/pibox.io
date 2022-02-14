@@ -1,34 +1,35 @@
 import '../styles/global.css'
 import React from 'react'
 import { Provider } from 'react-redux'
-import store from '../lib/store'
-const KUBESAIL_API_TARGET =
-  process.env.NEXT_PUBLIC_KUBESAIL_API_TARGET || 'https://api.kubesail.com'
+import store, { kubeSailFetch } from '../lib/store'
 
 export default function App({ Component, pageProps }) {
   const [fetchedProfile, setFetchedProfile] = React.useState(false)
-  React.useEffect(() => {
+
+  const embedDomain =
+    process.env.NODE_ENV === 'development' ? 'https://localhost:3000' : 'https://kubesail.com'
+
+  React.useEffect(async () => {
     if (!fetchedProfile) {
-      fetchProfile()
+      const profileRes = await kubeSailFetch('/profile')
+      if (profileRes.status === 200) {
+        store.dispatch({ type: 'SET_PROFILE', profile: profileRes.body })
+      } else {
+        console.log('Error fetching profile.', profileRes.status)
+      }
       setFetchedProfile(true)
     }
   }, [])
 
-  async function fetchProfile() {
-    const profileRes = await window.fetch(`${KUBESAIL_API_TARGET}/profile`, {
-      headers: { 'content-type': 'application/json' },
-      credentials: 'include',
-    })
-    if (profileRes.status === 200) {
-      store.dispatch({ type: 'SET_PROFILE', profile: await profileRes.json() })
-    } else {
-      console.log('Error fetching profile.', profileRes.status)
-    }
-  }
-
   return (
     <Provider store={store}>
       <Component {...pageProps} />
+      <iframe
+        src={`${embedDomain || ''}/loginEmbed.html`}
+        width={0}
+        height={0}
+        style={{ display: 'none' }}
+      />
     </Provider>
   )
 }

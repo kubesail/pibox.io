@@ -11,13 +11,12 @@ import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
 import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
 
+import { kubeSailFetch } from '../lib/store'
 import pibox2Mini from '../public/images/box-2-mini.png'
 import styles from '../components/Preorder.module.css'
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 
 const KUBESAIL_WWW_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_WWW_TARGET || 'https://kubesail.com'
-const KUBESAIL_API_TARGET =
-  process.env.NEXT_PUBLIC_KUBESAIL_API_TARGET || 'https://api.kubesail.com'
 const PIBOX_WWW_TARGET = process.env.NEXT_PUBLIC_PIBOX_WWW_TARGET || 'https://pibox.io'
 const STRIPE_PUBLIC_KEY =
   process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || 'pk_test_7AkRzftaxjOZWEiGFNy7sPYP'
@@ -38,16 +37,13 @@ const PreOrder = ({ router, profile, country, page }) => {
   }, [country])
 
   async function checkout(sku, country) {
-    const sessionRes = await window.fetch(`${KUBESAIL_API_TARGET}/pibox/checkout`, {
-      headers: { 'content-type': 'application/json' },
+    const sessionRes = await kubeSailFetch(`/pibox/checkout`, {
       method: 'POST',
-      credentials: 'include',
       body: JSON.stringify({ sku, country }),
     })
     // redirect to stripe
-    const session = await sessionRes.json()
-    if (session && session.id) {
-      stripe.redirectToCheckout({ sessionId: session.id })
+    if (sessionRes.body && sessionRes.body.id) {
+      stripe.redirectToCheckout({ sessionId: sessionRes.body.id })
     }
   }
 
