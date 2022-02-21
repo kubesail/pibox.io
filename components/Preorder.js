@@ -10,6 +10,7 @@ import iso3166 from 'iso-3166'
 import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
 import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
+import { useTranslation } from 'react-i18next'
 
 import { kubeSailFetch } from '../lib/store'
 import pibox2Mini from '../public/images/box-2-mini.png'
@@ -26,6 +27,8 @@ let stripe
 const PreOrder = ({ router, profile, country, page }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
+  const { t } = useTranslation('common')
+  console.log('locale', router.locale)
 
   useEffect(() => setupStripeKey(), [])
   async function setupStripeKey() {
@@ -128,7 +131,7 @@ const PreOrder = ({ router, profile, country, page }) => {
     <div className={styles.Order}>
       <Image alt="PiBox 2 mini" src={pibox2Mini} height={345} width={533} />
       <div className={styles.OrderForm}>
-        <h2>Pre-Order your PiBox</h2>
+        <h2>{t('h1')} - Pre-Order your PiBox</h2>
         <p>Orders placed now are expected to ship by July 2022. Let's customize your PiBox!</p>
         {isEU && (
           <p>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../components/Home.module.css'
-import 'react-slideshow-image/dist/styles.css'
+import { useTranslation } from 'react-i18next'
 
 import pibox2Mini from '../public/images/box-2-mini.png'
 import pibox5 from '../public/images/box-5.png'
@@ -16,7 +16,8 @@ import plexDemo from '../public/images/lion.png'
 const Home = () => {
   const [email, setEmail] = useState('')
   const [model, setModel] = useState('box2mini')
-  const [slide, setSlide] = useState(0)
+
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     email && window.localStorage.setItem('email', email)
@@ -42,9 +43,13 @@ const Home = () => {
                       styles.pinkTab,
                       model === 'box2mini' && styles.ProductTabSelected,
                     ].join(' ')}
-                    onClick={() => setModel('box2mini')}
+                    onClick={() => {
+                      setModel('box2mini')
+                      i18n.changeLanguage('de')
+                    }}
                   >
-                    PiBox Mini <span className={styles.colorPink}>2 Bay</span>
+                    <div>PiBox</div>
+                    <div className={styles.colorPink}>2 Bay SSD</div>
                   </div>
                 </div>
                 <div className={[styles.five].join(' ')}>
@@ -54,9 +59,13 @@ const Home = () => {
                       styles.blueTab,
                       model === 'box5' && styles.ProductTabSelected,
                     ].join(' ')}
-                    onClick={() => setModel('box5')}
+                    onClick={() => {
+                      setModel('box5')
+                      i18n.changeLanguage('en')
+                    }}
                   >
-                    PiBox <span className={styles.colorBlue}>5 Bay</span>
+                    <div>PiBox</div>
+                    <span className={styles.colorBlue}>{t('h1')}</span>
                   </div>
                 </div>
               </div>

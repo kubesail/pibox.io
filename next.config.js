@@ -25,6 +25,10 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de'],
+  },
   // webpack: config => {
   //   config.module.rules.push({
   //     test: /\.(eot|ttf|woff|woff2|mp4|pdf|webm|txt|json|obj|mtl)$/,
