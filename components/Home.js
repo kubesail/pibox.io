@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../components/Home.module.css'
-import 'react-slideshow-image/dist/styles.css'
+import { useTranslation } from 'react-i18next'
 
 import pibox2Mini from '../public/images/box-2-mini.png'
 import pibox5 from '../public/images/box-5.png'
@@ -16,7 +16,8 @@ import plexDemo from '../public/images/lion.png'
 const Home = () => {
   const [email, setEmail] = useState('')
   const [model, setModel] = useState('box2mini')
-  const [slide, setSlide] = useState(0)
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     email && window.localStorage.setItem('email', email)
@@ -42,9 +43,12 @@ const Home = () => {
                       styles.pinkTab,
                       model === 'box2mini' && styles.ProductTabSelected,
                     ].join(' ')}
-                    onClick={() => setModel('box2mini')}
+                    onClick={() => {
+                      setModel('box2mini')
+                    }}
                   >
-                    PiBox Mini <span className={styles.colorPink}>2 Bay</span>
+                    <div>PiBox</div>
+                    <div className={styles.colorPink}>2 Bay SSD</div>
                   </div>
                 </div>
                 <div className={[styles.five].join(' ')}>
@@ -54,38 +58,38 @@ const Home = () => {
                       styles.blueTab,
                       model === 'box5' && styles.ProductTabSelected,
                     ].join(' ')}
-                    onClick={() => setModel('box5')}
+                    onClick={() => {
+                      setModel('box5')
+                    }}
                   >
-                    PiBox <span className={styles.colorBlue}>5 Bay</span>
+                    <div>PiBox</div>
+                    <span className={styles.colorBlue}>{t('box5-description')}</span>
                   </div>
                 </div>
               </div>
             </div>
             <div className={styles.ProductContentContainer}>
-              <h2 className={styles.HeroHeader}>Extra storage in a snap!</h2>
+              <h2 className={styles.HeroHeader}>{t('hero-header')}</h2>
               <div className={styles.ProductFeatureText}>
-                <span> Just add:</span>
+                <span>{t('Just add:')}</span>
                 <ul className={styles.ul}>
                   <li>
-                    A{' '}
+                    {t('A')}{' '}
                     <a
                       href="https://www.raspberrypi.org/products/compute-module-4/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Raspberry Pi CM4
+                      {t('Raspberry Pi CM4')}
                     </a>
                   </li>
-                  <li>A few hard drives</li>
-                  <li>Any pi supported OS</li>
+                  <li>{t('A few hard drives')}</li>
+                  <li>{t('Any pi supported OS')}</li>
                 </ul>{' '}
-                <span>
-                  and get the most versatile storage server{' '}
-                  <span className={styles.italics}>ever</span>.
-                </span>
+                <span>{t('versatile-storage')}</span>
               </div>
               <Link href="/order">
-                <a className={styles.largeButton}>Order Now!</a>
+                <a className={styles.largeButton}>{t('Order Now!')}</a>
               </Link>
             </div>
           </div>
@@ -93,7 +97,7 @@ const Home = () => {
         <div className={styles.Section}>
           <div className={[styles.SectionInner, styles.SectionReverse].join(' ')}>
             <div className={styles.SectionCopy}>
-              <h3>Operating Systems You Know and Love</h3>
+              <h3>{t('operating-systems')}</h3>
               <div className={[styles.IconContainer, styles.IconsOS].join(' ')}>
                 <img
                   className={styles.Icons}
@@ -109,10 +113,7 @@ const Home = () => {
                   loading="lazy"
                 />
               </div>
-              <p className={styles.SectionText}>
-                Finally, a NAS that lets you use a standard operating system that you’re used to,
-                like Ubuntu or Raspberry Pi OS.
-              </p>
+              <p className={styles.SectionText}>{t('finally-a-nas')}</p>
             </div>
             <img
               className={styles.SectionImg}
@@ -132,7 +133,7 @@ const Home = () => {
               className={styles.SectionImg}
             />
             <div className={styles.SectionCopy}>
-              <h3>HDMI for Media</h3>
+              <h3>{t('HDMI for Media')}</h3>
               <div className={[styles.IconContainer, styles.IconsHDMI].join(' ')}>
                 <img
                   className={styles.Icons}
@@ -141,18 +142,14 @@ const Home = () => {
                   loading="lazy"
                 />
               </div>
-              <p className={styles.SectionText}>
-                PiBox makes a great media center, taking advantage of the Raspberry Pi’s native 4K
-                video decoder.
-              </p>
+              <p className={styles.SectionText}>{t('pibox-media-center')}</p>
             </div>
           </div>
         </div>
         <div className={styles.Section}>
           <div className={[styles.SectionInner, styles.SectionReverse].join(' ')}>
             <div className={styles.SectionCopy}>
-              <h3>It’s time to ditch Dropbox, Google Photos, and Netflix</h3>
-
+              <h3>{t('ditch-big-cloud')}</h3>
               <div className={[styles.IconContainer, styles.IconsDitch].join(' ')}>
                 <Image
                   alt="Icon of HDMI"
@@ -163,11 +160,11 @@ const Home = () => {
                 />
               </div>
               <p className={styles.SectionText}>
-                PiBox is ready to run a variety of free software.{' '}
+                {t('pibox-free-software')}{' '}
                 <a target="_blank" rel="noopener noreferrer" href="https://kubesail.com/templates/">
                   Templates
                 </a>{' '}
-                let you spin up self-hosted apps with one click.
+                {t('pibox-templates-pitch')}
               </p>
             </div>
             <Image
@@ -192,7 +189,7 @@ const Home = () => {
         <div className={styles.CTA}>
           <Link href="/order">
             <a className={styles.largeButton} style={{ maxWidth: 800 }}>
-              Order Now
+              {t('Order Now!')}
             </a>
           </Link>
         </div>

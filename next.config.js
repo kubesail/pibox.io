@@ -2,6 +2,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const i18nConfig = require('./next-i18next.config')
+
 module.exports = withBundleAnalyzer({
   assetPrefix: process.env.BUILD_ASSET_PREFIX || '',
   swcMinify: true,
@@ -25,6 +27,7 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
+  ...i18nConfig,
   // webpack: config => {
   //   config.module.rules.push({
   //     test: /\.(eot|ttf|woff|woff2|mp4|pdf|webm|txt|json|obj|mtl)$/,
