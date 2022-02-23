@@ -48,7 +48,7 @@ const Home = () => {
                     }}
                   >
                     <div>PiBox</div>
-                    <div className={styles.colorPink}>2 Bay SSD</div>
+                    <div className={styles.colorPink}>{t('box2-description')}</div>
                   </div>
                 </div>
                 <div className={[styles.five].join(' ')}>
