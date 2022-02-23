@@ -13,7 +13,7 @@ clusters:
 - name: eks
   cluster:
     certificate-authority-data: ${ca}
-    server: https://6D3FB453FAD214E41F4A4D862174E7C5.yl4.us-west-2.eks.amazonaws.com
+    server: https://<K8S_ADDRESS_GOES_HERE>
 contexts:
 - name: eks
   context:
