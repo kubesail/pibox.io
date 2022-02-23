@@ -28,7 +28,6 @@ const PreOrder = ({ router, profile, country, page }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
   const { t } = useTranslation('common')
-  console.log('locale', router.locale)
 
   useEffect(() => setupStripeKey(), [])
   async function setupStripeKey() {
