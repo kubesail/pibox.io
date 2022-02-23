@@ -20,7 +20,5 @@
   "pibox-media-center": "PiBox è diventa un ottimo media center sfruttando il decoder video 4K nativo di Raspberry Pi.",
   "to-second-page": "Vai alla pagina successiva",
   "error-with-status": "Errore {{statusCode}} lato server",
-  "error-without-status": "Si è verificato un errore sul server",
-  "title": "Home | next-i18next"
+  "error-without-status": "Si è verificato un errore sul server"
 }
-

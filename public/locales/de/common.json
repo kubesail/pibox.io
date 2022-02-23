@@ -1,4 +1,24 @@
 {
+  "A": "A",
+  "box2-description": "2 Bay SSD",
+  "box5-description": "5 Bay HDD",
   "hero-header": "Der beste Speicherserver aller Zeiten",
-  "Order Now!": "Jetzt bestellen!"
+  "Just add:": "Just add:",
+  "Raspberry Pi CM4": "Raspberry Pi CM4",
+  "A few hard drives": "A few hard drives",
+  "Any pi supported OS": "Any pi supported OS",
+  "versatile-storage": "and get the most versatile storage server ever.",
+  "Order Now!": "Jetzt bestellen!",
+  "operating-systems": "Operating Systems You Know and Love",
+  "ever": "ever",
+  "finally-a-nas": "Finally, a NAS that lets you use a standard operating system that you're used to, like Ubuntu or Raspberry Pi OS.",
+  "change-locale": "Change locale",
+  "HDMI for Media": "HDMI for Media",
+  "pibox-free-software": "PiBox is ready to run a variety of free software.",
+  "pibox-templates-pitch": "let you spin up self-hosted apps with one click.",
+  "ditch-big-cloud": "It's time to ditch Dropbox, Google Photos, and Netflix",
+  "pibox-media-center": "PiBox makes a great media center, taking advantage of the Raspberry Pi's native 4K video decoder.",
+  "to-second-page": "To second page",
+  "error-with-status": "A {{statusCode}} error occurred on server",
+  "error-without-status": "An error occurred on the server"
 }
