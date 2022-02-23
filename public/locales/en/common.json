@@ -17,9 +17,5 @@
   "pibox-free-software": "PiBox is ready to run a variety of free software.",
   "pibox-templates-pitch": "let you spin up self-hosted apps with one click.",
   "ditch-big-cloud": "It's time to ditch Dropbox, Google Photos, and Netflix",
-  "pibox-media-center": "PiBox makes a great media center, taking advantage of the Raspberry Pi's native 4K video decoder.",
-  "to-second-page": "To second page",
-  "error-with-status": "A {{statusCode}} error occurred on server",
-  "error-without-status": "An error occurred on the server",
-  "title": "Home | next-i18next"
+  "pibox-media-center": "PiBox makes a great media center, taking advantage of the Raspberry Pi's native 4K video decoder."
 }
