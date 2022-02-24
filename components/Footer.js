@@ -1,6 +1,8 @@
 import styles from './Footer.module.css'
+// import { useTranslation } from 'react-i18next'
 
-const Footer = props => {
+const Footer = () => {
+  // const { t } = useTranslation()
   return (
     <div className={styles.FooterWrap}>
       <div className={styles.Footer}>
