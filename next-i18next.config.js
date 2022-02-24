@@ -5,6 +5,6 @@ module.exports = {
     // use: [i18nextPlugin],
     reloadOnPrerender: true,
     defaultLocale: 'en',
-    locales: ['en', 'de'],
+    locales: ['en', 'de', 'it'],
   },
 }
