@@ -192,7 +192,7 @@ const PreOrder = ({ router, profile, country, page }) => {
                   ) : (
                     <div>
                       Shipping to {isoCountry?.name}: {currencySymbol}
-                      {Math.round(costData.shippingCost / 100)}
+                      {costData.shippingCost / 100}
                     </div>
                   )}
                   {costData.vat > 0 && (
