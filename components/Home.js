@@ -156,11 +156,13 @@ const Home = () => {
                 <img alt="Ditch icons" src={ditchIcons.src} className={styles.Icons} />
               </div>
               <p className={styles.SectionText}>
-                {t('pibox-free-software')}{' '}
-                <a target="_blank" rel="noopener noreferrer" href="https://kubesail.com/templates/">
-                  Templates
-                </a>{' '}
-                {t('pibox-templates-pitch')}
+                <Trans i18nKey="pibox-templates-pitch">
+                  PiBox is ready to run a variety of free software.
+                  <a href="https://kubesail.com/templates/" target="_blank">
+                    Templates
+                  </a>
+                  let you spin up self-hosted apps with one click.
+                </Trans>
               </p>
             </div>
             <Image
