@@ -1,24 +1,18 @@
 {
-  "A": "Un",
   "box2-description": "2 Slot SSD",
   "box5-description": "5 Slot HDD",
   "hero-header": "Spazio extra in un click!",
   "Just add:": "Aggiungi solo:",
-  "Raspberry Pi CM4": "Un Raspberry Pi CM4",
+  "Raspberry Pi CM4": "Un <1>Raspberry Pi CM4</1>",
   "A few hard drives": "Qualche disco",
   "Any pi supported OS": "Qualsiasi OS compatibile con Raspberry",
   "versatile-storage": "e ottieni il server di archiviazione più versatile di sempre.",
   "Order Now!": "Ordina subito!!",
   "operating-systems": "Sistemi operativi che conosci e ami",
-  "ever": "sempre",
   "finally-a-nas": "Finalmente, un NAS che ti consente di utilizzare un sistema operativo standard a cui sei abituato, come Ubuntu o Raspberry Pi OS.",
   "change-locale": "Cambia lingua",
   "HDMI for Media": "HDMI per i Media",
-  "pibox-free-software": "PiBox è già pronto per eseguire una varietà di software gratuiti.",
-  "pibox-templates-pitch": "ti consente di avviare app auto-ospitate con un semplice clic.",
+  "pibox-templates-pitch": "PiBox è già pronto per eseguire una varietà di software gratuiti. <1>I modelli</1> ti consentono di avviare app auto-ospitate con un clic.",
   "ditch-big-cloud": "È ora di abbandonare Dropbox, Google Foto e Netflix",
-  "pibox-media-center": "PiBox è diventa un ottimo media center sfruttando il decoder video 4K nativo di Raspberry Pi.",
-  "to-second-page": "Vai alla pagina successiva",
-  "error-with-status": "Errore {{statusCode}} lato server",
-  "error-without-status": "Si è verificato un errore sul server"
+  "pibox-media-center": "PiBox è diventa un ottimo media center sfruttando il decoder video 4K nativo di Raspberry Pi."
 }
