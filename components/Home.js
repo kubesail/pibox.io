@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../components/Home.module.css'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import pibox2Mini from '../public/images/box-2-mini.png'
 import pibox5 from '../public/images/box-5.png'
@@ -74,14 +74,16 @@ const Home = () => {
                 <span>{t('Just add:')}</span>
                 <ul className={styles.ul}>
                   <li>
-                    {t('A')}{' '}
-                    <a
-                      href="https://www.raspberrypi.org/products/compute-module-4/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {t('Raspberry Pi CM4')}
-                    </a>
+                    <Trans i18nKey="raspberry-pi-cm4">
+                      A
+                      <a
+                        href="https://www.raspberrypi.org/products/compute-module-4/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Raspberry Pi CM4
+                      </a>
+                    </Trans>
                   </li>
                   <li>{t('A few hard drives')}</li>
                   <li>{t('Any pi supported OS')}</li>
@@ -151,13 +153,7 @@ const Home = () => {
             <div className={styles.SectionCopy}>
               <h3>{t('ditch-big-cloud')}</h3>
               <div className={[styles.IconContainer, styles.IconsDitch].join(' ')}>
-                <Image
-                  alt="Icon of HDMI"
-                  src={ditchIcons}
-                  className={styles.Icons}
-                  width={1035}
-                  height={252}
-                />
+                <img alt="Ditch icons" src={ditchIcons.src} className={styles.Icons} />
               </div>
               <p className={styles.SectionText}>
                 {t('pibox-free-software')}{' '}
