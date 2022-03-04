@@ -252,9 +252,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             <p>
               We can't ship to{' '}
               <strong>{iso3166.find(country => country.alpha2 === shippingCountry).name}</strong>{' '}
-              yet, but we are working to with distributors who may be able to expand quickly. Enter
-              your email below and we will let you know when we are able to accept your order.
-              Thanks for your patience!
+              yet, but we are working to expand quickly. Enter your email below and we will let you
+              know when we are able to accept your order. Thanks for your patience!
             </p>
           </div>
         )}
