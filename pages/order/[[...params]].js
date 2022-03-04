@@ -5,10 +5,10 @@ import { withRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const PreOrderPage = ({ router, country }) => {
-  const [page = ''] = router?.query?.params || []
+  const [page = '', type = ''] = router?.query?.params || []
   return (
     <Layout>
-      <Preorder page={page} country={country} />
+      <Preorder page={page} type={type} country={country} />
     </Layout>
   )
 }

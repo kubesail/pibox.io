@@ -24,7 +24,7 @@ const STRIPE_PUBLIC_KEY =
 
 let stripe
 
-const PreOrder = ({ router, profile, country, page }) => {
+const PreOrder = ({ router, profile, country, page, type }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
   const { t } = useTranslation('common')
@@ -47,6 +47,13 @@ const PreOrder = ({ router, profile, country, page }) => {
     if (sessionRes.body && sessionRes.body.id) {
       stripe.redirectToCheckout({ sessionId: sessionRes.body.id })
     }
+  }
+
+  async function signup({ email, sku, countryCode }) {
+    await kubeSailFetch('/pibox/signup', {
+      method: 'POST',
+      body: JSON.stringify({ email, countryCode, sku, channel: 'pibox.io' }),
+    })
   }
 
   // Store which model user wants in local-storage and retrieve it after they login
@@ -93,15 +100,21 @@ const PreOrder = ({ router, profile, country, page }) => {
   if (page === 'success') {
     return (
       <div className={styles.Success}>
-        <h1>Order placed!</h1>
+        <h1>{type === 'waitlist' ? "You're on the waitlist!" : 'Order placed!'}</h1>
         <div style={{ position: 'relative', top: -100 }}>
           <Animation height={700} width={700} animation="warehouse-delivery" />
         </div>
         <div style={{ position: 'relative', top: -220 }}>
-          We will send a followup email when we start production of your PiBox, and also when we
-          ship your order.
-          <br />
-          Thank you for your order!
+          {type === 'waitlist' ? (
+            <>You'll get an email as soon as we have information to share. Thanks!</>
+          ) : (
+            <>
+              We will send a followup email when we start production of your PiBox, and also when we
+              ship your order.
+              <br />
+              Thank you for your order!
+            </>
+          )}
           <div style={{ display: 'flex', margin: '2rem' }}>
             <a href={'https://pibox.io'}>
               <button>Back to PiBox.io</button>
@@ -171,7 +184,7 @@ const PreOrder = ({ router, profile, country, page }) => {
           })}
         </div>
 
-        {sku && sku !== '5-bay' && (
+        {sku && (
           <div className={styles.country}>
             <div className={styles.countrySelect}>
               <div>Shipping Country:</div>
@@ -202,44 +215,80 @@ const PreOrder = ({ router, profile, country, page }) => {
                     </div>
                   )}
                 </div>
-              ) : (
-                <div>
-                  Please contact <a href="mailto:support@pibox.io">support@pibox.io</a> for shipping
-                  options to your country
-                </div>
-              )}
+              ) : null}
             </div>
           </div>
         )}
 
-        {sku && !profile && (
+        {sku === '5-bay' && (
+          <p>
+            Enter your email to be notified when the <strong>Full Sized PiBox 5 Bay NAS</strong> is
+            available to order. Full product specifications will be announced later this year.
+          </p>
+        )}
+
+        {allowedCountry ? (
+          sku &&
+          sku !== '5-bay' &&
+          !profile && (
+            <div>
+              {
+                <p className={styles.whyLogin}>
+                  Logging in lets you start setting up apps on your PiBox now, so it's{' '}
+                  <strong>ready to use</strong> the moment it arrives!
+                </p>
+              }
+              <Link
+                href={`${KUBESAIL_WWW_TARGET}/login?redirect=${encodeURIComponent(
+                  `${PIBOX_WWW_TARGET}/order/redirected`
+                )}`}
+              >
+                <a className={styles.checkout}>Login</a>
+              </Link>
+            </div>
+          )
+        ) : (
           <div>
-            {sku === '5-bay' ? (
-              <p>
-                Log in to reserve your spot in line for the{' '}
-                <strong>Full Sized PiBox 5 Bay NAS</strong>. Full product specifications will be
-                announced later this year.
-              </p>
-            ) : (
-              <p className={styles.whyLogin}>
-                Logging in lets you start setting up apps on your PiBox now, so it's{' '}
-                <strong>ready to use</strong> the moment it arrives!
-              </p>
-            )}
-            <Link
-              href={`${KUBESAIL_WWW_TARGET}/login?redirect=${encodeURIComponent(
-                `${PIBOX_WWW_TARGET}/order/redirected`
-              )}`}
+            <p>
+              We can't ship to{' '}
+              <strong>{iso3166.find(country => country.alpha2 === shippingCountry).name}</strong>{' '}
+              yet, but we are working to with distributors who may be able to expand quickly. Enter
+              your email below and we will let you know when we are able to accept your order.
+              Thanks for your patience!
+            </p>
+          </div>
+        )}
+        {(!allowedCountry || sku === '5-bay') && (
+          <div>
+            <form
+              name="waitlist"
+              onSubmit={async e => {
+                e.preventDefault()
+                const email = document.forms.waitlist.email.value
+                await signup({ email, sku, countryCpde: shippingCountry })
+                router.push('/order/success/waitlist')
+              }}
             >
-              <a className={styles.checkout}>Login</a>
-            </Link>
+              <input
+                name="email"
+                type="email"
+                className={styles.EmailInput}
+                placeholder="Your email address"
+                required
+              />
+              <input
+                type="submit"
+                className={[styles.checkout].join(' ')}
+                value="Add to Wait List"
+              />
+            </form>
           </div>
         )}
 
         {allowedCountry && sku && sku !== '5-bay' && (
           <button
             className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
-            onClick={() => checkout(sku, shippingCountry)}
+            onClick={() => signup({ email, sku, countryCode: shippingCountry })}
           >
             {profile ? `Checkout` : 'Checkout as Guest'}
           </button>
