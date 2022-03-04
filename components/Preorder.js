@@ -265,7 +265,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               onSubmit={async e => {
                 e.preventDefault()
                 const email = document.forms.waitlist.email.value
-                await signup({ email, sku, countryCpde: shippingCountry })
+                await signup({ email, sku, countryCode: shippingCountry })
                 router.push('/order/success/waitlist')
               }}
             >
@@ -284,11 +284,10 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             </form>
           </div>
         )}
-
         {allowedCountry && sku && sku !== '5-bay' && (
           <button
             className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
-            onClick={() => signup({ email, sku, countryCode: shippingCountry })}
+            onClick={() => checkout(sku, shippingCountry)}
           >
             {profile ? `Checkout` : 'Checkout as Guest'}
           </button>
