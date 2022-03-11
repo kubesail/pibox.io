@@ -1,11 +1,13 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import styles from "./Header.module.css";
+import styles from './Header.module.css'
 
 const Header = props => (
-  <Link href="/">
-    <div className={styles.Header}>{props.appTitle}</div>
-  </Link>
-);
+  <>
+    <Link href="/">
+      <div className={styles.Header}>PiBox</div>
+    </Link>
+  </>
+)
 
-export default Header;
+export default Header

@@ -10,11 +10,11 @@
 .NavBarWrap {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   max-width: 1500px;
   margin: 0 auto;
 }
 
 .NavButtonContainer {
   display: flex;
-  margin-left: auto;
 }
