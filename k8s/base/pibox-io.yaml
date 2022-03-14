@@ -77,31 +77,31 @@ spec:
                 name: pibox-io
                 port:
                   number: 3000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: kubesail-pibox-com
-  labels:
-    app: pibox-io
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 500m
-    nginx.org/websocket-services: pibox-io
-    kubernetes.io/tls-acme: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-spec:
-  tls:
-    - hosts:
-        - pibox.kubesail.com
-      secretName: kubesailcom
-  rules:
-    - host: pibox.kubesail.com
-      http:
-        paths:
-          - pathType: ImplementationSpecific
-            backend:
-              service:
-                name: pibox-io
-                port:
-                  number: 3000
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: kubesail-pibox-com
+#   labels:
+#     app: pibox-io
+#   annotations:
+#     nginx.ingress.kubernetes.io/proxy-body-size: 500m
+#     nginx.org/websocket-services: pibox-io
+#     kubernetes.io/tls-acme: "true"
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#     # nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+# spec:
+#   tls:
+#     - hosts:
+#         - pibox.kubesail.com
+#       secretName: kubesailcom
+#   rules:
+#     - host: pibox.kubesail.com
+#       http:
+#         paths:
+#           - pathType: ImplementationSpecific
+#             backend:
+#               service:
+#                 name: pibox-io
+#                 port:
+#                   number: 3000
