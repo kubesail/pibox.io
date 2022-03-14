@@ -14,6 +14,15 @@ const App = ({ Component, pageProps }) => {
     const profileRes = await kubeSailFetch('/profile')
     if (profileRes.status === 200) {
       store.dispatch({ type: 'SET_PROFILE', profile: profileRes.body })
+    } else if (profileRes.status === 401) {
+      await kubeSailFetch('/pibox/test-cookie/true')
+      const cookieTest = await kubeSailFetch('/pibox/test-cookie/false')
+      if (cookieTest.status === 401) {
+        // This User Agent doesn't allow 3rd party cookies, so don't try to fetch their profile,
+        // but also don't block parts of the UI (like showing login button)
+        store.dispatch({ type: 'SET_PROFILE', profile: {} })
+        return
+      }
     } else {
       console.log('Error fetching profile.', profileRes.status)
     }
