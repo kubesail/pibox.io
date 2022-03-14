@@ -66,9 +66,19 @@ spec:
   tls:
     - hosts:
         - pibox.io
+        - pibox.kubesail.com
       secretName: pibox-io-ingress
   rules:
     - host: pibox.io
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pibox-io
+                port:
+                  number: 3000
+    - host: pibox.kubesail.com
       http:
         paths:
           - pathType: ImplementationSpecific
