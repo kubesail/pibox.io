@@ -66,8 +66,10 @@ spec:
   tls:
     - hosts:
         - pibox.io
-        - pibox.kubesail.com
       secretName: pibox-io-ingress
+    - hosts:
+        - pibox.kubesail.com
+      secretName: kubesailcom
   rules:
     - host: pibox.io
       http:
