@@ -25,6 +25,11 @@ module.exports = withBundleAnalyzer({
         destination: 'https://docs.kubesail.com/guides/pibox/hardware',
         permanent: false,
       },
+      {
+        source: '/setup',
+        destination: 'https://docs.kubesail.com/getting-started/',
+        permanent: false,
+      },
     ]
   },
   ...i18nConfig,
