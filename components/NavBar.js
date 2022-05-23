@@ -8,9 +8,6 @@ const NavBar = props => {
     <div className={styles.NavBar}>
       <div className={styles.NavBarWrap}>
         <Header />
-        <a href="https://kubesail.com">
-          <img src={designedByKubeSail.src} height={31} />
-        </a>
         <div className={styles.NavButtonContainer}>
           {props.navButtons.map(button => (
             <NavButton key={button.path} path={button.path} label={button.label} />
