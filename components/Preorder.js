@@ -13,7 +13,7 @@ import piboxModels from 'kubesail-shipping/piboxModels'
 import { useTranslation } from 'react-i18next'
 
 import { kubeSailFetch } from '../lib/store'
-import pibox2Mini from '../public/images/box-2-mini.png'
+import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 
@@ -152,7 +152,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
 
   return (
     <div className={styles.Order}>
-      <Image alt="PiBox 2 mini" src={pibox2Mini} height={345} width={533} />
+      <Image alt="PiBox 2 mini" src={pibox2Mini} height={420} width={560} />
       <div className={styles.OrderForm}>
         <h2>Pre-Order your PiBox</h2>
         <p>
