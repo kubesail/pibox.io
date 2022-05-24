@@ -165,7 +165,7 @@ const Home = () => {
                   </li>
                   <li>{t('WiFi, 8GB RAM')}</li>
                   <li>{t('A few hard drives')}</li>
-                  <li>{t('An App Store for Self Hosted Software')}</li>
+                  <li>{t('app-store')}</li>
                 </ul>{' '}
                 <span>{t('versatile-storage')}</span>
               </div>
