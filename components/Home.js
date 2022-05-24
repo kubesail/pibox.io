@@ -6,16 +6,36 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import pibox2Mini from '../public/images/box-2-mini.png'
 import pibox5 from '../public/images/box-5.png'
-import piboxSpinning from '../public/images/pibox-360-full.gif'
-import piboxLeaning from '../public/images/pibox-carrier-leaning.png'
-import piboxSSDRemoval from '../public/images/pibox-ssd-removal.png'
+import piboxBack from '../public/images/back.png'
+import piboxBoards from '../public/images/boards.png'
 import piboxNextCloud from '../public/images/nextcloud.png'
 import ditchIcons from '../public/images/ditch-icons.png'
 import plexDemo from '../public/images/lion.png'
 
+const templateLogos = [
+  'https://cdn.kubesail.com/prod/templates/erulabs/NextCloud/2ea6eebb129a.jpg',
+  'https://cdn.kubesail.com/prod/templates/erulabs/Plex/3fa892cbcf64.jpg',
+  'https://cdn.kubesail.com/prod/templates/loopDelicious/minecraft/bbe0ba482371.jpg',
+  'https://cdn.kubesail.com/prod/templates/erulabs/ghost/38b62c96edae.jpg',
+  'https://cdn.kubesail.com/prod/templates/erulabs/actual/192bd8a737f7.jpg',
+  'https://cdn.kubesail.com/prod/templates/erulabs/Home%20Assistant/f4eed39c7a3d.jpg',
+  'https://cdn.kubesail.com/prod/templates/erulabs/jellyfin/a09b251dc153.jpg',
+  'https://cdn.kubesail.com/prod/templates/erulabs/PhotoPrism/25c0e06d95a3.jpg',
+]
+
+function delay(t, v) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve.bind(null, v), t)
+  })
+}
+
 const Home = () => {
   const [email, setEmail] = useState('')
   const [model, setModel] = useState('box2mini')
+  const [template, setTemplate] = useState(0)
+  const [fadeIn, setFadeIn] = useState(false)
+  const [fadeOut, setFadeOut] = useState(false)
+  const [fadedOut, setFadedOut] = useState(false)
 
   const { t } = useTranslation()
 
@@ -23,24 +43,49 @@ const Home = () => {
     email && window.localStorage.setItem('email', email)
   }, [email])
 
+  useEffect(() => {
+    setTimeout(() => {
+      nextTemplate(1)
+    }, 2000)
+  }, [])
+
+  async function nextTemplate(index) {
+    setFadeOut(true)
+    await delay(950)
+    setFadedOut(true)
+    setFadeOut(false)
+    if (index > templateLogos.length - 1) {
+      index = 0
+    }
+    setTemplate(index)
+    await delay(100)
+    setFadeIn(true)
+    setFadedOut(false)
+    await delay(950)
+    setFadeIn(false)
+    await delay(3000)
+    nextTemplate(index + 1)
+  }
+
   return (
     <div>
       <div className={styles.Product}>
         <div className={[styles.SectionInner]}>
           <div className={styles.ProductContent}>
             <div className={styles.ProductHero}>
-              <div style={{ position: 'relative' }}>
-                <Image
-                  layout={'responsive'}
+              <div className={styles.ProductHeroContainer}>
+                <img
+                  width="780px"
+                  height="585px"
                   alt="PiBox Render"
-                  src={model === 'box2mini' ? pibox2Mini : pibox5}
+                  src={model === 'box2mini' ? pibox2Mini.src : pibox5}
                 />
                 <div
                   className={styles.ProductScreenContainer}
                   style={{
                     position: 'absolute',
-                    top: 189,
-                    left: 70,
+                    top: 205,
+                    left: 80,
                     zIndex: -1,
                     perspective: 242,
                     perspective: '1000px',
@@ -55,9 +100,14 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="https://cdn.kubesail.com/prod/templates/erulabs/NextCloud/2ea6eebb129a.jpg"
+                      src={templateLogos[template]}
                       height="240"
                       width="240"
+                      className={[
+                        fadeIn && styles.fadeIn,
+                        fadeOut && styles.fadeOut,
+                        fadedOut && styles.fadedOut,
+                      ].filter(Boolean)}
                     />
                   </div>
                 </div>
@@ -208,7 +258,7 @@ const Home = () => {
           <Image
             layout={'responsive'}
             alt="PiBox is flexable - add your own SSDs"
-            src={piboxSSDRemoval}
+            src={piboxBack}
             className={styles.SlideShowImg}
           />
         </div>
@@ -222,25 +272,14 @@ const Home = () => {
         </div>
       </div>
 
-      <div className={styles.SlideShowImg}>
-        <Image
-          layout={'responsive'}
-          alt="PiBox Spinning"
-          src={piboxSpinning}
-          className={styles.SlideShowImg}
-        />
-      </div>
-
-      <div className={styles.SlideShowImg}>
+      <div className={styles.SlideShowImg} style={{ marginBottom: 150 }}>
         <Image
           layout={'responsive'}
           alt="PiBox Leaning"
-          src={piboxLeaning}
+          src={piboxBoards}
           className={styles.SlideShowImg}
         />
       </div>
-
-      {/* <p>You are in {country}</p> */}
     </div>
   )
 }
