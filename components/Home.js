@@ -22,6 +22,9 @@ const templateLogos = [
   'https://cdn.kubesail.com/prod/templates/erulabs/jellyfin/a09b251dc153.jpg',
   'https://cdn.kubesail.com/prod/templates/erulabs/PhotoPrism/25c0e06d95a3.jpg',
 ]
+if (typeof window !== 'undefined') {
+  window.enableCarousel = true
+}
 
 function delay(t, v) {
   return new Promise(function (resolve) {
@@ -44,12 +47,13 @@ const Home = () => {
   }, [email])
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   nextTemplate(1)
-    // }, 2000)
+    setTimeout(() => {
+      nextTemplate(1)
+    }, 2000)
   }, [])
 
   async function nextTemplate(index) {
+    if (!window.enableCarousel) return
     setFadeOut(true)
     await delay(950)
     setFadedOut(true)
@@ -76,9 +80,9 @@ const Home = () => {
               <div className={styles.ProductHeroContainer}>
                 <img
                   width="780px"
-                  height="585px"
+                  // height={model === 'box2mini' ? 585 : 400}
                   alt="PiBox Render"
-                  src={model === 'box2mini' ? pibox2Mini.src : pibox5}
+                  src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
                 />
                 <div
                   className={styles.ProductScreenContainer}
