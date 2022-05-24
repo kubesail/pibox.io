@@ -44,9 +44,9 @@ const Home = () => {
   }, [email])
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   nextTemplate(1)
-    // }, 2000)
+    setTimeout(() => {
+      nextTemplate(1)
+    }, 2000)
   }, [])
 
   async function nextTemplate(index) {
