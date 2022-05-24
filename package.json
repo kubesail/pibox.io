@@ -19,6 +19,7 @@
     "i18next": "^21.6.11",
     "is-european": "^1.0.3",
     "kubesail-shipping": "^1.1.0",
+    "lodash": "^4.17.21",
     "lottie-web": "^5.8.1",
     "next": "^12.0.11-canary.14",
     "next-i18next": "^10.3.0",

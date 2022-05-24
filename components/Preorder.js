@@ -11,6 +11,7 @@ import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
 import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
 import { useTranslation } from 'react-i18next'
+import once from 'lodash/once'
 
 import { kubeSailFetch } from '../lib/store'
 import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
@@ -25,6 +26,17 @@ const STRIPE_PUBLIC_KEY =
 let stripe
 
 // TODO add remaining order count in batch
+
+const trackPurchase = once(() => {
+  try {
+    rdt('track', 'Purchase')
+  } catch (_e) {}
+})
+const trackLead = once(() => {
+  try {
+    rdt('track', 'Lead')
+  } catch (_e) {}
+})
 
 const PreOrder = ({ router, profile, country, page, type }) => {
   const [sku, setSku] = useState(null)
@@ -109,6 +121,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   const calculatedVAT = Math.round(currentPrice * (costData?.vat || 0)) / 100
 
   if (page === 'success') {
+    trackPurchase()
     return (
       <div className={styles.Success}>
         <h1>{type === 'waitlist' ? "You're on the waitlist!" : 'Order placed!'}</h1>
@@ -149,6 +162,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
       </div>
     )
   }
+
+  trackLead()
 
   return (
     <div className={styles.Order}>
