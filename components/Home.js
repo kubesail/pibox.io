@@ -29,11 +29,39 @@ const Home = () => {
         <div className={[styles.SectionInner]}>
           <div className={styles.ProductContent}>
             <div className={styles.ProductHero}>
-              <Image
-                layout={'responsive'}
-                alt="PiBox Render"
-                src={model === 'box2mini' ? pibox2Mini : pibox5}
-              />
+              <div style={{ position: 'relative' }}>
+                <Image
+                  layout={'responsive'}
+                  alt="PiBox Render"
+                  src={model === 'box2mini' ? pibox2Mini : pibox5}
+                />
+                <div
+                  className={styles.ProductScreenContainer}
+                  style={{
+                    position: 'absolute',
+                    top: 189,
+                    left: 70,
+                    zIndex: -1,
+                    perspective: 242,
+                    perspective: '1000px',
+                  }}
+                >
+                  <div
+                    className={styles.ProductScale}
+                    style={{
+                      transform:
+                        'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg) rotateY(-5deg)',
+                      background: 'white',
+                    }}
+                  >
+                    <img
+                      src="https://cdn.kubesail.com/prod/templates/erulabs/NextCloud/2ea6eebb129a.jpg"
+                      height="240"
+                      width="240"
+                    />
+                  </div>
+                </div>
+              </div>
               <div className={styles.divider}></div>
               <div className={styles.ProductBar}>
                 <div>
@@ -71,7 +99,7 @@ const Home = () => {
             <div className={styles.ProductContentContainer}>
               <h2 className={styles.HeroHeader}>{t('hero-header')}</h2>
               <div className={styles.ProductFeatureText}>
-                <span>{t('Just add:')}</span>
+                <span>{t('pibox-combines')}</span>
                 <ul className={styles.ul}>
                   <li>
                     <Trans i18nKey="raspberry-pi-cm4">
@@ -85,8 +113,9 @@ const Home = () => {
                       </a>
                     </Trans>
                   </li>
+                  <li>{t('WiFi, 8GB RAM')}</li>
                   <li>{t('A few hard drives')}</li>
-                  <li>{t('Any pi supported OS')}</li>
+                  <li>{t('An App Store for Self Hosted Software')}</li>
                 </ul>{' '}
                 <span>{t('versatile-storage')}</span>
               </div>

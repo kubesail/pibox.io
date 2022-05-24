@@ -24,6 +24,8 @@ const STRIPE_PUBLIC_KEY =
 
 let stripe
 
+// TODO add remaining order count in batch
+
 const PreOrder = ({ router, profile, country, page, type }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
