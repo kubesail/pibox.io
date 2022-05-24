@@ -41,22 +41,19 @@
   flex-direction: column;
   padding: 30px 10px;
   width: 40%;
-  margin-left: 10%;
 }
 
 .ProductFeatureText {
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 22px;
   margin-bottom: 35px;
 }
 
 .HeroHeader {
-  max-width: 348px;
   font-size: 40px;
-  font-weight: 900;
+  font-weight: 600;
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 }
 
 .tagline {
@@ -166,7 +163,6 @@
 
 .SectionText {
   font-size: 30px;
-  font-weight: 600;
 }
 
 .CTA {
@@ -200,6 +196,9 @@
 
 .pinkTab:after {
   background-color: #ec3963;
+}
+.weightNormal {
+  font-weight: normal;
 }
 .two a:hover,
 .colorPink {

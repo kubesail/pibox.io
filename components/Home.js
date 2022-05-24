@@ -44,9 +44,9 @@ const Home = () => {
   }, [email])
 
   useEffect(() => {
-    setTimeout(() => {
-      nextTemplate(1)
-    }, 2000)
+    // setTimeout(() => {
+    //   nextTemplate(1)
+    // }, 2000)
   }, [])
 
   async function nextTemplate(index) {
@@ -126,7 +126,9 @@ const Home = () => {
                     }}
                   >
                     <div>PiBox</div>
-                    <div className={styles.colorPink}>{t('box2-description')}</div>
+                    <div className={[styles.colorPink, styles.weightNormal].join(' ')}>
+                      {t('box2-description')}
+                    </div>
                   </div>
                 </div>
                 <div className={[styles.five].join(' ')}>
@@ -141,7 +143,9 @@ const Home = () => {
                     }}
                   >
                     <div>PiBox</div>
-                    <span className={styles.colorBlue}>{t('box5-description')}</span>
+                    <span className={[styles.colorBlue, styles.weightNormal].join(' ')}>
+                      {t('box5-description')}
+                    </span>
                   </div>
                 </div>
               </div>
