@@ -24,9 +24,12 @@ const STRIPE_PUBLIC_KEY =
 
 let stripe
 
+// TODO add remaining order count in batch
+
 const PreOrder = ({ router, profile, country, page, type }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
+  const [inventory, setInventory] = useState('')
   const { t } = useTranslation('common')
 
   useEffect(() => setupStripeKey(), [])
@@ -37,6 +40,14 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   useEffect(() => {
     setShippingCountry(country)
   }, [country])
+
+  useEffect(() => {
+    fetchInventory()
+  }, [])
+  async function fetchInventory() {
+    const { body } = await kubeSailFetch('/pibox/inventory')
+    setInventory(body.batch1)
+  }
 
   async function checkout(sku, country) {
     const sessionRes = await kubeSailFetch(`/pibox/checkout`, {
@@ -144,7 +155,10 @@ const PreOrder = ({ router, profile, country, page, type }) => {
       <Image alt="PiBox 2 mini" src={pibox2Mini} height={345} width={533} />
       <div className={styles.OrderForm}>
         <h2>Pre-Order your PiBox</h2>
-        <p>Orders placed now are expected to ship by July 2022. Let's customize your PiBox!</p>
+        <p>
+          Batch 1 has <strong>{inventory} units remaining</strong> for preorder, and ships in July
+          2022. After the first batch is sold out, the next batch will be available in October.
+        </p>
         {isEU && (
           <p>
             <strong>EU Friendly</strong> Shipping. Comes with a{' '}

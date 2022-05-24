@@ -10,7 +10,10 @@
 }
 
 .ProductHero {
-  width: 60%;
+  width: 780px;
+}
+.ProductHeroContainer {
+  position: relative;
 }
 
 .EmailInput {
@@ -100,7 +103,7 @@
 }
 
 .SectionInner {
-  max-width: 1500px;
+  width: 1300px;
   margin: 0 auto;
   padding: 30px;
   display: flex;
@@ -243,24 +246,7 @@
   display: block;
 }
 
-@media (min-width: 980px) and (max-width: 1160px) {
-  .productGroup {
-    font-size: 22px;
-  }
-  .HeroHeader {
-    font-size: 35px;
-  }
-  .ProductFeatureText {
-    font-size: 25px;
-  }
-
-  .IconsDitch {
-    height: 100px;
-    text-align: center;
-  }
-}
-
-@media (min-width: 800px) and (max-width: 980px) {
+@media (min-width: 800px) and (max-width: 1160px) {
   .productGroup {
     font-size: 18px;
   }
@@ -271,14 +257,15 @@
     font-size: 20px;
   }
   .SectionInner {
+    width: 800px;
     padding: 5vh 3vw;
   }
   .ProductContentContainer {
     margin-left: 40px;
   }
-  .ProductHero {
-    width: 50%;
-    margin-left: 12px;
+  .ProductHeroContainer {
+    transform: scale(0.6);
+    margin-left: -167px;
   }
   .Product h3 {
     font-size: 30px;
@@ -297,11 +284,17 @@
   .ProductHero {
     width: 100%;
   }
+  .ProductHeroContainer {
+    transform: scale(0.5);
+    margin: -150px -110px;
+    width: 100%;
+  }
   .ProductContentContainer {
     width: 100%;
     margin: 40px 0;
   }
   .SectionInner {
+    width: 100%;
     flex-direction: column;
   }
   .SectionReverse {
@@ -341,4 +334,33 @@
   .productGroup {
     font-size: 14px;
   }
+}
+
+.fadeIn {
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeOut {
+  animation: fadeout 1s;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.fadedOut {
+  opacity: 0;
 }
