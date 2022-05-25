@@ -64,13 +64,17 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   async function fetchPlatform() {
     if (page !== 'platform') return
     const { body } = await kubeSailFetch(`/platform/${type}`)
-    setPlatform(body)
+    if (body.error) {
+      console.error('Unknown platform', { type })
+    } else {
+      setPlatform(body)
+    }
   }
 
   async function checkout(sku, country) {
     const sessionRes = await kubeSailFetch(`/pibox/checkout`, {
       method: 'POST',
-      body: JSON.stringify({ sku, country, platformSlug: page === platform ? type : undefined }),
+      body: JSON.stringify({ sku, country, platformSlug: page === 'platform' ? type : undefined }),
     })
     // redirect to stripe
     if (sessionRes.body && sessionRes.body.id) {
