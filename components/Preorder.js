@@ -42,6 +42,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
   const [inventory, setInventory] = useState('')
+  const [platform, setPlatform] = useState(null)
   const { t } = useTranslation('common')
 
   useEffect(() => setupStripeKey(), [])
@@ -53,18 +54,23 @@ const PreOrder = ({ router, profile, country, page, type }) => {
     setShippingCountry(country)
   }, [country])
 
-  useEffect(() => {
-    fetchInventory()
-  }, [])
+  useEffect(() => fetchInventory(), [])
   async function fetchInventory() {
     const { body } = await kubeSailFetch('/pibox/inventory')
     setInventory(body.batch1)
   }
 
+  useEffect(() => fetchPlatform(), [])
+  async function fetchPlatform() {
+    if (page !== 'platform') return
+    const { body } = await kubeSailFetch(`/platform/${type}`)
+    setPlatform(body)
+  }
+
   async function checkout(sku, country) {
     const sessionRes = await kubeSailFetch(`/pibox/checkout`, {
       method: 'POST',
-      body: JSON.stringify({ sku, country }),
+      body: JSON.stringify({ sku, country, platformSlug }),
     })
     // redirect to stripe
     if (sessionRes.body && sessionRes.body.id) {
@@ -169,6 +175,12 @@ const PreOrder = ({ router, profile, country, page, type }) => {
     <div className={styles.Order}>
       <Image alt="PiBox 2 mini" src={pibox2Mini} height={420} width={560} />
       <div className={styles.OrderForm}>
+        {platform && (
+          <p>
+            <img src={platform.logo} />
+            Your purchase directly supports the development of {platform.name}!
+          </p>
+        )}
         <h2>Pre-Order your PiBox</h2>
         <p>
           Batch 1 has <strong>{inventory} units remaining</strong> for preorder, and ships in July
