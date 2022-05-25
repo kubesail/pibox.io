@@ -70,7 +70,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   async function checkout(sku, country) {
     const sessionRes = await kubeSailFetch(`/pibox/checkout`, {
       method: 'POST',
-      body: JSON.stringify({ sku, country, platformSlug }),
+      body: JSON.stringify({ sku, country, platformSlug: page === platform ? type : undefined }),
     })
     // redirect to stripe
     if (sessionRes.body && sessionRes.body.id) {
