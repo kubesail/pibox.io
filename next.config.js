@@ -8,6 +8,20 @@ module.exports = withBundleAnalyzer({
   assetPrefix: process.env.BUILD_ASSET_PREFIX || '',
   swcMinify: true,
   productionBrowserSourceMaps: true,
+  images: {
+    domains: [
+      'i.imgur.com',
+      'api.producthunt.com',
+      'github.com',
+      'cdn.kubesail.com',
+      'artifacthub.io',
+      'img.shields.io',
+      'avatars.githubusercontent.com',
+      'static.kubesail.com',
+      'api.kubesail.com',
+      'cdn.kubesail.com',
+    ].filter(Boolean),
+  },
   async redirects() {
     return [
       {

@@ -16,6 +16,7 @@ import once from 'lodash/once'
 import { kubeSailFetch } from '../lib/store'
 import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
+import PiBox from '../components/PiBox'
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 
 const KUBESAIL_WWW_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_WWW_TARGET || 'https://kubesail.com'
@@ -177,19 +178,30 @@ const PreOrder = ({ router, profile, country, page, type }) => {
 
   return (
     <div className={styles.Order}>
-      <Image alt="PiBox 2 mini" src={pibox2Mini} height={420} width={560} />
+      <PiBox screen={platform?.logo} />
       <div className={styles.OrderForm}>
+        <h2>Order your PiBox</h2>
         {platform && (
+          <div>
+            <div style={{ textAlign: 'center' }}>
+              <Image src={platform.logo} width={140} height={140} />
+            </div>
+            <div style={{ textAlign: 'center', fontSize: '15px' }}>
+              This purchase directly supports the development of {platform.name}!
+            </div>
+          </div>
+        )}
+        {inventory < 250 ? (
           <p>
-            <img src={platform.logo} />
-            Your purchase directly supports the development of {platform.name}!
+            Batch 1 has <strong>{inventory} units remaining</strong> for preorder, and ships in July
+            2022. After the first batch is sold out, the next batch will be available in October.
+          </p>
+        ) : (
+          <p>
+            Current batch ships July 2022. After the first batch is sold out, the next batch will be
+            available in October.
           </p>
         )}
-        <h2>Pre-Order your PiBox</h2>
-        <p>
-          Batch 1 has <strong>{inventory} units remaining</strong> for preorder, and ships in July
-          2022. After the first batch is sold out, the next batch will be available in October.
-        </p>
         {isEU && (
           <p>
             <strong>EU Friendly</strong> Shipping. Comes with a{' '}
