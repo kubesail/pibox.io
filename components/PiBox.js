@@ -26,13 +26,30 @@ function delay(t, v) {
   })
 }
 
-const PiBox = ({ large, screen }) => {
+const PiBox = ({ preferLarge, screen, noLarge }) => {
+  let defaultSize = preferLarge ? 'large' : 'medium'
+  if (typeof window !== 'undefined') {
+    if (window.innerWidth < 720) {
+      defaultSize = 'small'
+    }
+    window.addEventListener('resize', e => {
+      if (e.target.innerWidth < 720) {
+        setSize('small')
+      } else if (e.target.innerWidth < 1120) {
+        setSize('medium')
+      } else if (!noLarge) {
+        setSize('large')
+      }
+    })
+  }
+
   const [model, setModel] = useState('box2mini')
   const [template, setTemplate] = useState(0)
   const [fadeIn, setFadeIn] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
   const [fadedOut, setFadedOut] = useState(false)
   const [carouselRunning, setCarouselRunning] = useState(false)
+  const [size, setSize] = useState(defaultSize) // 'medium', 'large', 'small'
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -65,11 +82,10 @@ const PiBox = ({ large, screen }) => {
   }
 
   return (
-    <>
+    <div className={`Pibox-${size}`}>
       <div className={styles.ProductHeroContainer}>
         <img
-          width={large ? '780px' : '580px'}
-          // height={model === 'box2mini' ? 585 : 400}
+          width={size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px'}
           alt="PiBox Render"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
@@ -77,8 +93,8 @@ const PiBox = ({ large, screen }) => {
           className={styles.ProductScreenContainer}
           style={{
             position: 'absolute',
-            top: large ? 205 : 158,
-            left: large ? 80 : 66,
+            top: size === 'large' ? 205 : size === 'medium' ? 158 : 103,
+            left: size === 'large' ? 80 : size === 'medium' ? 66 : 43,
             zIndex: -1,
             perspective: 242,
             perspective: '1000px',
@@ -94,8 +110,8 @@ const PiBox = ({ large, screen }) => {
           >
             <img
               src={screen || templateLogos[template]}
-              height={large ? '240px' : '166px'}
-              width={large ? '240px' : '166px'}
+              height={size === 'large' ? '240px' : size === 'medium' ? '166px' : '110px'}
+              width={size === 'large' ? '240px' : size === 'medium' ? '166px' : '110px'}
               className={
                 screen
                   ? styles.fadeIn
@@ -109,7 +125,7 @@ const PiBox = ({ large, screen }) => {
           </div>
         </div>
       </div>
-      {large && (
+      {size === 'large' && (
         <>
           <div className={styles.divider}></div>
           <div className={styles.ProductBar}>
@@ -150,7 +166,7 @@ const PiBox = ({ large, screen }) => {
           </div>
         </>
       )}
-    </>
+    </div>
   )
 }
 

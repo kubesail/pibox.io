@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import styles from '../components/Home.module.css'
 import { Trans, useTranslation } from 'react-i18next'
 
-import PiBox from './PiBox'
+const PiBox = dynamic(() => import('./PiBox'), { ssr: false })
 
 import piboxBack from '../public/images/back.png'
 import piboxBoards from '../public/images/boards.png'

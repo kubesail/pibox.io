@@ -16,7 +16,7 @@ import once from 'lodash/once'
 import { kubeSailFetch } from '../lib/store'
 import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
-import PiBox from '../components/PiBox'
+const PiBox = dynamic(() => import('../components/PiBox'), { ssr: false })
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 
 const KUBESAIL_WWW_TARGET = process.env.NEXT_PUBLIC_KUBESAIL_WWW_TARGET || 'https://kubesail.com'
@@ -178,7 +178,11 @@ const PreOrder = ({ router, profile, country, page, type }) => {
 
   return (
     <div className={styles.Order}>
-      <PiBox screen={platform?.logo} />
+      <div
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}
+      >
+        <PiBox screen={platform?.logo} noLarge={true} />
+      </div>
       <div className={styles.OrderForm}>
         <h2>Order your PiBox</h2>
         {platform && (
