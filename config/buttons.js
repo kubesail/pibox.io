@@ -4,6 +4,10 @@ const navButtons = [
   //   path: '/guide/hacker-bundle-setup',
   // },
   {
+    label: 'FAQ',
+    path: 'https://docs.kubesail.com/FAQ/#pibox-the-product',
+  },
+  {
     label: 'Docs',
     path: 'https://docs.kubesail.com/pibox',
   },
