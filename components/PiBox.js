@@ -110,6 +110,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
                 : '285px'
               : undefined
           }
+          style={{ zIndex: 1 }}
           alt="PiBox Render"
           fetchpriority="high"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}

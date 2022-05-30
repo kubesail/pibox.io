@@ -203,7 +203,13 @@ const PreOrder = ({ router, profile, country, page, type }) => {
         {platform && (
           <div>
             <div style={{ textAlign: 'center' }}>
-              <Image src={platform.logo} width={140} height={140} />
+              <Image
+                layout="intrinsic"
+                style={{ zIndex: -1 }}
+                src={platform.logo}
+                width={120}
+                height={120}
+              />
             </div>
             <div style={{ textAlign: 'center', fontSize: '15px' }}>
               This purchase directly supports the development of {platform.name}!
