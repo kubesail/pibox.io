@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Cookies from 'cookies-js'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { withRouter } from 'next/router'
@@ -75,6 +76,9 @@ const PreOrder = ({ router, profile, country, page, type }) => {
         console.error('Unknown platform', { type })
       } else {
         setPlatform(body)
+        Cookies.set('PLATFORM_REF', type, {
+          expires: new Date(new Date().getTime() + 10 * 365 * 24 * 60 * 60 * 1000),
+        })
       }
     } catch (err) {
       console.warn(err)
@@ -82,9 +86,11 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   }
 
   async function checkout(sku, country) {
+    const platformSlug = Cookies.get('PLATFORM_REF')
+    console.log({ platformSlug })
     const sessionRes = await kubeSailFetch(`/pibox/checkout`, {
       method: 'POST',
-      body: JSON.stringify({ sku, country, platformSlug: page === 'platform' ? type : undefined }),
+      body: JSON.stringify({ sku, country, platformSlug }),
     })
     // redirect to stripe
     if (sessionRes.body && sessionRes.body.id) {
