@@ -1,14 +1,26 @@
 import '../styles/global.css'
 import React from 'react'
+import Cookies from 'cookies-js'
 import { Provider } from 'react-redux'
 import dynamic from 'next/dynamic'
 import store, { kubeSailFetch } from '../lib/store'
 import { appWithTranslation } from 'next-i18next'
+import { withRouter } from 'next/router'
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, router }) => {
   React.useEffect(async () => {
     fetchProfile()
   }, [])
+
+  React.useEffect(setRefCookie, [])
+  function setRefCookie() {
+    const { platform } = router.query
+    if (platform) {
+      Cookies.set('PLATFORM_REF', platform, {
+        expires: new Date(new Date().getTime() + 10 * 365 * 24 * 60 * 60 * 1000),
+      })
+    }
+  }
 
   async function fetchProfile() {
     try {
@@ -39,4 +51,4 @@ const App = ({ Component, pageProps }) => {
   )
 }
 
-export default appWithTranslation(App)
+export default appWithTranslation(withRouter(App))
