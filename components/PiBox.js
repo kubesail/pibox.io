@@ -123,7 +123,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
             position: 'absolute',
             top: size === 'large' ? 208 : size === 'medium' ? 160 : 105,
             left: size === 'large' ? 82 : size === 'medium' ? 66 : 42,
-            zIndex: -1,
+            zIndex: 1,
             perspective: 1000,
             transform:
               'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg) rotateY(-5deg)',
