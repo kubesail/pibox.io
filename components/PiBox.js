@@ -89,7 +89,12 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
     <div className={`Pibox-${size}`}>
       <div
         className={styles.ProductHeroContainer}
-        style={{ width: size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px' }}
+        style={{
+          width: size === 'large' ? '780px' : size === 'medium' ? '580px' : '370px',
+          zIndex: 9,
+          transformStyle: 'preserve-3d',
+          marginTop: '20px',
+        }}
       >
         <img
           width={
@@ -98,7 +103,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
                 ? '780px'
                 : size === 'medium'
                 ? '580px'
-                : '380px'
+                : '370px'
               : undefined
           }
           height={
@@ -107,38 +112,44 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
                 ? '585px'
                 : size === 'medium'
                 ? '435px'
-                : '285px'
+                : '278px'
               : undefined
           }
-          style={{ zIndex: 1 }}
+          style={{ transformStyle: 'preserve-3d' }}
           alt="PiBox Render"
           fetchpriority="high"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
-        <img
-          src={screen || templateLogos[template]}
-          height={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
-          width={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
+        <div
           style={{
             position: 'absolute',
-            top: size === 'large' ? 208 : size === 'medium' ? 160 : 105,
-            left: size === 'large' ? 82 : size === 'medium' ? 66 : 42,
-            zIndex: 1,
-            perspective: 1000,
-            transform:
-              'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg) rotateY(-5deg)',
+            top: size === 'large' ? 208 : size === 'medium' ? 160 : 101,
+            left: size === 'large' ? 83 : size === 'medium' ? 68 : 40,
+            zIndex: -5,
             background: 'white',
+            transformStyle: 'preserve-3d',
           }}
-          className={
-            screen
-              ? styles.fadeIn
-              : [
-                  fadeIn && styles.fadeIn,
-                  fadeOut && styles.fadeOut,
-                  fadedOut && styles.fadedOut,
-                ].filter(Boolean)
-          }
-        />
+        >
+          <img
+            src={screen || templateLogos[template]}
+            height={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
+            width={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
+            style={{
+              perspective: 242,
+              transform: 'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg)',
+              transformStyle: 'preserve-3d',
+            }}
+            className={
+              screen
+                ? styles.fadeIn
+                : [
+                    fadeIn && styles.fadeIn,
+                    fadeOut && styles.fadeOut,
+                    fadedOut && styles.fadedOut,
+                  ].filter(Boolean)
+            }
+          />
+        </div>
       </div>
       {size === 'large' && (
         <>
