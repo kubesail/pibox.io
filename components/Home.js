@@ -9,9 +9,9 @@ const PiBox = dynamic(() => import('./PiBox'), { ssr: false })
 
 import piboxBack from '../public/images/back.png'
 import piboxBoards from '../public/images/boards.png'
-import piboxNextCloud from '../public/images/nextcloud.png'
-import ditchIcons from '../public/images/ditch-icons.png'
-import plexDemo from '../public/images/lion.png'
+import piboxNextCloud from '../public/images/nextcloud.webp'
+import ditchIcons from '../public/images/ditch-icons.webp'
+import plexDemo from '../public/images/lion.webp'
 
 const Home = () => {
   const [email, setEmail] = useState('')
@@ -82,7 +82,7 @@ const Home = () => {
             </div>
             <img
               className={styles.SectionImg}
-              src="/images/gorilla.png"
+              src="/images/gorilla.webp"
               alt="Image of Desktop"
               loading="lazy"
             />
@@ -116,7 +116,12 @@ const Home = () => {
             <div className={styles.SectionCopy}>
               <h3>{t('ditch-big-cloud')}</h3>
               <div className={[styles.IconContainer, styles.IconsDitch].join(' ')}>
-                <img alt="Ditch icons" src={ditchIcons.src} className={styles.Icons} />
+                <img
+                  alt="Ditch icons"
+                  loading="lazy"
+                  src={ditchIcons.src}
+                  className={styles.Icons}
+                />
               </div>
               <p className={styles.SectionText}>
                 <Trans i18nKey="pibox-templates-pitch">
