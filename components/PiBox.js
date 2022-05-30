@@ -32,6 +32,10 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
   if (typeof window !== 'undefined') {
     if (window.innerWidth < 720) {
       defaultSize = 'small'
+    } else if (window.innerWidth < 1120) {
+      defaultSize = 'medium'
+    } else if (!noLarge) {
+      defaultSize = 'large'
     }
     window.addEventListener('resize', e => {
       if (e.target.innerWidth < 720) {
@@ -84,49 +88,41 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
 
   return (
     <div className={`Pibox-${size}`}>
-      <div className={styles.ProductHeroContainer}>
-        <Image
-          layout="fixed"
+      <div
+        className={styles.ProductHeroContainer}
+        style={{ width: size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px' }}
+      >
+        <img
+          loading="lazy"
           width={size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px'}
           height={size === 'large' ? '585px' : size === 'medium' ? '435px' : '285px'}
           alt="PiBox Render"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
-        <div
-          className={styles.ProductScreenContainer}
+        <img
+          src={screen || templateLogos[template]}
+          height={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
+          width={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
           style={{
             position: 'absolute',
-            top: size === 'large' ? 198 : size === 'medium' ? 158 : 103,
-            left: size === 'large' ? 75 : size === 'medium' ? 66 : 43,
+            top: size === 'large' ? 208 : size === 'medium' ? 160 : 105,
+            left: size === 'large' ? 82 : size === 'medium' ? 66 : 42,
             zIndex: -1,
-            perspective: 242,
-            perspective: '1000px',
+            perspective: 1000,
+            transform:
+              'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg) rotateY(-5deg)',
+            background: 'white',
           }}
-        >
-          <div
-            className={styles.ProductScale}
-            style={{
-              transform:
-                'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg) rotateY(-5deg)',
-              background: 'white',
-            }}
-          >
-            <Image
-              src={screen || templateLogos[template]}
-              height={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
-              width={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
-              className={
-                screen
-                  ? styles.fadeIn
-                  : [
-                      fadeIn && styles.fadeIn,
-                      fadeOut && styles.fadeOut,
-                      fadedOut && styles.fadedOut,
-                    ].filter(Boolean)
-              }
-            />
-          </div>
-        </div>
+          className={
+            screen
+              ? styles.fadeIn
+              : [
+                  fadeIn && styles.fadeIn,
+                  fadeOut && styles.fadeOut,
+                  fadedOut && styles.fadedOut,
+                ].filter(Boolean)
+          }
+        />
       </div>
       {size === 'large' && (
         <>
