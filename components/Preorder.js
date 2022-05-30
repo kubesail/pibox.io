@@ -8,7 +8,6 @@ import { loadStripe } from '@stripe/stripe-js/pure'
 import { euMember } from 'is-european'
 import iso3166 from 'iso-3166'
 import { shippingCost, isAllowedCountry } from 'kubesail-shipping'
-import Select from 'react-select'
 import piboxModels from 'kubesail-shipping/piboxModels'
 import { useTranslation } from 'react-i18next'
 import once from 'lodash/once'
@@ -16,6 +15,8 @@ import once from 'lodash/once'
 import { kubeSailFetch } from '../lib/store'
 import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
+
+const Select = dynamic(() => import('react-select'))
 const PiBox = dynamic(() => import('../components/PiBox'), { ssr: false })
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
 

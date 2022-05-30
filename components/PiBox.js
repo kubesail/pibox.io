@@ -111,6 +111,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
               : undefined
           }
           alt="PiBox Render"
+          fetchpriority="high"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
         <img
