@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 
 import styles from '../components/Home.module.css'
-import pibox2Mini from '../public/images/box-2-mini-1200.png'
+import pibox2Mini from '../public/images/box-2-mini-1200.webp'
 import pibox5 from '../public/images/box-5.png'
 
 const templateLogos = [
@@ -93,9 +92,24 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
         style={{ width: size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px' }}
       >
         <img
-          loading="lazy"
-          width={size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px'}
-          height={size === 'large' ? '585px' : size === 'medium' ? '435px' : '285px'}
+          width={
+            model === 'box2mini'
+              ? size === 'large'
+                ? '780px'
+                : size === 'medium'
+                ? '580px'
+                : '380px'
+              : undefined
+          }
+          height={
+            model === 'box2mini'
+              ? size === 'large'
+                ? '585px'
+                : size === 'medium'
+                ? '435px'
+                : '285px'
+              : undefined
+          }
           alt="PiBox Render"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
