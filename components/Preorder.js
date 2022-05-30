@@ -57,18 +57,26 @@ const PreOrder = ({ router, profile, country, page, type }) => {
 
   useEffect(() => fetchInventory(), [])
   async function fetchInventory() {
-    const { body } = await kubeSailFetch('/pibox/inventory')
-    setInventory(body.batch1)
+    try {
+      const { body } = await kubeSailFetch('/pibox/inventory')
+      setInventory(body.batch1)
+    } catch (err) {
+      console.warn(err)
+    }
   }
 
   useEffect(() => fetchPlatform(), [])
   async function fetchPlatform() {
-    if (page !== 'platform') return
-    const { body } = await kubeSailFetch(`/platform/${type}`)
-    if (body.error) {
-      console.error('Unknown platform', { type })
-    } else {
-      setPlatform(body)
+    try {
+      if (page !== 'platform') return
+      const { body } = await kubeSailFetch(`/platform/${type}`)
+      if (body.error) {
+        console.error('Unknown platform', { type })
+      } else {
+        setPlatform(body)
+      }
+    } catch (err) {
+      console.warn(err)
     }
   }
 

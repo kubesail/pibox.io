@@ -1,7 +1,6 @@
 .Order {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 8vh 5vw;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -56,6 +55,7 @@
 
 .OrderForm {
   width: 50%;
+  padding: 0 5vw;
   /* margin-left: 50%; */
 }
 

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
 
 import styles from '../components/Home.module.css'
-import pibox2Mini from '../public/images/box-2-mini.png'
+import pibox2Mini from '../public/images/box-2-mini-1200.png'
 import pibox5 from '../public/images/box-5.png'
 
 const templateLogos = [
@@ -84,8 +85,10 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
   return (
     <div className={`Pibox-${size}`}>
       <div className={styles.ProductHeroContainer}>
-        <img
+        <Image
+          layout="fixed"
           width={size === 'large' ? '780px' : size === 'medium' ? '580px' : '380px'}
+          height={size === 'large' ? '585px' : size === 'medium' ? '435px' : '285px'}
           alt="PiBox Render"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
@@ -93,8 +96,8 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
           className={styles.ProductScreenContainer}
           style={{
             position: 'absolute',
-            top: size === 'large' ? 205 : size === 'medium' ? 158 : 103,
-            left: size === 'large' ? 80 : size === 'medium' ? 66 : 43,
+            top: size === 'large' ? 198 : size === 'medium' ? 158 : 103,
+            left: size === 'large' ? 75 : size === 'medium' ? 66 : 43,
             zIndex: -1,
             perspective: 242,
             perspective: '1000px',
@@ -108,10 +111,10 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
               background: 'white',
             }}
           >
-            <img
+            <Image
               src={screen || templateLogos[template]}
-              height={size === 'large' ? '240px' : size === 'medium' ? '166px' : '110px'}
-              width={size === 'large' ? '240px' : size === 'medium' ? '166px' : '110px'}
+              height={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
+              width={size === 'large' ? '237px' : size === 'medium' ? '166px' : '110px'}
               className={
                 screen
                   ? styles.fadeIn
