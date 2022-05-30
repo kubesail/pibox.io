@@ -7,11 +7,12 @@ import { Trans, useTranslation } from 'react-i18next'
 
 const PiBox = dynamic(() => import('./PiBox'), { ssr: false })
 
-import piboxBack from '../public/images/back.png'
-import piboxBoards from '../public/images/boards.png'
+import piboxBack from '../public/images/back.webp'
+import piboxBoards from '../public/images/boards.webp'
 import piboxNextCloud from '../public/images/nextcloud.webp'
 import ditchIcons from '../public/images/ditch-icons.webp'
 import plexDemo from '../public/images/lion.webp'
+import ssdRemoval from '../public/images/pibox-ssd-removal.webp'
 
 const Home = () => {
   const [email, setEmail] = useState('')
@@ -121,6 +122,8 @@ const Home = () => {
                   loading="lazy"
                   src={ditchIcons.src}
                   className={styles.Icons}
+                  width="521px"
+                  height="127px"
                 />
               </div>
               <p className={styles.SectionText}>
@@ -145,10 +148,28 @@ const Home = () => {
 
         <div className={styles.SlideShowImg}>
           <Image
-            layout={'responsive'}
+            layout={'intrinsic'}
             alt="PiBox is flexable - add your own SSDs"
             src={piboxBack}
             className={styles.SlideShowImg}
+            width={450}
+            height={320}
+          />
+          <Image
+            layout={'intrinsic'}
+            alt="PiBox Leaning"
+            src={piboxBoards}
+            className={styles.SlideShowImg}
+            width={600}
+            height={350}
+          />
+          <Image
+            layout={'intrinsic'}
+            alt="PiBox Leaning"
+            src={ssdRemoval}
+            className={styles.SlideShowImg}
+            width={600}
+            height={350}
           />
         </div>
 
@@ -159,15 +180,6 @@ const Home = () => {
             </a>
           </Link>
         </div>
-      </div>
-
-      <div className={styles.SlideShowImg} style={{ marginBottom: 150 }}>
-        <Image
-          layout={'responsive'}
-          alt="PiBox Leaning"
-          src={piboxBoards}
-          className={styles.SlideShowImg}
-        />
       </div>
     </div>
   )
