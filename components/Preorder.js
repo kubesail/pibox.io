@@ -205,7 +205,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             <div style={{ textAlign: 'center' }}>
               <Image src={platform.logo} width={120} height={120} />
             </div>
-            <div style={{ textAlign: 'center', fontSize: '15px' }}>
+            <div style={{ textAlign: 'center' }}>
               This purchase directly supports the development of {platform.name}!
             </div>
           </div>
@@ -217,8 +217,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
           </p>
         ) : (
           <p>
-            Current batch ships July 2022. After the first batch is sold out, the next batch will be
-            available in October.
+            There are a limited number of units available in the current batch, which ships July
+            2022. After the first batch is sold out, the next batch will be available in October.
           </p>
         )}
         {isEU && (
