@@ -10,7 +10,6 @@ const templateLogos = [
   'https://cdn.kubesail.com/prod/templates/erulabs/Plex/3fa892cbcf64.jpg',
   'https://cdn.kubesail.com/prod/templates/loopDelicious/minecraft/bbe0ba482371.jpg',
   'https://cdn.kubesail.com/prod/templates/erulabs/ghost/38b62c96edae.jpg',
-  'https://cdn.kubesail.com/prod/templates/erulabs/actual/192bd8a737f7.jpg',
   'https://cdn.kubesail.com/prod/templates/erulabs/Home%20Assistant/f4eed39c7a3d.jpg',
   'https://cdn.kubesail.com/prod/templates/erulabs/jellyfin/a09b251dc153.jpg',
   'https://cdn.kubesail.com/prod/templates/erulabs/PhotoPrism/25c0e06d95a3.jpg',
@@ -73,14 +72,12 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
     if (index > templateLogos.length - 1) {
       index = 0
     }
-    if (index !== template) {
-      setTemplate(index)
-      await delay(100)
-      setFadeIn(true)
-      setFadedOut(false)
-      await delay(950)
-      setFadeIn(false)
-    }
+    setTemplate(index)
+    await delay(100)
+    setFadeIn(true)
+    setFadedOut(false)
+    await delay(950)
+    setFadeIn(false)
     await delay(3000)
     nextTemplate(index + 1)
   }
@@ -104,7 +101,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
                 : size === 'medium'
                 ? '580px'
                 : '370px'
-              : undefined
+              : 1584 / 2
           }
           height={
             model === 'box2mini'
@@ -113,11 +110,11 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
                 : size === 'medium'
                 ? '435px'
                 : '278px'
-              : undefined
+              : 988 / 2
           }
           style={{ transformStyle: 'preserve-3d' }}
-          alt="PiBox Render"
-          fetchpriority="high"
+          alt="PiBox - the personal server"
+          fetchPriority="high"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
         <div
@@ -139,6 +136,8 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
               transform: 'scaleY(0.50) scaleX(0.47) skewY(12.5deg) rotateZ(354deg) skewX(356deg)',
               transformStyle: 'preserve-3d',
             }}
+            alt="PiBox - the personal server"
+            fetchPriority="high"
             className={
               screen
                 ? styles.fadeIn
