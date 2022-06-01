@@ -121,7 +121,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
           style={{
             position: 'absolute',
             top: size === 'large' ? 208 : size === 'medium' ? 160 : 101,
-            left: size === 'large' ? 83 : size === 'medium' ? 68 : 40,
+            left: size === 'large' ? 82 : size === 'medium' ? 66 : 40,
             zIndex: -5,
             background: 'white',
             transformStyle: 'preserve-3d',
