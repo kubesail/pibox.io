@@ -14,9 +14,9 @@ const App = ({ Component, pageProps, router }) => {
 
   React.useEffect(setRefCookie, [])
   function setRefCookie() {
-    const { platform } = router.query
-    if (platform) {
-      Cookies.set('PLATFORM_REF', platform, {
+    const { ref } = router.query
+    if (ref) {
+      Cookies.set('PLATFORM_REF', ref, {
         expires: new Date(new Date().getTime() + 10 * 365 * 24 * 60 * 60 * 1000),
       })
     }
