@@ -196,6 +196,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
     textAlign: 'center',
     padding: 10,
     borderRadius: 4,
+    margin: 5,
   }
 
   return (
