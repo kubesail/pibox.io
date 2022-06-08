@@ -205,8 +205,19 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             <div style={{ textAlign: 'center' }}>
               <Image src={platform.logo} width={120} height={120} />
             </div>
-            <div style={{ textAlign: 'center' }}>
-              This purchase directly supports the development of {platform.name}!
+            <div
+              style={{
+                border: '1px solid black',
+                textAlign: 'center',
+                padding: 10,
+                borderRadius: 4,
+              }}
+            >
+              {platform.piboxDiscount
+                ? `As a ${platform.name} user, your purchase includes a ${
+                    platform.piboxDiscount * 100
+                  }% discount, up to $30!`
+                : `This purchase directly supports the development of ${platform.name}!`}
             </div>
           </div>
         )}
