@@ -44,7 +44,7 @@ const trackLead = once(() => {
 const PreOrder = ({ router, profile, country, page, type }) => {
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
-  const [inventory, setInventory] = useState('')
+  const [inventory, setInventory] = useState(0)
   const [platform, setPlatform] = useState(null)
   const { t } = useTranslation('common')
 
@@ -61,7 +61,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   async function fetchInventory() {
     try {
       const { body } = await kubeSailFetch('/pibox/inventory')
-      setInventory(body.batch1)
+      // setInventory(body.batch1)
+      setInventory(20)
     } catch (err) {
       console.warn(err)
     }
@@ -191,6 +192,13 @@ const PreOrder = ({ router, profile, country, page, type }) => {
 
   trackLead()
 
+  const notifStyle = {
+    border: '1px solid black',
+    textAlign: 'center',
+    padding: 10,
+    borderRadius: 4,
+  }
+
   return (
     <div className={styles.Order}>
       <div
@@ -205,14 +213,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             <div style={{ textAlign: 'center' }}>
               <Image src={platform.logo} width={120} height={120} />
             </div>
-            <div
-              style={{
-                border: '1px solid black',
-                textAlign: 'center',
-                padding: 10,
-                borderRadius: 4,
-              }}
-            >
+            <div style={notifStyle}>
               {platform.piboxDiscount
                 ? `As a ${platform.name} user, your purchase includes a ${
                     platform.piboxDiscount * 100
@@ -221,17 +222,25 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             </div>
           </div>
         )}
-        {inventory < 250 ? (
-          <p>
-            Batch 1 has <strong>{inventory} units remaining</strong> for preorder, and ships in July
-            2022. After the first batch is sold out, the next batch will be available in October.
-          </p>
-        ) : (
-          <p>
-            There are a limited number of units available in the current batch, which ships July
-            2022. After the first batch is sold out, the next batch will be available in October.
-          </p>
-        )}
+        <div style={notifStyle}>
+          {inventory < 1 ? (
+            `Batch 1 is sold out! We are now taking preorders for batch 2, which is expected to
+              ship in October.`
+          ) : inventory < 250 ? (
+            <>
+              <h4 style={{ marginTop: 0 }}>Batch 1 - Limited Inventory Remaining</h4>
+              Batch 1 has <strong>{inventory} units remaining</strong> for preorder. Orders placed
+              now will be included in Batch 1, and ship by the end of July. Batch 2 will be
+              available in October.
+            </>
+          ) : (
+            <>
+              <h4 style={{ marginTop: 0 }}>Batch 1 - Limited Inventory Remaining</h4>
+              There are a limited number of units available in the current batch, which ships in
+              July. After the first batch is sold out, the next batch will be available in October.
+            </>
+          )}
+        </div>
         {isEU && (
           <p>
             <strong>EU Friendly</strong> Shipping. Comes with a{' '}
