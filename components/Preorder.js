@@ -61,8 +61,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   async function fetchInventory() {
     try {
       const { body } = await kubeSailFetch('/pibox/inventory')
-      // setInventory(body.batch1)
-      setInventory(20)
+      setInventory(body.batch1)
     } catch (err) {
       console.warn(err)
     }
@@ -226,7 +225,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
           {inventory < 1 ? (
             `Batch 1 is sold out! We are now taking preorders for batch 2, which is expected to
               ship in October.`
-          ) : inventory < 250 ? (
+          ) : inventory < 900 ? (
             <>
               <h4 style={{ marginTop: 0 }}>Batch 1 - Limited Inventory Remaining</h4>
               Batch 1 has <strong>{inventory} units remaining</strong> for preorder. Orders placed
