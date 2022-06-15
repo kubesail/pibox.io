@@ -148,15 +148,22 @@ const Home = () => {
 
         <div className={styles.SlideShowImg}>
           <Image
-            layout={'intrinsic'}
+            layout={'responsive'}
             alt="PiBox is flexable - add your own SSDs"
             src={piboxBack}
             className={styles.SlideShowImg}
             width={450}
             height={320}
           />
+          <div className={styles.CTA}>
+            <Link href="/order">
+              <a className={styles.largeButton} style={{ maxWidth: 800 }}>
+                {t('Order Now!')}
+              </a>
+            </Link>
+          </div>
           <Image
-            layout={'intrinsic'}
+            layout={'responsive'}
             alt="PiBox Leaning"
             src={piboxBoards}
             className={styles.SlideShowImg}
@@ -164,21 +171,13 @@ const Home = () => {
             height={350}
           />
           <Image
-            layout={'intrinsic'}
+            layout={'responsive'}
             alt="PiBox Leaning"
             src={ssdRemoval}
             className={styles.SlideShowImg}
             width={600}
             height={350}
           />
-        </div>
-
-        <div className={styles.CTA}>
-          <Link href="/order">
-            <a className={styles.largeButton} style={{ maxWidth: 800 }}>
-              {t('Order Now!')}
-            </a>
-          </Link>
         </div>
       </div>
     </div>
