@@ -170,14 +170,6 @@ const Home = () => {
             width={600}
             height={350}
           />
-          <Image
-            layout={'responsive'}
-            alt="PiBox Leaning"
-            src={ssdRemoval}
-            className={styles.SlideShowImg}
-            width={600}
-            height={350}
-          />
         </div>
       </div>
     </div>
