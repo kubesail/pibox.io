@@ -14,7 +14,19 @@ import { useTranslation } from 'react-i18next'
 import once from 'lodash/once'
 
 import { kubeSailFetch } from '../lib/store'
-import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
+import contentsMetal from '../public/images/box-contents-metal.jpg'
+import contentsAntenna from '../public/images/box-contents-antenna.jpg'
+import contentsCm4 from '../public/images/box-contents-cm4.jpg'
+import contentsBoards from '../public/images/box-contents-boards.jpg'
+import contentsSsd from '../public/images/box-contents-ssd.jpg'
+import contentsFan from '../public/images/box-contents-fan.jpg'
+import contentsPsuUs from '../public/images/box-contents-psu-us.jpg'
+import contentsPsuEu from '../public/images/box-contents-psu-eu.jpg'
+// import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
+// import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
+// import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
+// import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
+// import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
 
 const Select = dynamic(() => import('react-select'))
@@ -30,6 +42,115 @@ let stripe
 
 // TODO add remaining order count in batch
 
+const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
+  const C_METAL = {
+    img: contentsMetal,
+    title: 'Metal Case',
+    description:
+      'Industrial and sturdy — our custom powder coated 1 mm steel case. Outer dimensions measure ' +
+      (shippingCountry === 'US' ? '2 x 3 x 5 inches' : '51 x 76 x 127 mm'),
+  }
+  const C_BOARDS = {
+    img: contentsBoards,
+    title: 'Carrier & Backplane Boards',
+    description:
+      'Our custom boards for driving the Pi and SATA SSDs, designed in-house and only sold here!',
+  }
+  const C_CM4 = {
+    img: contentsCm4,
+    title: 'Raspberry Pi CM4',
+    description:
+      'The power of Raspberry Pi 4 in a compact form factor. ' +
+      (sku !== '2-bay-hacker'
+        ? 'This PiBox includes a CM4 with 8 RAM, 8GB flash memory, WiFi + Bluetooth.'
+        : 'Learn more or buy now'),
+  }
+  const C_FAN = {
+    img: contentsFan,
+    title: 'Premium Noctua Fan',
+    description:
+      'Ultra quiet NF-A4x10 PWM fan. We are serious about cooling, and serious about noise.',
+    link: '',
+  }
+  //TODO change based on country
+  const C_PSU = {
+    img: isEU ? contentsPsuEu : contentsPsuUs,
+    title: (isEU ? 'EU ' : '') + 'Power Supply',
+    description: '5v / 3.5A USB power supply with switch',
+    link: '',
+  }
+  const C_ANTENNA = {
+    img: contentsAntenna,
+    title: 'CM4 Antenna Kit',
+    optional: true,
+    description:
+      '2.4 + 5GHz external WiFi + Bluetooth Antenna. Increases the speed and extends the range of your CM4',
+    link: 'https://www.raspberrypi.com/products/compute-module-4-antenna-kit/',
+  }
+  const C_SSD_DIY = {
+    img: contentsSsd,
+    title: 'Solid State Drive',
+    description:
+      'Add up to two solid state drives. All 2.5-inch SATA SSDs are compatible. Spinning HDDs are not recommended due to power requirements.',
+  }
+  let included = [C_METAL, C_BOARDS, C_PSU]
+  let diy = []
+  if (sku === '2-bay-plug-and-play') {
+    included.push(C_CM4, C_FAN, C_ANTENNA, {
+      img: contentsSsd,
+      title: 'Solid State Drive - Bay #1',
+      description:
+        'The first SSD bay is pre-filled with a 2TB SSD drive, formatted and ready to go. We ship the PiBox with Samsung and Crucial SSDs only.',
+    })
+    diy.push({
+      img: contentsSsd,
+      title: 'Solid State Drive - Bay #2',
+      description:
+        'You can add one additional 2.5-inch SATA solid state drive for more storage at any time',
+    })
+  } else if (sku === '2-bay-standard') {
+    included.push(C_CM4, C_FAN, C_ANTENNA)
+    diy.push(C_SSD_DIY)
+  } else if (sku === '2-bay-hacker') {
+    diy.push(C_CM4, C_FAN, C_ANTENNA, C_SSD_DIY)
+  } else {
+    return null
+  }
+
+  return (
+    <>
+      <div className={styles.boxContents}>
+        <h3>Included in the box</h3>
+        <ul>
+          {included.map(({ img, title, description }) => (
+            <li>
+              <img src={img.src} width={200} height={133} />
+              <div>
+                <h4>{title}</h4>
+                <p>{description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.boxContents}>
+        <h3>Bring your own</h3>
+        <ul>
+          {diy.map(({ img, title, description }) => (
+            <li>
+              <img src={img.src} width={200} height={133} />
+              <div>
+                <h4>{title}</h4>
+                <p>{description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  )
+}
+
 const trackPurchase = once(() => {
   try {
     rdt('track', 'Purchase')
@@ -42,7 +163,7 @@ const trackLead = once(() => {
 })
 
 const PreOrder = ({ router, profile, country, page, type }) => {
-  const [sku, setSku] = useState(null)
+  const [sku, setSku] = useState('2-bay-standard')
   const [shippingCountry, setShippingCountry] = useState(country)
   const [inventory, setInventory] = useState(0)
   const [platform, setPlatform] = useState(null)
@@ -202,9 +323,16 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   return (
     <div className={styles.Order}>
       <div
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          marginTop: 20,
+        }}
       >
         <PiBox screen={platform?.logo} noLarge={true} />
+        {renderSkuBox({ isEU, shippingCountry, sku })}
       </div>
       <div className={styles.OrderForm}>
         <h2>Order your PiBox</h2>
@@ -348,8 +476,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             <p>
               We can't ship to{' '}
               <strong>{iso3166.find(country => country.alpha2 === shippingCountry).name}</strong>{' '}
-              yet, but we are working to expand quickly. Enter your email below and we will let you
-              know when we are able to accept your order. Thanks for your patience!
+              yet, but we are expanding quickly. Enter your email below and we will let you know
+              when we are able to accept your order. Thanks for your patience!
             </p>
           </div>
         )}
