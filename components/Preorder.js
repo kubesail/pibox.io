@@ -59,7 +59,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
     img: contentsMetal,
     title: 'Metal Case',
     description:
-      'Our industrial and sturdy powder coated custom case. Heavy duty 1-mm thick steel gives the unit a solid weight and a great feel. Outer dimensions measure ' +
+      'Our industrial and sturdy custom case. Heavy duty 1-mm powder coated steel gives the unit a solid weight and a great feel. Outer dimensions measure ' +
       (shippingCountry === 'US' ? '2x3x5 inches' : '52x79x113 mm'),
   }
   const C_BOARDS = {
