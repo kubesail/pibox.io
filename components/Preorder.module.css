@@ -190,6 +190,8 @@ button.loggedOut {
 }
 .boxContents h4 {
   margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
 }
 .boxContents p {
   margin: 0;
@@ -198,6 +200,14 @@ button.loggedOut {
   border: 3px solid #ccc;
   border-radius: 6px;
   margin-right: 20px;
+}
+.optional {
+  background: rgb(255, 162, 68);
+  display: inline-block;
+  margin: 0 10px;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
 }
 
 .pink {
