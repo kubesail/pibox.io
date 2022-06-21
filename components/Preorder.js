@@ -100,7 +100,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
       <span>
         Ultra quiet NF-A4x10 PWM fan. We are serious about cooling, and serious about noise. See our{' '}
         <a target="_blank" href="https://docs.kubesail.com/guides/pibox/os/#stress-test-data">
-          stress test data
+          stress test results
         </a>
         .
       </span>
