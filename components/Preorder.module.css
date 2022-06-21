@@ -177,6 +177,7 @@ button.loggedOut {
 .boxContents {
   width: 100%;
   max-width: 600px;
+  padding: 0 10px 30px 10px;
 }
 .boxContents ul,
 .boxContents li {

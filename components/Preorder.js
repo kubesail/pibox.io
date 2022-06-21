@@ -42,13 +42,13 @@ let stripe
 
 // TODO add remaining order count in batch
 
-const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
+const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
   const C_METAL = {
     img: contentsMetal,
     title: 'Metal Case',
     description:
       'Industrial and sturdy — our custom powder coated 1 mm steel case. Outer dimensions measure ' +
-      (shippingCountry === 'US' ? '2 x 3 x 5 inches' : '51 x 76 x 127 mm'),
+      (shippingCountry === 'US' ? '2x3x5 inches' : '52x79x113 mm'),
   }
   const C_BOARDS = {
     img: contentsBoards,
@@ -137,7 +137,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
         <ul>
           {included.map(({ img, title, description }) => (
             <li>
-              <img src={img.src} width={200} height={133} />
+              <img src={img.src} width={small ? 100 : 200} height={small ? 66 : 133} />
               <div>
                 <h4>{title}</h4>
                 <p>{description}</p>
@@ -146,15 +146,12 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
           ))}
         </ul>
       </div>
-      <div
-        className={styles.boxContents}
-        style={{ borderTop: '1px solid black', marginBottom: 20 }}
-      >
+      <div className={styles.boxContents} style={{ borderTop: '1px solid black' }}>
         <h3>Bring your own</h3>
         <ul>
           {diy.map(({ img, title, description, optional }) => (
             <li>
-              <img src={img.src} width={200} height={133} />
+              <img src={img.src} width={small ? 100 : 200} height={small ? 66 : 133} />
               <div>
                 <h4>
                   {title}
@@ -339,6 +336,11 @@ const PreOrder = ({ router, profile, country, page, type }) => {
     margin: 5,
   }
 
+  let small = false
+  if (typeof window !== 'undefined' && window.innerWidth < 900) {
+    small = true
+  }
+
   return (
     <div className={styles.Order}>
       <div
@@ -351,7 +353,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
         }}
       >
         <PiBox screen={platform?.logo} noLarge={true} />
-        {renderSkuBox({ isEU, shippingCountry, sku })}
+        {!small && renderSkuBox({ isEU, shippingCountry, sku })}
       </div>
       <div className={styles.OrderForm}>
         <h2>Order your PiBox</h2>
@@ -394,146 +396,149 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             <strong>European Power Adapter</strong>.
           </p>
         )}
-        <h3>Choose your model</h3>
-        <div className={styles.Group}>
-          {piboxModels.map(m => {
-            return (
-              <div
-                key={m.sku}
-                className={[styles.Option, sku === m.sku ? styles.Selected : ''].join(' ')}
-                onClick={() => setSku(m.sku)}
-              >
-                <div className={styles.OptionHeader}>
-                  <h4>
-                    <span className={m.bays === 2 ? styles.pink : styles.blue}>{m.bays} Bay</span>{' '}
-                    {m.shortName}
-                  </h4>
-                  <h4 className={styles.Price}>
-                    {m.price ? (
-                      <>
-                        {currencySymbol}
-                        {m.price[costData.currency] / 100}
-                      </>
-                    ) : (
-                      'Coming soon!'
-                    )}
-                  </h4>
+        <div style={{ position: 'sticky', top: 0, height: 'auto' }}>
+          <h3>Choose your model</h3>
+          <div className={styles.Group}>
+            {piboxModels.map(m => {
+              return (
+                <div
+                  key={m.sku}
+                  className={[styles.Option, sku === m.sku ? styles.Selected : ''].join(' ')}
+                  onClick={() => setSku(m.sku)}
+                >
+                  <div className={styles.OptionHeader}>
+                    <h4>
+                      <span className={m.bays === 2 ? styles.pink : styles.blue}>{m.bays} Bay</span>{' '}
+                      {m.shortName}
+                    </h4>
+                    <h4 className={styles.Price}>
+                      {m.price ? (
+                        <>
+                          {currencySymbol}
+                          {m.price[costData.currency] / 100}
+                        </>
+                      ) : (
+                        'Coming soon!'
+                      )}
+                    </h4>
+                  </div>
+                  {m.description.map(d => {
+                    return <p key={d}>- {d}</p>
+                  })}
                 </div>
-                {m.description.map(d => {
-                  return <p key={d}>- {d}</p>
-                })}
+              )
+            })}
+          </div>
+
+          {sku && (
+            <div className={styles.country}>
+              <div className={styles.countrySelect}>
+                <div>Shipping Country:</div>
+                <Select
+                  id="country"
+                  onChange={v => setShippingCountry(v.value)}
+                  options={iso3166.map(country => {
+                    return { value: country.alpha2, label: country.name }
+                  })}
+                  defaultValue={{ value: shippingCountry, label: isoCountry?.name }}
+                />
+              </div>
+              <div className={styles.countryDetails}>
+                {allowedCountry ? (
+                  <div>
+                    {costData.shippingCost[0] === 0 ? (
+                      <strong>Free Shipping</strong>
+                    ) : (
+                      <div>
+                        Shipping to {isoCountry?.name}: {currencySymbol}
+                        {costData.shippingCost / 100}
+                      </div>
+                    )}
+                    {costData.vat > 0 && (
+                      <div>
+                        {isoCountry?.name} VAT ({vatAmountPercentHuman}): {currencySymbol}
+                        {calculatedVAT}
+                      </div>
+                    )}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          )}
+
+          {sku === '5-bay' && (
+            <p>
+              Enter your email to be notified when the <strong>Full Sized PiBox 5 Bay NAS</strong>{' '}
+              is available to order. Full product specifications will be announced later this year.
+            </p>
+          )}
+
+          {allowedCountry ? (
+            sku &&
+            sku !== '5-bay' &&
+            !profile && (
+              <div>
+                {
+                  <p className={styles.whyLogin}>
+                    Logging in lets you start setting up apps on your PiBox now, so it's{' '}
+                    <strong>ready to use</strong> the moment it arrives!
+                  </p>
+                }
+                <Link
+                  href={`${KUBESAIL_WWW_TARGET}/login?redirect=${encodeURIComponent(
+                    `${PIBOX_WWW_TARGET}/order/redirected`
+                  )}`}
+                >
+                  <a className={styles.checkout}>Login</a>
+                </Link>
               </div>
             )
-          })}
-        </div>
-
-        {sku && (
-          <div className={styles.country}>
-            <div className={styles.countrySelect}>
-              <div>Shipping Country:</div>
-              <Select
-                id="country"
-                onChange={v => setShippingCountry(v.value)}
-                options={iso3166.map(country => {
-                  return { value: country.alpha2, label: country.name }
-                })}
-                defaultValue={{ value: shippingCountry, label: isoCountry?.name }}
-              />
-            </div>
-            <div className={styles.countryDetails}>
-              {allowedCountry ? (
-                <div>
-                  {costData.shippingCost[0] === 0 ? (
-                    <strong>Free Shipping</strong>
-                  ) : (
-                    <div>
-                      Shipping to {isoCountry?.name}: {currencySymbol}
-                      {costData.shippingCost / 100}
-                    </div>
-                  )}
-                  {costData.vat > 0 && (
-                    <div>
-                      {isoCountry?.name} VAT ({vatAmountPercentHuman}): {currencySymbol}
-                      {calculatedVAT}
-                    </div>
-                  )}
-                </div>
-              ) : null}
-            </div>
-          </div>
-        )}
-
-        {sku === '5-bay' && (
-          <p>
-            Enter your email to be notified when the <strong>Full Sized PiBox 5 Bay NAS</strong> is
-            available to order. Full product specifications will be announced later this year.
-          </p>
-        )}
-
-        {allowedCountry ? (
-          sku &&
-          sku !== '5-bay' &&
-          !profile && (
+          ) : (
             <div>
-              {
-                <p className={styles.whyLogin}>
-                  Logging in lets you start setting up apps on your PiBox now, so it's{' '}
-                  <strong>ready to use</strong> the moment it arrives!
-                </p>
-              }
-              <Link
-                href={`${KUBESAIL_WWW_TARGET}/login?redirect=${encodeURIComponent(
-                  `${PIBOX_WWW_TARGET}/order/redirected`
-                )}`}
-              >
-                <a className={styles.checkout}>Login</a>
-              </Link>
+              <p>
+                We can't ship to{' '}
+                <strong>{iso3166.find(country => country.alpha2 === shippingCountry).name}</strong>{' '}
+                yet, but we are expanding quickly. Enter your email below and we will let you know
+                when we are able to accept your order. Thanks for your patience!
+              </p>
             </div>
-          )
-        ) : (
-          <div>
-            <p>
-              We can't ship to{' '}
-              <strong>{iso3166.find(country => country.alpha2 === shippingCountry).name}</strong>{' '}
-              yet, but we are expanding quickly. Enter your email below and we will let you know
-              when we are able to accept your order. Thanks for your patience!
-            </p>
-          </div>
-        )}
-        {(!allowedCountry || sku === '5-bay') && (
-          <div>
-            <form
-              name="waitlist"
-              onSubmit={async e => {
-                e.preventDefault()
-                const email = document.forms.waitlist.email.value
-                await signup({ email, sku, countryCode: shippingCountry })
-                router.push('/order/success/waitlist')
-              }}
+          )}
+          {(!allowedCountry || sku === '5-bay') && (
+            <div>
+              <form
+                name="waitlist"
+                onSubmit={async e => {
+                  e.preventDefault()
+                  const email = document.forms.waitlist.email.value
+                  await signup({ email, sku, countryCode: shippingCountry })
+                  router.push('/order/success/waitlist')
+                }}
+              >
+                <input
+                  name="email"
+                  type="email"
+                  className={styles.EmailInput}
+                  placeholder="Your email address"
+                  required
+                />
+                <input
+                  type="submit"
+                  className={[styles.checkout].join(' ')}
+                  value="Add to Wait List"
+                />
+              </form>
+            </div>
+          )}
+          {allowedCountry && sku && sku !== '5-bay' && (
+            <button
+              className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
+              onClick={() => checkout(sku, shippingCountry)}
             >
-              <input
-                name="email"
-                type="email"
-                className={styles.EmailInput}
-                placeholder="Your email address"
-                required
-              />
-              <input
-                type="submit"
-                className={[styles.checkout].join(' ')}
-                value="Add to Wait List"
-              />
-            </form>
-          </div>
-        )}
-        {allowedCountry && sku && sku !== '5-bay' && (
-          <button
-            className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
-            onClick={() => checkout(sku, shippingCountry)}
-          >
-            {profile ? `Checkout` : 'Checkout as Guest'}
-          </button>
-        )}
+              {profile ? `Checkout` : 'Checkout as Guest'}
+            </button>
+          )}
+          {small && renderSkuBox({ isEU, shippingCountry, sku, small: true })}
+        </div>
       </div>
     </div>
   )
