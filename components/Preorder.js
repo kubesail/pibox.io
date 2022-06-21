@@ -43,11 +43,23 @@ let stripe
 // TODO add remaining order count in batch
 
 const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
+  const C_DRIVE_LINKS = (
+    <>
+      Crucial sells affordable{' '}
+      <a target="_blank" href="https://amzn.to/3Own85M">
+        2TB
+      </a>{' '}
+      drives, while Samsung sells drives up to{' '}
+      <a target="_blank" href="https://amzn.to/3tQ3ARU">
+        8TB
+      </a>
+    </>
+  )
   const C_METAL = {
     img: contentsMetal,
     title: 'Metal Case',
     description:
-      'Industrial and sturdy — our custom powder coated 1 mm steel case. Outer dimensions measure ' +
+      'Our industrial and sturdy powder coated custom case. Heavy duty 1-mm thick steel gives the unit a solid weight and a great feel. Outer dimensions measure ' +
       (shippingCountry === 'US' ? '2x3x5 inches' : '52x79x113 mm'),
   }
   const C_BOARDS = {
@@ -59,41 +71,77 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
   const C_CM4 = {
     img: contentsCm4,
     title: 'Raspberry Pi Compute Module 4',
-    description:
-      'The power of Raspberry Pi 4 in a compact form factor. ' +
-      (sku !== '2-bay-hacker'
-        ? `The ${
+    description: (
+      <span>
+        The power of Raspberry Pi 4 in a compact form factor.{' '}
+        {sku !== '2-bay-hacker' ? (
+          `The ${
             sku === '2-bay-standard' ? 'Standard' : 'Plug & Play'
-          } PiBox includes a Pi with 8GB RAM, 8GB flash memory, WiFi & Bluetooth.`
-        : 'Learn more or buy now'),
+          } PiBox includes a Pi with 8GB RAM,
+        8GB flash memory, WiFi & Bluetooth.`
+        ) : (
+          <span>
+            <a target="_blank" href="https://www.raspberrypi.com/products/compute-module-4/">
+              Learn more
+            </a>{' '}
+            or{' '}
+            <a target="_blank" href="https://rpilocator.com/?cat=CM4">
+              buy now
+            </a>
+          </span>
+        )}
+      </span>
+    ),
   }
   const C_FAN = {
     img: contentsFan,
     title: 'Premium Noctua Fan',
-    description:
-      'Ultra quiet NF-A4x10 PWM fan. We are serious about cooling, and serious about noise.',
+    description: (
+      <span>
+        Ultra quiet NF-A4x10 PWM fan. We are serious about cooling, and serious about noise. See our{' '}
+        <a target="_blank" href="https://docs.kubesail.com/guides/pibox/os/#stress-test-data">
+          stress test data
+        </a>
+        .
+      </span>
+    ),
     link: '',
   }
   //TODO change based on country
   const C_PSU = {
     img: isEU ? contentsPsuEu : contentsPsuUs,
     title: (isEU ? 'EU ' : '') + 'Power Supply',
-    description: '5v / 3.5A USB power supply with inline switch',
+    description: '5v / 3.5A USB-C power supply with inline switch',
     link: '',
   }
   const C_ANTENNA = {
     img: contentsAntenna,
     title: 'CM4 Antenna Kit',
     optional: true,
-    description:
-      '2.4GHz + 5GHz external WiFi & Bluetooth Antenna. Increases your wireless speed and range ',
-    link: 'https://www.raspberrypi.com/products/compute-module-4-antenna-kit/',
+    description: (
+      <span>
+        2.4GHz + 5GHz external WiFi & Bluetooth Antenna. Provides a stronger signal to increase your
+        wireless speed and range.{' '}
+        {sku === '2-bay-hacker' && (
+          <a
+            target="_blank"
+            href="https://www.raspberrypi.com/products/compute-module-4-antenna-kit/"
+          >
+            Learn more / buy now
+          </a>
+        )}
+      </span>
+    ),
   }
   const C_SSD_DIY = {
     img: contentsSsd,
     title: 'Solid State Drive',
-    description:
-      'Add up to two solid state drives. All 2.5-inch SATA SSDs are compatible. Spinning HDDs are not recommended due to power requirements.',
+    description: (
+      <span>
+        Add up to two solid state drives. All 2.5-inch SATA SSDs are compatible. Spinning HDDs are
+        not recommended due to power requirements. {C_DRIVE_LINKS}
+      </span>
+    ),
   }
   let included = [C_METAL, C_BOARDS, C_PSU]
   let diy = []
@@ -107,7 +155,11 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
     diy.push({
       img: contentsSsd,
       title: 'Solid State Drive - Bay #2',
-      description: 'Add one additional drive at any time to increase your storage capacity',
+      description: (
+        <span>
+          Add one additional drive at any time to increase your storage capacity. {C_DRIVE_LINKS}
+        </span>
+      ),
     })
   } else if (sku === '2-bay-standard') {
     included.push(C_CM4, C_FAN, C_ANTENNA)
@@ -118,8 +170,15 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
       {
         img: contentsFan,
         title: '40mm Cooling Fan',
-        description:
-          'You can use any 5v 40x40x10mm cooling fan. We recommend the ultra quiet Noctua NF-A4x10 PWM fan.',
+        description: (
+          <span>
+            You can use any 5v 40x40x10mm cooling fan. We recommend the ultra quiet{' '}
+            <a target="_blank" href="https://amzn.to/3n8i2Bk">
+              Noctua NF-A4x10
+            </a>
+            PWM fan.
+          </span>
+        ),
         link: '',
       },
       C_SSD_DIY,
@@ -303,7 +362,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             </>
           )}
           <div style={{ display: 'flex', margin: '2rem' }}>
-            <a href={'https://pibox.io'}>
+            <a target="_blank" href={'https://pibox.io'}>
               <button>Back to PiBox.io</button>
             </a>
             <a
@@ -314,10 +373,20 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             >
               <button>Visit KubeSail.com</button>
             </a>
-            <a href="https://discord.gg/N3zNdp7jHc" rel="noreferrer nofollow" target="_blank">
+            <a
+              target="_blank"
+              href="https://discord.gg/N3zNdp7jHc"
+              rel="noreferrer nofollow"
+              target="_blank"
+            >
               <button>Join us in Discord</button>
             </a>
-            <a href="https://twitter.com/KubeSail" rel="noreferrer nofollow" target="_blank">
+            <a
+              target="_blank"
+              href="https://twitter.com/KubeSail"
+              rel="noreferrer nofollow"
+              target="_blank"
+            >
               <button>Follow us on Twitter</button>
             </a>
           </div>
