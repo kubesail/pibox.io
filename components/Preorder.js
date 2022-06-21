@@ -58,11 +58,13 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
   }
   const C_CM4 = {
     img: contentsCm4,
-    title: 'Raspberry Pi CM4',
+    title: 'Raspberry Pi Compute Module 4',
     description:
       'The power of Raspberry Pi 4 in a compact form factor. ' +
       (sku !== '2-bay-hacker'
-        ? 'This PiBox includes a CM4 with 8 RAM, 8GB flash memory, WiFi + Bluetooth.'
+        ? `The ${
+            sku === '2-bay-standard' ? 'Standard' : 'Plug & Play'
+          } PiBox includes a Pi with 8GB RAM, 8GB flash memory, WiFi & Bluetooth.`
         : 'Learn more or buy now'),
   }
   const C_FAN = {
@@ -84,7 +86,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
     title: 'CM4 Antenna Kit',
     optional: true,
     description:
-      '2.4 + 5GHz external WiFi + Bluetooth Antenna. Increases the speed and extends the range of your CM4',
+      '2.4GHz + 5GHz external WiFi & Bluetooth Antenna. Increases your wireless speed and range ',
     link: 'https://www.raspberrypi.com/products/compute-module-4-antenna-kit/',
   }
   const C_SSD_DIY = {
@@ -100,13 +102,12 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
       img: contentsSsd,
       title: 'Solid State Drive - Bay #1',
       description:
-        'The first SSD bay is pre-filled with a 2TB SSD drive, formatted and ready to go. We ship the PiBox with Samsung and Crucial SSDs only.',
+        'The first SSD bay is pre-filled with a 2TB SSD drive, formatted and ready to go. We ship only high quality drives from Samsung or Crucial.',
     })
     diy.push({
       img: contentsSsd,
       title: 'Solid State Drive - Bay #2',
-      description:
-        'You can add one additional 2.5-inch SATA solid state drive for more storage at any time',
+      description: 'Add one additional drive at any time to increase your storage capacity',
     })
   } else if (sku === '2-bay-standard') {
     included.push(C_CM4, C_FAN, C_ANTENNA)
@@ -121,6 +122,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
     <>
       <div className={styles.boxContents}>
         <h3>Included in the box</h3>
+        <p style={{ textAlign: 'center', margin: 20 }}>These components arrive fully assembled</p>
         <ul>
           {included.map(({ img, title, description }) => (
             <li>
@@ -133,7 +135,10 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
           ))}
         </ul>
       </div>
-      <div className={styles.boxContents}>
+      <div
+        className={styles.boxContents}
+        style={{ borderTop: '1px solid black', marginBottom: 20 }}
+      >
         <h3>Bring your own</h3>
         <ul>
           {diy.map(({ img, title, description }) => (
@@ -163,7 +168,7 @@ const trackLead = once(() => {
 })
 
 const PreOrder = ({ router, profile, country, page, type }) => {
-  const [sku, setSku] = useState('2-bay-standard')
+  const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
   const [inventory, setInventory] = useState(0)
   const [platform, setPlatform] = useState(null)
