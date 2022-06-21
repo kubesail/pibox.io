@@ -78,7 +78,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
   const C_PSU = {
     img: isEU ? contentsPsuEu : contentsPsuUs,
     title: (isEU ? 'EU ' : '') + 'Power Supply',
-    description: '5v / 3.5A USB power supply with switch',
+    description: '5v / 3.5A USB power supply with inline switch',
     link: '',
   }
   const C_ANTENNA = {
