@@ -54,7 +54,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku }) => {
     img: contentsBoards,
     title: 'Carrier & Backplane Boards',
     description:
-      'Our custom boards for driving the Pi and SATA SSDs, designed in-house and only sold here!',
+      'Our custom circuit boards for driving the Pi and SATA SSDs, designed in-house and only sold here!',
   }
   const C_CM4 = {
     img: contentsCm4,
