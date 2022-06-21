@@ -175,7 +175,7 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
             You can use any 5v 40x40x10mm cooling fan. We recommend the ultra quiet{' '}
             <a target="_blank" href="https://amzn.to/3n8i2Bk">
               Noctua NF-A4x10
-            </a>
+            </a>{' '}
             PWM fan.
           </span>
         ),
