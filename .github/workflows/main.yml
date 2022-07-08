@@ -7,7 +7,7 @@ name: Build and Push (skaffold)
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   build-and-push:
@@ -24,12 +24,12 @@ jobs:
         run: |
           echo "${{ secrets.DOCKER_HUB_PULL_SECRET }}" | docker login --username "kubesailreadonly" --password-stdin
           mkdir -p ~/.kube
-          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/eks
+          echo "${{ secrets.KUBECONFIG_FILE }}" > ~/.kube/linode
 
       - name: Deploy
-        run: KUBECONFIG=~/.kube/eks skaffold run -p prod
+        run: KUBECONFIG=~/.kube/linode skaffold run -p prod
 
       - name: Cleanup
         if: always()
         run: |
-          rm -rfv ~/.kube/eks
+          rm -rfv ~/.kube/linode

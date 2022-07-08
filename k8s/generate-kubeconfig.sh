@@ -10,17 +10,17 @@ echo "
 apiVersion: v1
 kind: Config
 clusters:
-- name: eks
+- name: linode
   cluster:
     certificate-authority-data: ${ca}
     server: https://<K8S_ADDRESS_GOES_HERE>
 contexts:
-- name: eks
+- name: linode
   context:
-    cluster: eks
+    cluster: linode
     namespace: kubesail
     user: pibox-io-updater
-current-context: eks
+current-context: linode
 users:
 - name: pibox-io-updater
   user:
