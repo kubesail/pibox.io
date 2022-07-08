@@ -20,7 +20,7 @@ rules:
   - apiGroups: ["apps", "", "networking.k8s.io"]
     resources: ["deployments", "services", "ingresses"]
     resourceNames: ["pibox-io", "kubesail-pibox-com"]
-    verbs: ["get", "list", "update", "patch", "watch"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
 apiVersion: v1
 kind: ServiceAccount
