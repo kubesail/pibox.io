@@ -373,20 +373,10 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             >
               <button>Visit KubeSail.com</button>
             </a>
-            <a
-              target="_blank"
-              href="https://discord.gg/N3zNdp7jHc"
-              rel="noreferrer nofollow"
-              target="_blank"
-            >
+            <a target="_blank" href="https://discord.gg/N3zNdp7jHc" rel="noreferrer nofollow">
               <button>Join us in Discord</button>
             </a>
-            <a
-              target="_blank"
-              href="https://twitter.com/KubeSail"
-              rel="noreferrer nofollow"
-              target="_blank"
-            >
+            <a target="_blank" href="https://twitter.com/KubeSail" rel="noreferrer nofollow">
               <button>Follow us on Twitter</button>
             </a>
           </div>
