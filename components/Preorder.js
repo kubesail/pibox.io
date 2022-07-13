@@ -536,10 +536,14 @@ const PreOrder = ({ router, profile, country, page, type }) => {
           )}
 
           {sku === '5-bay' && (
-            <p>
-              Enter your email to be notified when the <strong>Full Sized PiBox 5 Bay NAS</strong>{' '}
-              is available to order. Full product specifications will be announced later this year.
-            </p>
+            <>
+              <h2>Coming Soon!</h2>
+              <p>
+                Enter your email to be notified when the <strong>Full Sized PiBox 5 Bay NAS</strong>{' '}
+                is available to order. Full product specifications will be announced later this
+                year.
+              </p>
+            </>
           )}
 
           {allowedCountry ? (
@@ -572,7 +576,17 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               </p>
             </div>
           )}
-          {(!allowedCountry || sku === '5-bay') && (
+          {sku === '2-bay-hacker' && (
+            <>
+              <h2>Sold Out!</h2>
+              <p>
+                These things are hot! Sorry you missed out on the Hacker Bundle, but we're still
+                taking orders for other models. If you want to know when we've got this bundle in
+                stock, enter your email below.
+              </p>
+            </>
+          )}
+          {(!allowedCountry || sku === '5-bay' || sku === '2-bay-hacker') && (
             <div>
               <form
                 name="waitlist"
@@ -598,7 +612,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               </form>
             </div>
           )}
-          {allowedCountry && sku && sku !== '5-bay' && (
+
+          {allowedCountry && sku && sku !== '5-bay' && sku !== '2-bay-hacker' && (
             <button
               className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
               onClick={() => checkout(sku, shippingCountry)}
