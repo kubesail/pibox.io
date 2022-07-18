@@ -432,7 +432,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
         )}
         <div style={notifStyle}>
           {inventory < 1 ? (
-            `We are now taking pre-orders for batch 2, which is expected to ship in October.`
+            `Batch 1 is shipping now! We are now taking pre-orders for batch 2, which is expected to ship in October.`
           ) : inventory < 900 ? (
             <>
               <h4 style={{ marginTop: 0 }}>Batch 1 - Limited Inventory Remaining</h4>
