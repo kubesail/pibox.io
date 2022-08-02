@@ -29,6 +29,15 @@ import contentsPsuEu from '../public/images/box-contents-psu-eu.jpg'
 // import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
 
+iso3166 = iso3166
+  .filter(c => !['UM'].includes(c.alpha2))
+  .map(c => {
+    if (c.alpha2 === 'GB') c.name = 'United Kingdom'
+    if (c.alpha2 === 'TW') c.name = c.name.substring(0, 6)
+    if (c.alpha2 === 'US') c.name = c.name.substring(0, 13)
+    return c
+  })
+
 const Select = dynamic(() => import('react-select'))
 const PiBox = dynamic(() => import('../components/PiBox'), { ssr: false })
 const Animation = dynamic(() => import('../components/Animation'), { ssr: false })
