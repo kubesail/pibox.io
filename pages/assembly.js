@@ -138,6 +138,7 @@ const MissingPhoto = (height, width) => {
 const AssemblyStep = ({ step, stepNumber }) => {
   const [selectedVideo, setSelectedVideo] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
+  const [fullScreenImage, setFullScreenImage] = useState(null)
   return (
     <div style={{ borderBottom: '1px solid black', marginBottom: '70px' }}>
       <h1 style={{ fontSize: '24px' }}>
@@ -151,8 +152,28 @@ const AssemblyStep = ({ step, stepNumber }) => {
         }}
       >
         <div style={{ width: '50%', minHeight: 400, marginBottom: '30px' }}>
-          {selectedImage ? (
-            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+          {fullScreenImage ? (
+            <div
+              style={{
+                width: '100vw',
+                height: '100vh',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                cursor: 'pointer',
+                zIndex: 9,
+              }}
+              onClick={() => setFullScreenImage(null)}
+            >
+              <Image src={`/assets/${fullScreenImage}`} layout="fill" width="100%" />
+            </div>
+          ) : selectedImage ? (
+            <div
+              style={{ width: '100%', height: '100%', position: 'relative', cursor: 'pointer' }}
+              onClick={() => {
+                setFullScreenImage(selectedImage)
+              }}
+            >
               <Image src={`/assets/${selectedImage}`} layout="fill" />
             </div>
           ) : selectedVideo ? (
@@ -204,6 +225,7 @@ const AssemblyStep = ({ step, stepNumber }) => {
           {step.videos.map((video, i) => {
             return (
               <div
+                key={video}
                 style={{
                   cursor: 'pointer',
                   marginLeft: '8px',
@@ -222,7 +244,7 @@ const AssemblyStep = ({ step, stepNumber }) => {
                   setSelectedVideo(video)
                 }}
               >
-                Video #{i + 0}
+                Video #{i + 1}
               </div>
             )
           })}
