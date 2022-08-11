@@ -37,7 +37,10 @@ const piboxAssembly = {
   steps: [
     {
       title: 'preparing front panel',
-      instructions: [],
+      instructions: [
+        { color: '#f00', text: 'Part 1: Prepare the front panel' },
+        { color: '#f00', text: 'Part 2: Prepare the front panel' },
+      ],
       videos: ['IMG_1455'],
       photos: ['IMG_1477.jpg', 'IMG_1476.jpg'],
       caution: '',
@@ -136,8 +139,8 @@ const MissingPhoto = (height, width) => {
 }
 
 const AssemblyStep = ({ step, stepNumber }) => {
-  const [selectedVideo, setSelectedVideo] = useState(null)
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedVideo, setSelectedVideo] = useState(step.videos[0])
+  const [selectedImage, setSelectedImage] = useState(step.photos[0])
   const [fullScreenImage, setFullScreenImage] = useState(null)
   return (
     <div style={{ borderBottom: '1px solid black', marginBottom: '70px' }}>
@@ -165,7 +168,7 @@ const AssemblyStep = ({ step, stepNumber }) => {
               }}
               onClick={() => setFullScreenImage(null)}
             >
-              <Image src={`/assets/${fullScreenImage}`} layout="fill" width="100%" />
+              <Image src={`/assets/${fullScreenImage}`} width="2016" height="1512" />
             </div>
           ) : selectedImage ? (
             <div
@@ -174,27 +177,15 @@ const AssemblyStep = ({ step, stepNumber }) => {
                 setFullScreenImage(selectedImage)
               }}
             >
-              <Image src={`/assets/${selectedImage}`} layout="fill" />
+              <Image src={`/assets/${selectedImage}`} width="2016" height="1512" />
             </div>
           ) : selectedVideo ? (
             <ReactPlayer
               controls={true}
-              width={'46vw'}
+              playing={true}
+              width={'100%'}
               url={[{ src: `/assets/${selectedVideo}.MOV.webm`, type: 'video/webm' }]}
             />
-          ) : step.videos.length ? (
-            <ReactPlayer
-              controls={true}
-              width={'46vw'}
-              light={`/assets/${step.photos[0]}`}
-              url={step.videos.map(v => {
-                return { src: `/assets/${selectedVideo}.MOV.webm`, type: 'video/webm' }
-              })}
-            />
-          ) : step.photos.length ? (
-            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-              <Image src={`/assets/${step.photos[0]}`} layout="fill" />
-            </div>
           ) : (
             <div>No photos or videos?</div>
           )}
@@ -257,7 +248,16 @@ const AssemblyStep = ({ step, stepNumber }) => {
 const AssemblyPage = ({ router, country }) => {
   const [page = '', type = ''] = router?.query?.params || []
   return (
-    <div style={{ height: '100%', width: '100%', paddingLeft: '2%', paddingRight: '2%' }}>
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        maxWidth: '1400px',
+        margin: '0 auto',
+        paddingLeft: '2%',
+        paddingRight: '2%',
+      }}
+    >
       <h1>{piboxAssembly.title}</h1>
       <div style={{ fontSize: '0.8rem' }}>
         By {piboxAssembly.author}{' '}
