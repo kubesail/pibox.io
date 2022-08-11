@@ -424,7 +424,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
         {!small && renderSkuBox({ isEU, shippingCountry, sku })}
       </div>
       <div className={styles.OrderForm}>
-        <h2>Order your PiBox</h2>
+        <h2>Pre-Order your PiBox</h2>
         {platform && (
           <div>
             <div style={{ textAlign: 'center' }}>
@@ -441,7 +441,15 @@ const PreOrder = ({ router, profile, country, page, type }) => {
         )}
         <div style={notifStyle}>
           {inventory < 1 ? (
-            `Batch 1 is shipping now! We are now taking pre-orders for batch 2, which is expected to ship in October.`
+            <>
+              Batch 1 and 2 are in production!
+              <h3 style={{ textDecoration: 'none', fontSize: 30, marginBottom: 40 }}>
+                Inventory Status
+              </h3>
+              We are now accepting preorders for Batch 3. Get in line now and cancel at any time.{' '}
+              <strong>You won't be charged until we ship.</strong> Our estimated shipping date for
+              Batch 3 is the first quarter of 2023, and we will keep you updated via email.
+            </>
           ) : inventory < 900 ? (
             <>
               <h4 style={{ marginTop: 0 }}>Batch 1 - Limited Inventory Remaining</h4>
@@ -579,7 +587,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               <h2>Sold Out!</h2>
               <p>
                 These things are hot! Sorry you missed out on the Hacker Bundle, but we're still
-                taking orders for other models. If you want to know when we've got this bundle in
+                taking preorders for other models. If you want to know when we've got this bundle in
                 stock, enter your email below.
               </p>
             </>
