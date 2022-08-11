@@ -29,7 +29,7 @@ import contentsPsuEu from '../public/images/box-contents-psu-eu.jpg'
 // import pibox2Mini from '../public/images/pibox-lcd-logo.jpg'
 import styles from '../components/Preorder.module.css'
 
-iso3166 = iso3166raw
+const iso3166 = iso3166raw
   .filter(c => !['UM'].includes(c.alpha2))
   .map(c => {
     if (c.alpha2 === 'GB') c.name = 'United Kingdom'
