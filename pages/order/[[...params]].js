@@ -15,7 +15,7 @@ const PreOrderPage = ({ router, country }) => {
 
 export default withRouter(PreOrderPage)
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req, res, locale }) {
   const country = req.headers['cf-ipcountry'] || 'US'
   res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=59')
   res.setHeader('X-PiBox-Country', country)
