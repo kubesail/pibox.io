@@ -426,7 +426,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
       </div>
       <div className={styles.OrderForm}>
         <h2>Pre-Order your PiBox</h2>
-        {platform && (
+        {platform && platform.name !== 'InterestingSoup' && (
           <div>
             <div style={{ textAlign: 'center' }}>
               <Image src={platform.logo} width={120} height={120} />
