@@ -247,6 +247,7 @@ const trackLead = once(() => {
 })
 
 const PreOrder = ({ router, profile, country, page, type }) => {
+  country = country || 'US'
   const [sku, setSku] = useState(null)
   const [shippingCountry, setShippingCountry] = useState(country)
   const [inventory, setInventory] = useState(0)
