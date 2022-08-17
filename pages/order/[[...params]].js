@@ -19,6 +19,7 @@ export async function getServerSideProps({ req, res, locale }) {
   const country = req.headers['cf-ipcountry'] || 'US'
   res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=59')
   res.setHeader('X-PiBox-Country', country)
+  res.setHeader('X-PiBox-Locale', locale)
   return {
     props: {
       country,
