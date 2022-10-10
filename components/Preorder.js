@@ -338,7 +338,6 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   const allowedCountry = isAllowedCountry(shippingCountry)
 
   const region = shippingCountry === 'US' ? 'US' : 'EU'
-  console.log('UH', inventory[region].find(i => i.sku === sku)?.count || 0)
   const modelRegionCount = inventory[region].find(i => i.sku === sku)?.count || 0
   const isInStock = modelRegionCount > STOCK_BUFFER
 
