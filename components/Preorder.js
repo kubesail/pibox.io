@@ -248,7 +248,7 @@ const trackLead = once(() => {
 
 const PreOrder = ({ router, profile, country, page, type }) => {
   country = country || 'US'
-  const [sku, setSku] = useState(null)
+  const [sku, setSku] = useState('2-bay-standard')
   const [shippingCountry, setShippingCountry] = useState(country)
   const [inventory, setInventory] = useState({ US: [], EU: [] })
   const [platform, setPlatform] = useState(null)
