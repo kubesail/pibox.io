@@ -100,8 +100,8 @@ const piboxAssembly = {
     {
       title: 'top-case assembly (antenna)',
       instructions: [],
-      videos: ['IMG_1521'],
-      photos: ['IMG_1514.jpg', 'IMG_1519.jpg', 'IMG_1520.jpg'],
+      videos: ['antenna'],
+      photos: ['antenna.png', 'IMG_1520.jpg'],
       caution: '',
     },
     {
