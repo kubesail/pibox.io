@@ -49,7 +49,7 @@ const STRIPE_PUBLIC_KEY =
 
 let stripe
 
-// TODO add remaining order count in batch
+const STOCK_BUFFER = 15
 
 const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
   const C_DRIVE_LINKS = (
@@ -248,9 +248,9 @@ const trackLead = once(() => {
 
 const PreOrder = ({ router, profile, country, page, type }) => {
   country = country || 'US'
-  const [sku, setSku] = useState(null)
+  const [sku, setSku] = useState('2-bay-standard')
   const [shippingCountry, setShippingCountry] = useState(country)
-  const [inventory, setInventory] = useState(0)
+  const [inventory, setInventory] = useState({ US: [], EU: [] })
   const [platform, setPlatform] = useState(null)
   const { t } = useTranslation('common')
 
@@ -267,7 +267,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   async function fetchInventory() {
     try {
       const { body } = await kubeSailFetch('/pibox/inventory')
-      setInventory(body.batch1)
+      if (body.EU && body.US) setInventory(body)
     } catch (err) {
       console.warn(err)
     }
@@ -336,6 +336,10 @@ const PreOrder = ({ router, profile, country, page, type }) => {
   const currentModel = piboxModels.find(m => m.sku === sku)
   const costData = shippingCost(shippingCountry)
   const allowedCountry = isAllowedCountry(shippingCountry)
+
+  const region = shippingCountry === 'US' ? 'US' : 'EU'
+  const modelRegionCount = inventory[region].find(i => i.sku === sku)?.count || 0
+  const isInStock = modelRegionCount > STOCK_BUFFER
 
   const currentPrice = currentModel?.price ? currentModel.price[costData?.currency] : 0
 
@@ -440,8 +444,8 @@ const PreOrder = ({ router, profile, country, page, type }) => {
             </div>
           </div>
         )}
-        <div style={notifStyle}>
-          {inventory < 1 ? (
+        {/* <div style={notifStyle}>
+          {inventory.US < 1 ? (
             <>
               Batch 1 and 2 are in production!
               <h3 style={{ textDecoration: 'none', fontSize: 30, marginBottom: 40 }}>
@@ -465,7 +469,7 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               July. After the first batch is sold out, the next batch will be available in October.
             </>
           )}
-        </div>
+        </div> */}
         {isEU && (
           <p>
             <strong>EU Friendly</strong> Shipping. Comes with a{' '}
@@ -505,7 +509,6 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               )
             })}
           </div>
-
           {sku && (
             <div className={styles.country}>
               <div className={styles.countrySelect}>
@@ -541,7 +544,6 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               </div>
             </div>
           )}
-
           {sku === '5-bay' && (
             <>
               <h2>Coming Soon!</h2>
@@ -552,48 +554,19 @@ const PreOrder = ({ router, profile, country, page, type }) => {
               </p>
             </>
           )}
-
-          {allowedCountry ? (
-            sku &&
-            sku !== '5-bay' &&
-            !profile && (
-              <div>
-                {
-                  <p className={styles.whyLogin}>
-                    Logging in lets you start setting up apps on your PiBox now, so it's{' '}
-                    <strong>ready to use</strong> the moment it arrives!
-                  </p>
-                }
-                <Link
-                  href={`${KUBESAIL_WWW_TARGET}/login?redirect=${encodeURIComponent(
-                    `${PIBOX_WWW_TARGET}/order/redirected`
-                  )}`}
-                >
-                  <a className={styles.checkout}>Login</a>
-                </Link>
-              </div>
-            )
-          ) : (
+          {!allowedCountry && (
             <div>
               <p>
                 We can't ship to{' '}
                 <strong>{iso3166.find(country => country.alpha2 === shippingCountry)?.name}</strong>{' '}
                 yet, but we are expanding quickly. Enter your email below and we will let you know
-                when we are able to accept your order. Thanks for your patience!
+                when we are able to accept your order and ship to your country. Thanks for your
+                patience!
               </p>
             </div>
           )}
-          {sku === '2-bay-hacker' && (
-            <>
-              <h2>Sold Out!</h2>
-              <p>
-                These things are hot! Sorry you missed out on the Hacker Bundle, but we're still
-                taking preorders for other models. If you want to know when we've got this bundle in
-                stock, enter your email below.
-              </p>
-            </>
-          )}
-          {(!allowedCountry || sku === '5-bay' || sku === '2-bay-hacker') && (
+
+          {!sku ? null : !allowedCountry || sku === '5-bay' ? (
             <div>
               <form
                 name="waitlist"
@@ -618,14 +591,31 @@ const PreOrder = ({ router, profile, country, page, type }) => {
                 />
               </form>
             </div>
+          ) : isInStock ? (
+            <>
+              <h2>{modelRegionCount - STOCK_BUFFER} In Stock</h2>
+              <p>
+                We currently have inventory that ships from our {region} warehouse! New orders ship
+                within 1 business day.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2>Sold Out!</h2>
+              <p>
+                These things are hot! We produce the PiBox in batches, and are now accepting
+                preorders for Batch 3. Preorder now and cancel at any time.{' '}
+                <strong>You won't be charged until we ship.</strong> Our estimated shipping date for
+                Batch 3 is the first quarter of 2023, and we will keep you updated via email.
+              </p>
+            </>
           )}
-
-          {allowedCountry && sku && sku !== '5-bay' && sku !== '2-bay-hacker' && (
+          {allowedCountry && sku && sku !== '5-bay' && (
             <button
-              className={[styles.checkout, !profile && styles.loggedOut].join(' ')}
+              className={[styles.checkout].join(' ')}
               onClick={() => checkout(sku, shippingCountry)}
             >
-              {profile ? `Checkout` : 'Checkout as Guest'}
+              {isInStock ? 'Checkout' : 'Preorder Now'}
             </button>
           )}
           {small && renderSkuBox({ isEU, shippingCountry, sku, small: true })}

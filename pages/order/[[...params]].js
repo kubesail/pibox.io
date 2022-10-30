@@ -21,11 +21,5 @@ export async function getServerSideProps({ req, res, locale }) {
   res.setHeader('X-PiBox-Country', country)
   res.setHeader('X-PiBox-Locale', locale)
   const sst = await serverSideTranslations(locale, ['common', 'footer'])
-  console.log({ sst })
-  return {
-    props: {
-      country,
-      ...sst,
-    },
-  }
+  return { props: { country, ...sst } }
 }
