@@ -114,7 +114,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
           }
           style={{ transformStyle: 'preserve-3d' }}
           alt="PiBox - the personal server"
-          fetchPriority="high"
+          fetchpriority="high"
           src={model === 'box2mini' ? pibox2Mini.src : pibox5.src}
         />
         <div
@@ -137,7 +137,7 @@ const PiBox = ({ preferLarge, screen, noLarge }) => {
               transformStyle: 'preserve-3d',
             }}
             alt="PiBox - the personal server"
-            fetchPriority="high"
+            fetchpriority="high"
             className={
               screen
                 ? styles.fadeIn
