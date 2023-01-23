@@ -174,25 +174,8 @@ const renderSkuBox = ({ isEU, shippingCountry, sku, small }) => {
     included.push(C_CM4, C_FAN, C_ANTENNA)
     diy.push(C_SSD_DIY)
   } else if (sku === '2-bay-hacker') {
-    diy.push(
-      C_CM4,
-      {
-        img: contentsFan,
-        title: '40mm Cooling Fan',
-        description: (
-          <span>
-            You can use any 5v 40x40x10mm cooling fan. We recommend the ultra quiet{' '}
-            <a target="_blank" href="https://amzn.to/3n8i2Bk">
-              Noctua NF-A4x10
-            </a>{' '}
-            PWM fan.
-          </span>
-        ),
-        link: '',
-      },
-      C_SSD_DIY,
-      C_ANTENNA
-    )
+    included.push(C_FAN, C_ANTENNA)
+    diy.push(C_CM4, C_SSD_DIY)
   } else {
     return null
   }
